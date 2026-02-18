@@ -1,17 +1,4 @@
 {
-    "redirects": [
-        {
-            "source": "/(.*)",
-            "has": [
-                {
-                    "type": "host",
-                    "value": "www.nivopartners.com"
-                }
-            ],
-            "destination": "https://nivopartners.com/$1",
-            "permanent": true
-        }
-    ],
     "headers": [
         {
             "source": "/(.*)",
