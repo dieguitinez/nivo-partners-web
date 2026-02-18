@@ -115,17 +115,17 @@ class AntigravityChat {
     toggle() {
         this.isOpen = !this.isOpen;
         const widget = document.getElementById('ag-chat-widget');
-        const window = widget.querySelector('.ag-chat-window');
+        const chatWindow = widget.querySelector('.ag-chat-window');
         const btn = widget.querySelector('.ag-chat-button');
         const label = widget.querySelector('.chat-label');
 
         if (this.isOpen) {
-            window.classList.add('active');
+            chatWindow.classList.add('active');
             btn.classList.add('active');
             document.querySelector('.notification-dot').style.display = 'none';
             if (label) label.classList.remove('visible');
         } else {
-            window.classList.remove('active');
+            chatWindow.classList.remove('active');
             btn.classList.remove('active');
         }
     }

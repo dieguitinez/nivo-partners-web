@@ -24,40 +24,33 @@
 
     <!-- 1. Google Tag Manager (manages GA4, Meta Pixel, LinkedIn) -->
     <!-- REPLACE: GTM-XXXXXXX with your GTM Container ID -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');</script>
 
     <!-- 2. Microsoft Clarity (Heatmaps & Session Recordings) -->
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
     </script>
 
-    <!-- 3. Hotjar (UX Heatmaps & Feedback) -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:YOUR_HOTJAR_ID,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    <!-- 3. Hotjar removed — using Clarity instead (no undefined variable error) -->
 
 </head>
 
 <body>
 
     <!-- Google Tag Manager (noscript fallback) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Header -->
     <header>
@@ -66,6 +59,7 @@
                 <a href="../index.html" class="logo-link">NIVO<span>PARTNERS</span></a>
             </div>
             <nav class="nav-links">
+                <button class="mobile-menu-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-i18n="nav.services.main">Services <i
                             class="fas fa-chevron-down nav-chevron"></i></a>
@@ -138,7 +132,7 @@
                     <span class="tier-tag highlight" data-i18n="ai.tier2.tag">Efficiency</span>
                     <p class="tier-hook" data-i18n="ai.tier2.desc">Stop drowning in email. Our algorithms categorize,
                         tag, and draft responses for
-                        your Gmail inbox, **optimizing operational throughput and resource allocation**.</p>
+                        your Gmail inbox, optimizing operational throughput and resource allocation.</p>
                     <a href="#apply" class="btn btn-primary small mt-1rem btn-audit" data-i18n="ai.hero.cta">Initialize
                         Protocol</a>
                 </div>

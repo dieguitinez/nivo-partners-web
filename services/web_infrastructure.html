@@ -27,40 +27,33 @@
 
     <!-- 1. Google Tag Manager (manages GA4, Meta Pixel, LinkedIn) -->
     <!-- REPLACE: GTM-XXXXXXX with your GTM Container ID -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');</script>
 
     <!-- 2. Microsoft Clarity (Heatmaps & Session Recordings) -->
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
     </script>
 
-    <!-- 3. Hotjar (UX Heatmaps & Feedback) -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:YOUR_HOTJAR_ID,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    <!-- 3. Hotjar removed — using Clarity instead (no undefined variable error) -->
 
 </head>
 
 <body>
 
     <!-- Google Tag Manager (noscript fallback) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <!-- Header -->
@@ -70,6 +63,7 @@
                 <a href="../index.html" class="logo-link">NIVO<span>PARTNERS</span></a>
             </div>
             <nav class="nav-links">
+                <button class="mobile-menu-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-i18n="nav.services.main">Services <i
                             class="fas fa-chevron-down nav-chevron"></i></a>
@@ -103,21 +97,21 @@
 
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge animate-fade-in delay-1">
+                <div class="hero-badge animate-fade-in delay-1" data-i18n="webPage.badge">
                     Digital Infrastructure
                 </div>
 
-                <h1 class="animate-fade-in delay-2">
+                <h1 class="animate-fade-in delay-2" data-i18n="webPage.title">
                     Start Converting Visitors into <span class="text-gradient">Revenue</span>
                 </h1>
 
-                <p class="animate-fade-in delay-3">
+                <p class="animate-fade-in delay-3" data-i18n="webPage.desc">
                     We leverage modern architecture to build assets that are not just beautiful, but are engineered to
                     sell.
                 </p>
 
                 <div class="animate-fade-in delay-3 hero-cta-group">
-                    <a href="#contact" class="btn btn-primary">
+                    <a href="#contact" class="btn btn-primary" data-i18n="webPage.cta">
                         Get a Quote
                     </a>
                 </div>
@@ -212,10 +206,11 @@
     <!-- Contact Section -->
     <section class="section-padding" id="contact">
         <div class="container text-center">
-            <h2>Ready to Upgrade Your Infrastructure?</h2>
-            <p class="mb-2rem text-muted-color">Tell us about your project requirements.</p>
+            <h2 data-i18n="webPage.contactTitle">Ready to Upgrade Your Infrastructure?</h2>
+            <p class="mb-2rem text-muted-color" data-i18n="webPage.contactDesc">Tell us about your project requirements.
+            </p>
             <a href="#" onclick="window.location.href = 'mailto:' + 'contact' + '@' + 'nivopartners.com'"
-                class="btn btn-primary">Contact Us</a>
+                class="btn btn-primary" data-i18n="webPage.contactBtn">Contact Us</a>
         </div>
     </section>
 
