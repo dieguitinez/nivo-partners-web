@@ -77,7 +77,7 @@ const translations = {
             tier2: {
                 title: "Inbox Infrastructure",
                 tag: "Efficiency",
-                desc: "Stop drowning in email. Our algorithms categorize, tag, and draft responses for your Gmail inbox, **optimizing operational throughput and resource allocation**."
+                desc: "Stop drowning in email. Our algorithms categorize, tag, and draft responses for your Gmail inbox, optimizing operational throughput and resource allocation."
             },
             tier3: {
                 title: "Market Intelligence",
@@ -454,29 +454,29 @@ const translations = {
                         ]
                     },
                     step2: {
-                        q: "How do you want your brand's Visual DNA to feel?",
+                        q: "How do you want clients to perceive your brand at first glance?",
                         options: [
-                            { id: "minimal", label: "Minimalist", detail: "Clean & Precise" },
-                            { id: "vanguard", label: "Modern", detail: "Vanguard Edge" },
-                            { id: "dark", label: "Dark Mode", detail: "Tech Elegance" },
-                            { id: "typo", label: "Typographic", detail: "Textual Authority" },
-                            { id: "visual", label: "Visual Heavy", detail: "Image Impact" }
+                            { id: "minimal", label: "Clean & Professional", detail: "Trust through simplicity" },
+                            { id: "vanguard", label: "Bold & Modern", detail: "Stand out from competitors" },
+                            { id: "dark", label: "Premium & Tech", detail: "High-end, sophisticated" },
+                            { id: "typo", label: "Authoritative", detail: "Expert, industry leader" },
+                            { id: "visual", label: "Visual-First", detail: "Show, don't tell" }
                         ]
                     },
                     step3: {
-                        q: "What technical experience do you seek for your users?",
+                        q: "How do your clients prefer to consume information?",
                         options: [
-                            { id: "onepage", label: "One-Page", detail: "Continuous Flow" },
-                            { id: "scrolling", label: "Interactive Scrolling", detail: "Dynamic Narrative" },
-                            { id: "responsive", label: "Responsive Core", detail: "Total Adaptability" }
+                            { id: "onepage", label: "All in One Place", detail: "Single page, no clicks" },
+                            { id: "scrolling", label: "Story-Driven", detail: "Guided journey with narrative" },
+                            { id: "responsive", label: "Works on Any Device", detail: "Mobile-first priority" }
                         ]
                     },
                     step4: {
-                        q: "How should the architectural information flow?",
+                        q: "How should clients navigate to find what they need?",
                         options: [
-                            { id: "hierarchical", label: "Hierarchical", detail: "Organized Menus" },
-                            { id: "sequential", label: "Sequential", detail: "Step-by-Step" },
-                            { id: "network", label: "In-Network", detail: "Free Exploration" }
+                            { id: "hierarchical", label: "Clear Menu Structure", detail: "Organized, easy to browse" },
+                            { id: "sequential", label: "Guided Step-by-Step", detail: "Lead them to conversion" },
+                            { id: "network", label: "Free Exploration", detail: "Let them discover at will" }
                         ]
                     }
                 },
@@ -484,6 +484,11 @@ const translations = {
                 result_title: "Architecture Identified: High-Availability [NICHE] Infrastructure",
                 result_desc: "Our diagnostic indicates a [DNA] aesthetic paired with a [NAV] framework to optimize user retention and conversion-loop efficiency.",
                 audit_cta: "Request Strategic Audit to determine investment and deployment timeline"
+            },
+            brandingAssets: {
+                asset1: "Logo Design",
+                asset2: "Brand Guidelines",
+                asset3: "Visual Systems"
             }
         },
         marketingPage: {
@@ -935,29 +940,29 @@ const translations = {
                         ]
                     },
                     step2: {
-                        q: "¿Cómo quiere que se sienta el ADN Visual de su marca?",
+                        q: "¿Cómo quiere que sus clientes perciban su marca a primera vista?",
                         options: [
-                            { id: "minimal", label: "Minimalista", detail: "Limpio y Preciso" },
-                            { id: "vanguard", label: "Moderno", detail: "Vanguardia Extrema" },
-                            { id: "dark", label: "Dark Mode", detail: "Elegancia Tecnológica" },
-                            { id: "typo", label: "Tipográfico", detail: "Autoridad Textual" },
-                            { id: "visual", label: "Visual Heavy", detail: "Impacto Visual" }
+                            { id: "minimal", label: "Limpia y Profesional", detail: "Confianza por simplicidad" },
+                            { id: "vanguard", label: "Audaz y Moderna", detail: "Destacar de la competencia" },
+                            { id: "dark", label: "Premium y Tecnológica", detail: "Alta gama, sofisticada" },
+                            { id: "typo", label: "Autoritaria", detail: "Experto, líder del sector" },
+                            { id: "visual", label: "Visual Primero", detail: "Mostrar, no decir" }
                         ]
                     },
                     step3: {
-                        q: "¿Qué experiencia técnica busca para sus usuarios?",
+                        q: "¿Cómo prefieren sus clientes consumir información?",
                         options: [
-                            { id: "onepage", label: "One-Page", detail: "Flujo Continuo" },
-                            { id: "scrolling", label: "Scroll Interactivo", detail: "Narrativa Dinámica" },
-                            { id: "responsive", label: "Responsive Core", detail: "Adaptabilidad Total" }
+                            { id: "onepage", label: "Todo en un Lugar", detail: "Una página, sin clics" },
+                            { id: "scrolling", label: "Narrativa Guiada", detail: "Viaje con historia" },
+                            { id: "responsive", label: "Funciona en Cualquier Dispositivo", detail: "Prioridad móvil" }
                         ]
                     },
                     step4: {
-                        q: "¿Cómo debe fluir la información arquitectónica?",
+                        q: "¿Cómo deben navegar sus clientes para encontrar lo que necesitan?",
                         options: [
-                            { id: "hierarchical", label: "Jerárquica", detail: "Menús Organizados" },
-                            { id: "sequential", label: "Secuencial", detail: "Paso a Paso" },
-                            { id: "network", label: "En Red", detail: "Exploración Libre" }
+                            { id: "hierarchical", label: "Menú Claro y Organizado", detail: "Fácil de explorar" },
+                            { id: "sequential", label: "Paso a Paso Guiado", detail: "Llevarlos a la conversión" },
+                            { id: "network", label: "Exploración Libre", detail: "Que descubran a su ritmo" }
                         ]
                     }
                 },
@@ -965,6 +970,11 @@ const translations = {
                 result_title: "Arquitectura Identificada: Infraestructura de Alta Disponibilidad [NICHE]",
                 result_desc: "Nuestro diagnóstico indica una estética [DNA] junto con un marco de trabajo [NAV] para optimizar la retención de usuarios y la eficiencia del ciclo de conversión.",
                 audit_cta: "Solicitar Auditoría Estratégica para determinar la inversión y el cronograma de despliegue"
+            },
+            brandingAssets: {
+                asset1: "Diseño de Logo",
+                asset2: "Manual de Marca",
+                asset3: "Sistemas Visuales"
             }
         },
         marketingPage: {
