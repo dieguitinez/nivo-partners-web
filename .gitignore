@@ -1,0 +1,7 @@
+backups/
+legacy_v1/
+skills/
+.gemini/
+*.log
+node_modules/
+.DS_Store
