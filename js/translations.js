@@ -521,6 +521,8 @@ const translations = {
             badge: "Computer Systems Design and Related Services",
             title: "Construimos Sistemas de Crecimiento Digital para <span class='text-gradient'>Empresas Ambiciosas</span>",
             subtitle: "No es un rediseño. Es una máquina de adquisición de clientes. Nivo Partners construye, opera y transfiere infraestructura de ingresos autónoma.",
+            cta: "Agendar Llamada Estratégica",
+            caseStudyBtn: "Casos de Éxito"
         },
         paths: {
             title: "Arquitectura Modular de Crecimiento",
@@ -537,8 +539,11 @@ const translations = {
             },
             growth: {
                 title: "Asynchronous Neural Protocols",
-                subtitle: "La experiencia Nivo completa. Investigación profunda, agentes automatizados y sociedad de ingresos.",
-                cta: "Consultar Implementación"
+                subtitle: "Deja de alquilar labor. Empieza a ser dueño de la inteligencia.",
+                bullets: ["Agentes a Medida", "Operación 24/7", "Asignación de recursos personalizada"],
+                examplesTitle: "Lo que Construimos:",
+                examples: [" El Recepcionista 24/7", " El Scraper Francotirador", " El Review Guardian"],
+                cta: "Aplicar para Auditoría"
             }
         },
         auth: {
@@ -749,7 +754,7 @@ const translations = {
                     options: [
                         { label: "Actualizar Infraestructura", value: "web" },
                         { label: "Escalar Ingresos", value: "marketing" },
-                        { label: "Automate Operations", value: "growth" }
+                        { label: "Automatizar Operaciones", value: "growth" }
                     ]
                 },
 
@@ -837,7 +842,7 @@ const translations = {
             next: "Siguiente Paso",
             submit: "Enviar Aplicación",
             successTitle: "Aplicación Recibida",
-            successDesc: "Nuestro equipo está analizando tu Digital Architecture Deployment. Si calificas, recibirás una invitación a una Llamada Estratégica en 24 horas.",
+            successDesc: "Nuestro equipo está analizando tu infraestructura digital. Si calificas, recibirás una invitación a una Llamada Estratégica en 24 horas.",
             close: "Cerrar"
         },
         legal: {
@@ -969,6 +974,15 @@ const translations = {
             cta: "Cotizar",
             contactTitle: "Empieza a Capturar Demanda",
             contactDesc: "Hablemos de los objetivos de tu campaña.",
+            contactBtn: "Contáctanos"
+        },
+        growthPage: {
+            badge: "Ecosistema de Automatización IA",
+            title: "Escala Operaciones con <span class='text-gradient'>Inteligencia Autónoma</span>",
+            desc: "Implementamos ecosistemas de IA completos. Desde agentes de CS hasta CRMs autónomos. Tú eres dueño del sistema; nosotros proveemos la ingeniería.",
+            cta: "Consultar Implementación",
+            contactTitle: "¿Listo para Automatizar?",
+            contactDesc: "Cuéntanos dónde está tu cuello de botella.",
             contactBtn: "Contáctanos"
         }
     }
