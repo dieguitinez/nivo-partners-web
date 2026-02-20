@@ -17,47 +17,47 @@ window.nivoCRM = {
 
     injectModal() {
         const modalHtml = `
-            <div id="nivo-lead-modal" class="modal-overlay">
+            <div id="nivo-lead-modal" class="modal-backdrop">
                 <div class="modal-container crm-modal animate-fade-in">
                     <button class="modal-close" onclick="window.nivoCRM.close()">&times;</button>
                     <div class="modal-content">
                         <div class="modal-header">
-                            <span class="modal-badge">Strategic Audit Request</span>
-                            <h2>Initialize <span class="text-gradient">Revenue Core</span> Protocol</h2>
-                            <p>Configure your architectural requirements. Our architects will review your infrastructure within 24 hours.</p>
+                            <span class="modal-badge" data-i18n="modal.badge">Strategic Audit Request</span>
+                            <h2 data-i18n="modal.title">Initialize <span class="text-gradient">Revenue Core</span> Protocol</h2>
+                            <p data-i18n="modal.subtitle">Configure your architectural requirements. Our architects will review your infrastructure within 24 hours.</p>
                         </div>
                         
                         <form id="nivo-lead-form" onsubmit="window.nivoCRM.handleSubmit(event)">
                             <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="lead-name">Director / Lead Name</label>
+                                    <label for="lead-name" data-i18n="modal.labels.name">Director / Lead Name</label>
                                     <input type="text" id="lead-name" name="name" placeholder="Name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lead-email">Corporate Entity Email</label>
+                                    <label for="lead-email" data-i18n="modal.labels.email">Corporate Entity Email</label>
                                     <input type="email" id="lead-email" name="email" placeholder="email@company.com" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lead-company">Entity / Company Name</label>
+                                    <label for="lead-company" data-i18n="modal.labels.company">Entity / Company Name</label>
                                     <input type="text" id="lead-company" name="company" placeholder="Company Name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lead-service">Architecture Segment</label>
+                                    <label for="lead-service" data-i18n="modal.labels.service">Architecture Segment</label>
                                     <select id="lead-service" name="service">
-                                        <option value="web">Digital Architecture Deployment</option>
-                                        <option value="performance">High-Precision Yield Engineering</option>
-                                        <option value="ai">Asynchronous Neural Protocols</option>
+                                        <option value="web" data-i18n="nav.services.web">Digital Architecture Deployment</option>
+                                        <option value="performance" data-i18n="nav.services.marketing">High-Precision Yield Engineering</option>
+                                        <option value="ai" data-i18n="nav.services.growth">Asynchronous Neural Protocols</option>
                                         <option value="full">Sovereign Ecosystem (Full Stack)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group full-width">
-                                <label for="lead-requirements">Infrastructure Requirements / Context</label>
+                                <label for="lead-requirements" data-i18n="modal.labels.requirements">Infrastructure Requirements / Context</label>
                                 <textarea id="lead-requirements" name="requirements" rows="4" placeholder="Briefly describe your current revenue friction or growth targets..."></textarea>
                             </div>
                             <div class="form-footer">
-                                <button type="submit" class="btn btn-primary full-width">Initialize Protocol Audit</button>
-                                <p class="footer-note">Secure Transmission Active | Bank-Grade Encryption Verified</p>
+                                <button type="submit" class="btn btn-primary full-width" data-i18n="modal.labels.button">Initialize Protocol Audit</button>
+                                <p class="footer-note" data-i18n="modal.labels.note">Secure Transmission Active | Bank-Grade Encryption Verified</p>
                             </div>
                         </form>
                         
@@ -72,6 +72,12 @@ window.nivoCRM = {
             </div>
         `;
         document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+        // Translate the freshly injected modal content
+        if (typeof switchLanguage === 'function') {
+            const lang = localStorage.getItem('nivo_lang') || 'en';
+            switchLanguage(lang);
+        }
     },
 
     bindTriggers() {
@@ -99,10 +105,22 @@ window.nivoCRM = {
         this.isOpen = false;
         // Reset form
         setTimeout(() => {
-            document.getElementById('nivo-lead-form').classList.remove('hidden');
+            const form = document.getElementById('nivo-lead-form');
+            if (form) {
+                form.classList.remove('hidden');
+                form.reset();
+                const banner = form.querySelector('.form-error-banner');
+                if (banner) banner.remove();
+            }
             document.getElementById('lead-success').classList.add('hidden');
-            document.getElementById('nivo-lead-form').reset();
         }, 300);
+    },
+
+    sanitize(text) {
+        if (!text) return "";
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     },
 
     async handleSubmit(event) {
@@ -115,20 +133,20 @@ window.nivoCRM = {
         btn.disabled = true;
 
         const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = this.sanitize(value);
+        });
 
         // created_at is handled by Supabase default now(), but we can send it explicitly
         data.created_at = new Date().toISOString();
 
         try {
-            // Neural Pipeline Endpoint: Supabase REST API
-            const response = await fetch(`${this.config.url}/rest/v1/leads`, {
+            // Neural Pipeline Endpoint: Vercel Serverless Tunnel
+            const response = await fetch('/api/process_audit', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': this.config.key,
-                    'Authorization': `Bearer ${this.config.key}`,
-                    'Prefer': 'return=minimal'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             });
@@ -137,14 +155,7 @@ window.nivoCRM = {
                 let errorMessage = 'Transmission Failed';
                 try {
                     const errorJson = await response.json();
-                    // Identify common Supabase/PostgreSQL errors
-                    if (errorJson.code === '42P01') {
-                        errorMessage = 'Database Error: The "leads" table does not exist. Please run the SQL initialization script.';
-                    } else if (errorJson.code === '23502') {
-                        errorMessage = 'Validation Error: Missing required fields in the transmission.';
-                    } else {
-                        errorMessage = `Supabase Error: ${errorJson.message || errorJson.hint || 'Unknown protocol error'}`;
-                    }
+                    errorMessage = `Server Error: ${errorJson.error || 'Unknown protocol error'}`;
                 } catch (e) {
                     errorMessage = `HTTP ${response.status}: ${response.statusText}`;
                 }
@@ -154,9 +165,17 @@ window.nivoCRM = {
             // Success Transition
             form.classList.add('hidden');
             document.getElementById('lead-success').classList.remove('hidden');
+            console.log("Neural Link Established: Audit ingested, emails dispatched by backend.");
 
-            // Optional: Track conversion
-            console.log("Protocol Sync Complete: Lead archived in Sovereign Storage.");
+
+            // Update success message with dynamic translation
+            const lang = localStorage.getItem('nivo_lang') || 'en';
+            // Fallback to English if translation key missing (safety check)
+            const t = (translations[lang] && translations[lang].modal) ? translations[lang].modal : translations['en'].modal;
+
+            const successMsg = document.querySelector('#lead-success p');
+            if (successMsg) successMsg.innerHTML = t.successDesc;
+
 
         } catch (error) {
             console.error("Transmission Interrupted:", error);

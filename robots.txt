@@ -24,3 +24,5 @@ Disallow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://nivopartners.com/sitemap.xml

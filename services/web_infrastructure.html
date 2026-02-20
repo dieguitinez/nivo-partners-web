@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Architecture Deployment | Nivo Partners</title>
+    <meta name="description"
+        content="Nivo Partners constructs and operates autonomous revenue infrastructure for B2B leaders.">
     <meta name="robots" content="noai, noimageai">
 
     <!-- Fonts -->
@@ -22,11 +24,7 @@
 
     <!-- ============================================
          ANALYTICS & INTELLIGENCE STACK
-         Replace placeholder IDs with your real IDs
          ============================================ -->
-
-    <!-- 1. Google Tag Manager (manages GA4, Meta Pixel, LinkedIn) -->
-    <!-- REPLACE: GTM-NMPJT6GM with your GTM Container ID -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
@@ -36,7 +34,6 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NMPJT6GM');</script>
 
-    <!-- 2. Microsoft Clarity (Heatmaps & Session Recordings) -->
     <script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
             c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
@@ -44,14 +41,9 @@
             y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "vjbcyanvea");
     </script>
-
-    <!-- 3. Hotjar removed â€” using Clarity instead (no undefined variable error) -->
-
 </head>
 
 <body>
-
-    <!-- Google Tag Manager (noscript fallback) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMPJT6GM" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -62,18 +54,25 @@
             <div class="logo">
                 <a href="../index.html" class="logo-link">NIVO<span>PARTNERS</span></a>
             </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </button>
             <nav class="nav-links">
-                <button class="mobile-menu-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
-                <div class="nav-item dropdown">
+                <div class="nav-item has-dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-i18n="nav.services.main">Services <i
                             class="fas fa-chevron-down nav-chevron"></i></a>
                     <div class="dropdown-menu">
-                        <a href="web_infrastructure.html" class="dropdown-item" data-i18n="nav.services.web">Digital
+                        <a href="web_infrastructure.html" class="dropdown-item active"
+                            data-i18n="nav.services.web">Digital
                             Architecture Deployment</a>
                         <a href="performance_marketing.html" class="dropdown-item"
                             data-i18n="nav.services.marketing">High-Precision Yield Engineering</a>
                         <a href="../index.html#mechanism" class="dropdown-item"
                             data-i18n="nav.services.growth">Asynchronous Neural Protocols</a>
+                        <a href="internal_data.html" class="dropdown-item" data-i18n="nav.services.idp">Internal Data
+                            Architecture (IDP)</a>
                     </div>
                 </div>
                 <a href="../index.html#methodology" data-i18n="nav.mechanism">The Mechanism</a>
@@ -203,82 +202,53 @@
         <img class="lightbox-content" id="lightbox-img" src="" alt="Full view" onclick="event.stopPropagation()">
     </div>
 
-    <!-- Contact Section -->
-    <section class="section-padding" id="contact">
-        <div class="container text-center">
-            <h2 data-i18n="webPage.contactTitle">Ready to Upgrade Your Infrastructure?</h2>
-            <p class="mb-2rem text-muted-color" data-i18n="webPage.contactDesc">Tell us about your project requirements.
-            </p>
-            <a href="#" onclick="window.location.href = 'mailto:' + 'contact' + '@' + 'nivopartners.com'"
-                class="btn btn-primary" data-i18n="webPage.contactBtn">Contact Us</a>
-        </div>
-    </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">NIVO<span>PARTNERS</span></div>
-                    <p data-i18n="footer.desc">The revenue engineering firm for the AI era.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>Legal</h4>
-                        <a href="../legal/privacy.html" data-i18n="footer.privacy">Privacy</a>
-                        <a href="../legal/terms.html" data-i18n="footer.terms">Terms</a>
+    <footer id="footer-main">
+        <div class="footer-bottom">
+            <div class="container footer-content">
+                <div class="logo footer-logo">NIVO<span>PARTNERS</span></div>
+                <!-- Compliance Seal -->
+                <div class="compliance-seal-container">
+                    <div class="compliance-seal">
+                        <svg class="seal-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7V12C3 17.5228 12 22 12 22C12 22 21 17.5228 21 12V7L12 2Z"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M12 8V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <div class="seal-text" data-i18n="legal.common.seal_label">
+                            <strong>Certified Infrastructure:</strong> Florida FIPA & FDUTPA Compliant
+                        </div>
+                        <div class="seal-tooltip" data-i18n="legal.common.seal_tooltip">
+                            Nivo Partners garantiza la soberanía de sus datos y la transparencia en cada proceso de IA.
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p data-i18n="footer.rights">&copy; 2026 Nivo Partners.</p>
+
+                <div class="footer-links">
+                    <a href="../legal/privacy.html" data-i18n="legal.common.footer_privacy">Privacy Policy</a>
+                    <a href="../legal/terms.html" data-i18n="legal.common.footer_terms">Terms of Service</a>
+                    <a href="../legal/disclaimer.html" data-i18n="legal.common.footer_disclaimer">Earnings
+                        Disclaimer</a>
+                    <a href="../legal/ethics.html" data-i18n="legal.common.footer_ethics">Ethics & Anti-Spam</a>
+                </div>
+                <div class="footer-rights" data-i18n="footer.rights">
+                    &copy; 2026 Nivo Partners.
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="../js/translations.js"></script>
-    <!-- AI Chat Widget (Hardcoded for reliability) -->
-    <div id="ag-chat-widget">
-        <div class="chat-label" data-i18n="chat.label">Chat with us</div>
-        <div class="ag-chat-button" onclick="window.agChat.toggle()">
-            <img src="../images/agent-avatar.png" alt="Agent">
-            <span class="notification-dot"></span>
-        </div>
-        <div class="ag-chat-window">
-            <div class="ag-chat-header">
-                <div class="ag-agent-info">
-                    <div class="ag-avatar">
-                        <img src="../images/agent-avatar.png" alt="Kai Agent">
-                    </div>
-                    <div>
-                        <h4 data-i18n="chat.agentName">Kai | Nivo Sr. Strategist</h4>
-                        <span class="status-indicator">Online</span>
-                    </div>
-                </div>
-                <div class="ag-chat-controls">
-                    <button class="close-btn" onclick="window.agChat.toggle()" aria-label="Close chat"><i
-                            class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="ag-chat-messages" id="ag-messages"></div>
-            <div class="ag-chat-input">
-                <input type="text" data-i18n-placeholder="chat.placeholder" placeholder="Ask about Nivo..."
-                    id="ag-input" onkeypress="window.agChat.handleEnter(event)">
-                <button onclick="window.agChat.sendMessage()" data-i18n="chat.send" class="ag-send-btn">Send</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="../js/translations.js"></script>
-    <script src="../js/modal.js"></script>
+    <script src="../js/script.js"></script>
     <script src="../js/chat.js"></script>
     <script src="../js/wizard.js"></script>
-    <script src="../js/script.js"></script>
     <script src="../js/contact.js"></script>
 </body>
 
 </html>
-
-

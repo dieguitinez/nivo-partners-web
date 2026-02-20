@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe | Nivo Partners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body.legal-page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .legal-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .unsubscribe-card {
+            background: rgba(255, 255, 255, 0.03);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .unsubscribe-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .unsubscribe-card h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .unsubscribe-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .status-message {
+            margin-top: 2rem;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .status-success {
+            background: rgba(0, 255, 128, 0.1);
+            border: 1px solid rgba(0, 255, 128, 0.2);
+            color: #00ff80;
+            display: block;
+        }
+
+        .status-error {
+            background: rgba(255, 50, 50, 0.1);
+            border: 1px solid rgba(255, 50, 50, 0.2);
+            color: #ff3232;
+            display: block;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-home {
+            margin-top: 2rem;
+        }
+
+        .nav-centered {
+            justify-content: center;
+        }
+
+        .nav-absolute-right {
+            position: absolute;
+            right: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .danger-icon {
+            background: var(--danger-color);
+            -webkit-text-fill-color: #ff3232;
+        }
+
+        .manual-note {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body class="legal-page">
+    <header>
+        <div class="container nav-centered">
+            <div class="logo">
+                <a href="../index.html">NIVO<span>PARTNERS</span></a>
+            </div>
+            <!-- Language Switcher -->
+            <div class="lang-switch nav-absolute-right">
+                <span class="active" onclick="switchLanguage('en')">EN</span>
+                <span class="divider">|</span>
+                <span onclick="switchLanguage('es')">ES</span>
+            </div>
+        </div>
+    </header>
+    <div class="legal-container">
+        <div class="unsubscribe-card">
+            <div id="loading">
+                <div class="loading-spinner"></div>
+                <h1>Processing Request</h1>
+                <p>Establishing secure connection to Revenue Core...<br>Marking your communication status.</p>
+            </div>
+            <div id="success" class="hidden">
+                <div class="unsubscribe-icon">✓</div>
+                <h1>Protocol Deactivated</h1>
+                <p>You have been successfully removed from our communication list. This change is immediate and
+                    permanent.</p>
+                <div class="status-message status-success">Opt-out verified for the provided entity.</div>
+                <a href="../index.html" class="btn btn-secondary btn-home">Return to Site</a>
+            </div>
+            <div id="error" class="hidden">
+                <div class="unsubscribe-icon danger-icon">!</div>
+                <h1>Verification Failed</h1>
+                <p>We were unable to process your request automatically. Please ensure the unsubscribe link is intact.
+                </p>
+                <div id="error-text" class="status-message status-error"></div>
+                <p class="manual-note">Email <strong>contact@nivopartners.com</strong> with subject "UNSUBSCRIBE"
+                    to be removed manually.</p>
+                <a href="../index.html" class="btn btn-secondary btn-home">Return to Site</a>
+            </div>
+        </div>
+    </div>
+    <footer id="footer-main">
+        <div class="footer-bottom">
+            <div class="container footer-content">
+                <div class="logo footer-logo">NIVO<span>PARTNERS</span></div>
+                <div class="footer-links">
+                    <a href="privacy.html" data-i18n="legal.common.footer_privacy">Privacy Policy</a>
+                    <a href="terms.html" data-i18n="legal.common.footer_terms">Terms of Service</a>
+                    <a href="disclaimer.html" data-i18n="legal.common.footer_disclaimer">Earnings Disclaimer</a>
+                    <a href="ethics.html" data-i18n="legal.common.footer_ethics">Ethics & Anti-Spam</a>
+                </div>
+                <div class="footer-rights" data-i18n="footer.rights">
+                    &copy; 2026 Nivo Partners.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            const loadingDiv = document.getElementById('loading');
+            const successDiv = document.getElementById('success');
+            const errorDiv = document.getElementById('error');
+            const errorText = document.getElementById('error-text');
+            if (!email) {
+                loadingDiv.classList.add('hidden');
+                errorDiv.classList.remove('hidden');
+                errorText.innerText = "Error: No communication identity (email) provided in the URL.";
+                return;
+            }
+            try {
+                const response = await fetch('https://wagqcziphaxffghdwojb.supabase.co/functions/v1/unsubscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+                if (response.ok) {
+                    loadingDiv.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                } else {
+                    const data = await response.json();
+                    throw new Error(data.error || "Server protocol error during deactivation.");
+                }
+            } catch (err) {
+                loadingDiv.classList.add('hidden');
+                errorDiv.classList.remove('hidden');
+                errorText.innerText = err.message;
+            }
+        });
+    </script>
+</body>
+
+</html>

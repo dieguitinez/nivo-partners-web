@@ -1,62 +1,109 @@
 const translations = {
     en: {
+        seo: {
+            index: {
+                title: "Nivo Partners | Revenue Engineering & Autonomous B2B Infrastructure",
+                desc: "Nivo Partners architectural firm constructs and operates autonomous revenue infrastructure for B2B leaders. Intelligence-driven growth through precise engineering."
+            },
+            web: {
+                title: "Digital Architecture Deployment | Nivo Partners",
+                desc: "High-fidelity visual identity and high-performance web architecture for market-leading enterprises."
+            },
+            marketing: {
+                title: "High-Precision Yield Engineering | Nivo Partners",
+                desc: "Strategic marketing through precision. We inject high-intent traffic and optimize conversion-loop efficiency."
+            },
+            ai: {
+                title: "Asynchronous Neural Protocols | Nivo Partners",
+                desc: "Scale operations with autonomous intelligence. From specialized agents to autonomous CRM ecosystems."
+            }
+        },
         nav: {
             mechanism: "The Mechanism",
             services: {
                 main: "Services",
                 web: "Digital Architecture Deployment",
                 marketing: "High-Precision Yield Engineering",
-                growth: "Asynchronous Neural Protocols"
+                growth: "Asynchronous Neural Protocols",
+                idp: "Internal Data Architecture (IDP)"
             },
-            why: "Why Nivo",
+            why: "Why Nivo Partners",
             audit: "Audit Request"
         },
         hero: {
-            badge: "Computer Systems Design and Related Services",
+            badge: "Computer Systems Design & Related Services",
             title: "We Build Automated Client Acquisition Systems for <span class='text-gradient'>Ambitious Companies</span>",
             subtitle: "Not a redesign. It's a client acquisition machine. Nivo Partners constructs, operates, and transfers autonomous revenue infrastructure.",
-            cta: "Book Strategy Call",
+            cta: "Initialize Revenue Core Protocol",
             caseStudyBtn: "Success Stories"
         },
         paths: {
-            title: "Modular Growth Architecture",
-            subtitle: "Deploy our solutions individually to plug specific gaps, or combine them for a complete revenue ecosystem.",
+            title: "Three <span class='text-gradient'>Sovereign Ecosystems</span>",
+            subtitle: "Your business deserves infrastructure that works while you sleep. Choose the ecosystem that matches where you are — and where you're going.",
             web: {
-                title: "Digital Architecture Deployment",
-                subtitle: "Modernize your legacy site or build from scratch. We integrate with your existing stack or reimagine it entirely.",
-                cta: "Explore Architecture"
+                tag: "Digital Presence",
+                title: "Digital Authority",
+                subtitle: "Your service is world-class. Your digital presence should be too. We build infrastructure that commands respect and closes deals at a premium.",
+                f1: "Conversion-first architecture",
+                f2: "AI-powered lead capture (Kai)",
+                f3: "You own the code. Always.",
+                cta: "See How It Works"
             },
             marketing: {
-                title: "High-Precision Yield Engineering",
-                subtitle: "Already have a site? We inject high-intent traffic and optimize your conversion rate without touching your code.",
-                cta: "Explore Engineering"
+                tag: "Revenue Growth",
+                title: "Revenue Engine",
+                subtitle: "Stop guessing. Start engineering. We install a precision acquisition system that delivers qualified opportunities directly into your calendar.",
+                f1: "High-intent audience targeting",
+                f2: "ROI tracking — not just clicks",
+                f3: "Algorithmic optimization (no guesswork)",
+                cta: "See How It Works"
             },
             growth: {
-                title: "Asynchronous Neural Protocols",
-                subtitle: "Stop renting labor. Start owning intelligence.",
-                bullets: ["Custom-Built Agents", "24/7 Operation", "Custom resource allocation"],
-                examplesTitle: "What We Build:",
-                examples: [" The 24/7 Receptionist", " The Sniper Scraper", " The Review Guardian"],
-                cta: "Apply for Audit"
-            }
+                tag: "Sovereign AI",
+                title: "Intelligent Ecosystem",
+                subtitle: "The firms that will dominate their market in 2027 are installing AI infrastructure today. Not tools. <strong>Systems they own.</strong>",
+                bullets: ["Sovereign Intelligence Systems", "24/7 Operation", "Custom Resource Allocation"],
+                examplesTitle: "What We Deploy:",
+                examples: ["Active User Instrumentation (Analytics & UX)", "Proprietary Prospect Intelligence Engine", "The Review Guardian"],
+                cta: "Request Intelligence Audit"
+            },
+            bottomText: "Not sure which ecosystem fits your stage?",
+            bottomCta: "Ask Kai — Takes 2 Minutes"
         },
-
         auth: {
-            text: "Powered by <span>Antigravity Intelligence</span> & Trusted by Market Leaders",
-            infrastructure: "Serverless Enterprise Infrastructure",
-            openai: "OpenAI Enterprise",
-            hubspot: "HubSpot",
-            antigravity: "Antigravity"
+            text: "Engineered with an <span>Enterprise Technology Stack</span> & Modern Security Standards",
+            infrastructure: "Cloud-Native Serverless Systems",
+            openai: "OpenAI Neural Models",
+            hubspot: "CRM Integration Ready",
+            antigravity: "Nivo Antigravity OS"
         },
         core: {
-            title: "The Nivo <span class='text-gradient'>Revenue Core</span>",
+            title: "The Nivo Partners <span class='text-gradient'>Revenue Core</span>",
             manifesto: "Nivo Partners isn't an agency; it's an operating system.",
             desc1: "We install a dedicated infrastructure layer on top of your business that works 24/7 without fatigue.",
             desc2: "You own the code. You own the data. We provide the architecture.",
             feature_core: "<strong>The Core:</strong> Neural Data Processing (Proprietary Algorithmic Engine)",
             feature_shield: "<strong>The Shield:</strong> Bank-Grade Encryption & CDN",
             feature_effectors: "<strong>The Effectors:</strong> Multi-Channel Deployment",
-            feature_core_label: "Neural Data Processing"
+            feature_core_label: "Neural Data Processing",
+            feature_shield_label: "Bank-Grade Encryption",
+            feature_effectors_label: "Multi-Channel Deployment",
+            view_3d: "Enhanced 3D View",
+            view_static: "Back to Core Schema"
+        },
+        filter: {
+            title: "We Look for <span class='text-gradient'>Partners</span>, Not Clients",
+            subtitle: "Radical transparency about our selection criteria.",
+            yesTitle: "Strategic Alignment If...",
+            noTitle: "Non-Alignment If...",
+            yes1: "You have a B2B LTV > $5,000 USD.",
+            yes2: "You have a validated product with case studies.",
+            yes3: "You seek a long-term growth partnership.",
+            yes4: "You prioritize data over intuition.",
+            no1: "You sell low-ticket commodities.",
+            no2: "You seek 'get rich quick' shortcuts.",
+            no3: "You intend to micromanage automated systems.",
+            no4: "You cannot scale to 3x lead volume."
         },
         ai: {
             hero: {
@@ -77,12 +124,39 @@ const translations = {
             tier2: {
                 title: "Inbox Infrastructure",
                 tag: "Efficiency",
-                desc: "Stop drowning in email. Our algorithms categorize, tag, and draft responses for your Gmail inbox, optimizing operational throughput and resource allocation."
+                desc: "Eliminate operational bottlenecks. Our algorithms categorize, tag, and draft responses for your Gmail, optimizing resource allocation."
             },
             tier3: {
                 title: "Market Intelligence",
                 tag: "Growth",
-                desc: "Sniper-precision lead lists generated daily. We find your perfect B2B clients so your sales team never runs out of prospects."
+                desc: "High-precision lead generation. We identify your ideal B2B targets daily, ensuring your sales pipeline is never empty."
+            }
+        },
+        idp: {
+            hero: {
+                badge: "Enterprise Data Sovereignty",
+                title: "Internal Data <span class='text-gradient'>Architecture</span> (IDP)",
+                subtitle: "Transform chaotic back-office data into sovereign, actionable intelligence. We architect secure, automated pipelines that extract vital insights from your internal operations, turning historical data into a strategic asset.",
+                cta: "Request Intelligence Audit"
+            },
+            products: {
+                title: "Internal <span class='text-gradient'>Intelligence Protocols</span>",
+                subtitle: "Engineering high-fidelity data pipelines for operational clarity."
+            },
+            tier1: {
+                title: "Historical Synthesis",
+                tag: "Knowledge",
+                desc: "Extract latent value from previous operations. We refactor fragmented databases into a unified, queryable intelligence layer."
+            },
+            tier2: {
+                title: "Autonomous ETL Pipelines",
+                tag: "Flow",
+                desc: "Secure, automated transfer of internal data into strategic dashboards, eliminating manual intervention and human error."
+            },
+            tier3: {
+                title: "Sovereign Insights",
+                tag: "Sovereignty",
+                desc: "Proprietary analytics that you own entirely. No third-party data reliance. Just pure, internal strategic dominance."
             }
         },
         caseStudy: {
@@ -99,350 +173,346 @@ const translations = {
         comparison: {
             title: "The \"Traditional Agency\" Model is <span class='text-gradient'>Broken</span>",
             subtitle: "Stop renting efforts. Start owning outcomes.",
-            oldWay: "The Old Way",
+            oldWay: "Traditional Agency",
             vanity: "Vanity Metrics (Likes, Clicks)",
-            renting: "Renting \"Magic\" Monthly",
-            blackBox: "Unclear ROI",
-            cold: "Inefficient Outreach",
-            nivoWay: "The Nivo Way",
+            renting: "Renting Monthly Services",
+            blackBox: "Obscure ROI",
+            cold: "Manual, Inefficient Outreach",
+            nivoWay: "Nivo Partners Protocol",
             financial: "Financial Metrics (Revenue, ROI)",
             owning: "Owning Your Infrastructure",
-            transparency: "Total Transparency & Data",
-            intent: "Intent-Based Account Intelligence"
+            transparency: "Absolute Data Transparency",
+            intent: "Intent-Based Intelligence"
         },
         mechanism: {
             title: "Revenue Engineering in <span class='text-gradient'>3 Phases</span>",
-            subtitle: "A scientific protocol to turn strangers into signed contracts.",
+            subtitle: "A scientific protocol to convert market intent into signed contracts.",
             step1Title: "Nivo Web Studio",
-            step1Desc: "Digital Architecture Deployment. We engineer high-performance digital assets and identify your ideal market leverage points with precision.",
+            step1Desc: "Digital Architecture Deployment. We engineering high-performance assets and identify precise market leverage points.",
             step2Title: "Nivo High-Precision",
-            step2Desc: "High-Precision Yield Engineering. We deploy intelligent acquisition systems that engage and qualify your ideal prospects 24/7.",
+            step2Desc: "High-Precision Yield Engineering. We deploy intelligent acquisition systems that engage and qualify prospects 24/7.",
             step3Title: "Nivo Growth Lab",
-            step3Desc: "Revenue Optimization. We scientifically track every dollar invested to maximize your Customer Lifetime Value (LTV)."
+            step3Desc: "Revenue Optimization. We track every dollar invested to maximize Customer Lifetime Value (LTV)."
         },
-
-        footer: {
-            title: "Digital Craftsmanship. <br> <span class='text-gradient'>AI Execution Speed.</span>",
-            desc: "We fuse elite consulting strategy with the agility of a tech startup. Implement the engine that will power your next 10 years of growth.",
-            cta: "Apply to Become a Partner",
-            limited: "Limited spots subject to study.",
-            rights: "© 2026 Nivo Partners.",
-            power_statement: "Powered by Serverless Enterprise Infrastructure, Proprietary Algorithmic Engine, and Next-Gen Large Language Models (LLMs)."
-        },
-        chat: {
-            label: "Consult with Kai",
-            agentName: "Kai | Lead Growth Architect",
-            placeholder: "Ask about Infrastructure, Growth, or Automation...",
-            send: "Deploy Query",
-            greeting: "I am Kai, Lead Growth Architect at Nivo Partners. I help businesses transition from renting labor to owning intelligence. Are you looking to build **Digital Architecture Deployment**, execute **High-Precision Yield Engineering**, or install **Asynchronous Neural Protocols**?",
-            options: {
-                web: "Digital Architecture Deployment",
-                marketing: "High-Precision Yield Engineering",
-                growth: "Asynchronous Neural Protocols"
-            },
-            responses: {
-                // 1. Digital Architecture Deployment (Web)
-                web: {
-                    text: "**Digital Architecture Deployment** is not a website; it is a Digital Asset reducing your Customer Acquisition Cost. We don't build pages; we deploy high-fidelity, conversion-optimized architectures that determine your market value.",
-                    options: [
-                        { label: "View Architecture Types", value: "web_types" },
-                        { label: "Request Infrastructure Audit", value: "web_quote" }
-                    ]
+        simulator: {
+            label: "Live ROI Predictor",
+            title: "Model your growth: Projected impact of infrastructure <span class='text-gradient'>optimization</span>",
+            subtitle: "Adjust the parameters to estimate the impact of Nivo Partners infrastructure on your business.",
+            inputTitle: "Core Metrics",
+            inputDesc: "Input your current monthly revenue and ad budget. Our engine projects a potential 25% efficiency gain. *Results are projections.*",
+            revenueLabel: "Current Monthly Revenue",
+            budgetLabel: "Monthly Ad Budget",
+            projectedLabel: "Projected Monthly Revenue (Est.)",
+            projectedSub: "+25% Efficiency Goal",
+            leadsLabel: "Estimated New Leads / Month",
+            cta: "Get My Growth Roadmap →",
+            education: {
+                minimal: {
+                    title: "The Aesthetic of Trust",
+                    desc: "Minimalism in B2B projects **Institutional Sovereignty**. By removing noise, you signal inherent value. Ideal for enterprise SaaS and consulting."
                 },
-                web_types: {
-                    text: "We deploy three architectural tiers:\n1. **The Authority:** High-status validation for consultants.\n2. **The SaaS:** Conversion-loop focused for tech.\n3. **The Industrial:** Robust reliability for logistics/construction.",
-                    options: [
-                        { label: "I need Authority", value: "web_quote" },
-                        { label: "I need Conversion", value: "web_quote" }
-                    ]
+                bold: {
+                    title: "Market Dominance",
+                    desc: "High-contrast typography signals **Disruption**. This aesthetic demands attention. Perfect for infrastructure and industry challengers."
                 },
-                web_quote: {
-                    text: "**Investment scaled to infrastructure complexity**. We focus on ROI and Scalability through **Agile deployment based on architectural milestones**. Would you like an audit to see what your business requires?",
-                    options: [
-                        { label: "Yes, Start Audit", value: "open_contact" },
-                        { label: "Just Browsing", value: "hello" }
-                    ]
-                },
-                // Archetype Responses
-                arch_spa: {
-                    text: "Excellent choice. **The Spa** aesthetic is designed for high-end wellness brands looking for serenity and premium trust. Are you looking to implement this infrastructure for a new project or an existing brand?",
-                    options: [
-                        { label: "New Project", value: "web_quote" },
-                        { label: "Existing Brand", value: "web_quote" }
-                    ]
-                },
-                arch_saas: {
-                    text: "**The SaaS** architecture focuses on friction-free onboarding and product visualization. Essential for tech-enabled scaling. Do you have a validated product?",
-                    options: [
-                        { label: "Yes, Validated", value: "web_quote" },
-                        { label: "Still in Idea Phase", value: "web_quote" }
-                    ]
-                },
-                arch_industrial: {
-                    text: "**The Industrial** style projects stability and scale. Ideal for logistics, construction, and B2B manufacturing. We emphasize reliability and capacity.",
-                    options: [
-                        { label: "Start Infrastructure Audit", value: "web_quote" }
-                    ]
-                },
-                arch_authority: {
-                    text: "**The Authority** is for personal brands and consultants who need to command high-ticket pricing. We position you as the market leader.",
-                    options: [
-                        { label: "I am a Consultant", value: "web_quote" }
-                    ]
-                },
-                conversion_audit: {
-                    text: "**Conversion** is the primary metric of our architectures. To give you an accurate roadmap and discuss an investment strategy aligned with your goals, I need to see your current traffic data. Would you like to start a formal Infrastructure Audit?",
-                    options: [
-                        { label: "Start Formal Audit", value: "open_contact" }
-                    ]
-                },
-                branding_trigger: {
-                    text: "Does your current visual identity reflect the high-fidelity standards of your new infrastructure, or should we include a **Brand Identity Refactor** in your audit to ensure market authority?",
-                    options: [
-                        { label: "Add Identity Refactor", value: "def_brand_assets" },
-                        { label: "Identity is already 4K", value: "web_quote" }
-                    ]
-                },
-
-                // 2. High-Precision Yield Engineering (Revenue Engineering)
-                marketing: {
-                    text: "**Revenue Engineering** is data-driven acquisition, not guesswork. We utilize Behavioral Intelligence (Microsoft Clarity) and Server-Side Tracking to target your exact niche with zero waste.",
-                    options: [
-                        { label: "How we target", value: "marketing_how" },
-                        { label: "Start Campaigns", value: "marketing_call" }
-                    ]
-                },
-                marketing_how: {
-                    text: "We ignore vanity metrics (likes). We optimize for **Revenue Efficiency**. By tracking purchase intent signals, we put your offer in front of decision-makers who are ready to buy.",
-                    options: [
-                        { label: "Audit My Strategy", value: "marketing_call" }
-                    ]
-                },
-                marketing_call: {
-                    text: "We build enterprise-grade assets. If you are looking for generic ads, we may not be the fit. If you are ready for a **Custom Algorithmic Engine** for growth, let's talk.",
-                    options: [
-                        { label: "Book Strategy Session", value: "open_booking" }
-                    ]
-                },
-
-                // 3. Asynchronous Neural Protocols (AI)
-                growth: {
-                    text: "**Asynchronous Neural Protocols** involves installing proprietary neural engines into your business. You own the code. You own the data. We provide the architecture.",
-                    options: [
-                        { label: "Review Guardian", value: "def_review_guardian" },
-                        { label: "Smart Inbox", value: "def_smart_inbox" },
-                        { label: "Lead Sniper", value: "def_lead_sniper" }
-                    ]
-                },
-
-                // General
-                hello: {
-                    text: "I am Kai, Lead Growth Architect at Nivo Partners. I help businesses transition from renting labor to owning intelligence. Are you looking to build **Digital Architecture Deployment**, execute **High-Precision Yield Engineering**, or install **Asynchronous Neural Protocols**?",
-                    options: [
-                        { label: "Digital Architecture Deployment", value: "web" },
-                        { label: "High-Precision Yield Engineering", value: "marketing" },
-                        { label: "Asynchronous Neural Protocols", value: "growth" }
-                    ]
-                },
-                default: {
-                    text: "I am analyzing your request. To assist you optimally: are you seeking to upgrade your **Infrastructure**, scale **Revenue**, or automate **Operations**?",
-                    options: [
-                        { label: "Upgrade Infrastructure", value: "web" },
-                        { label: "Scale Revenue", value: "marketing" },
-                        { label: "Automate Operations", value: "growth" }
-                    ]
-                },
-
-                // Actions
-                open_contact: {
-                    text: "Initiating secure intake protocol. Please provide your improved specifications.",
-                    options: [{ label: "Return to Console", value: "hello" }]
-                },
-                open_booking: {
-                    text: "Opening secure calendar link. Select a time for your architectural review.",
-                    options: [{ label: "Return to Console", value: "hello" }]
-                }
-            },
-            definitions: {
-                def_review_guardian: {
-                    text: "**The Review Guardian** is an autonomous engine that monitors reputation signals 24/7. It ingests reviews, analyzes sentiment, and drafts responses instantly.",
-                    options: [{ label: "Deploy This", value: "growth_audit" }]
-                },
-                def_smart_inbox: {
-                    text: "**The Smart Inbox** is a neural filter that categorizes inbound communication and drafts responses, saving an average of 10 hours per week.",
-                    options: [{ label: "Deploy This", value: "growth_audit" }]
-                },
-                def_lead_sniper: {
-                    text: "**The Lead Sniper** utilizes algorithmic market intelligence to identify high-value B2B prospects matching your exact criteria.",
-                    options: [{ label: "Deploy This", value: "growth_audit" }]
-                },
-                growth_audit: {
-                    text: "Every infrastructure we deploy is unique. The investment is calculated based on the technical complexity and the ROI potential of your specific operation. We define the exact scope and budget during the Infrastructure Audit phase.",
-                    options: [{ label: "Request Infrastructure Audit", value: "open_contact" }]
-                },
-                pricing: {
-                    text: "Every infrastructure we deploy is unique. The investment is calculated based on the technical complexity and the ROI potential of your specific operation. We define the exact scope and budget during the Infrastructure Audit phase.",
-                    options: [
-                        { label: "Request Strategic Audit", value: "open_contact" }
-                    ]
-                },
-                delivery: {
-                    text: "Our deployment process follows a rigorous engineering roadmap. Timeline synchronization depends on the integration depth required for your ecosystem. We provide a definitive schedule once the Blueprint is approved.",
-                    options: [
-                        { label: "View Methodology", value: "methodology" }
-                    ]
-                },
-                def_brand_assets: {
-                    text: "We engineer **High-Fidelity Brand Assets**. A brand identity build is a **custom accessory investment based on brand complexity**, ensuring every pixel aligns with your market authority.",
-                    options: [
-                        { label: "Include in Audit", value: "web_quote" }
-                    ]
-                }, tech_stack: {
-                    text: "We utilize **Secure Cloud-Native Architecture** (Google Cloud), **Custom Algorithmic Engines** (Python), and **Advanced LLMs**.",
-                    options: [{ label: "Learn More", value: "growth" }]
-                }
-            },
-            company_info: {
-                methodology: {
-                    text: "We don't sell hours. We sell **Assets**. 1. Ingest Data. 2. Process via Neural Engine. 3. Execute Autonomously.",
-                    options: [{ label: "See Architecture", value: "growth" }]
-                },
-                criteria: {
-                    text: "We work with partners who value **Ownership** over renting. If you want a 'quick fix', we are not the right firm.",
-                    options: [{ label: "I am a Partner", value: "open_contact" }]
+                luxury: {
+                    title: "Exclusivity & Legacy",
+                    desc: "Elegant serifs evoke **Prestige**. This identity states 'We are not for everyone.' The choice for wealth management and premium services."
                 }
             }
         },
+        chat: {
+            label: "Consult with Kai",
+            agentName: "Kai | Nivo Knowledge Interface",
+            placeholder: "Query Infrastructure, Ownership, or the Nivo Bible...",
+            send: "Send",
+            disclaimer: "Kai is an AI Lead Strategist. While highly precise, all strategic projections, infrastructure plans, and data must be verified through an official Nivo Partners Strategy Audit. No financial ROI is guaranteed.",
+            greeting: "I am Kai, the Senior Digital Architect at Nivo Partners (a High-End Computer Systems Design firm). My protocols are designed for Commercial Sovereignty. Every asset we deploy is documented, owned by you, and mobile-native. How shall we proceed?",
+            options: {
+                infrastructure: "Analyze My Infrastructure",
+                blueprint: "The Blueprint (Ownership)",
+                standards: "Bilingual & Mobile Standards"
+            },
+            responses: {
+                hello: {
+                    text: "Hello, I'm Kai, Lead Strategist at Nivo Partners. We specialize in three core pillars of digital sovereignty. Which area would you like to explore?",
+                    options: [
+                        { label: "1. Web Infrastructure", value: "srv_web" },
+                        { label: "2. Marketing & Positioning", value: "srv_marketing" },
+                        { label: "3. Automation & Agents", value: "srv_automation" }
+                    ]
+                },
+                infrastructure_node: {
+                    text: "We build on the **Nivo Revenue Core** (the diagram on this page). It's a triple-layer infrastructure: **The Core** (Neural Engine), **The Shield** (Security), and **The Effectors** (Deployment). Do you wish to audit your current stack?",
+                    options: [
+                        { label: "Initialize Strategic Audit", value: "open_contact" },
+                        { label: "Explain Layers First", value: "core_layers" }
+                    ]
+                },
+                core_layers: {
+                    text: "1. **Core:** Proprietary Algorithmic Engines.\n2. **Shield:** Bank-grade encryption you control.\n3. **Effectors:** Multi-channel deployment without fatigue.",
+                    options: [{ label: "Start Strategy Audit", value: "open_contact" }]
+                },
+                blueprint_node: {
+                    text: "We deliver more than code. We engineer standalone Data and Web ecosystems. This ensures that if we disappear, your business doesn't.",
+                    options: [
+                        { label: "View Infrastructure Tiers", value: "web_types" },
+                        { label: "Audit My Readiness", value: "open_contact" }
+                    ]
+                },
+                services_menu: {
+                    text: "We specialize in three core pillars of digital sovereignty. Which area would you like to explore?",
+                    options: [
+                        { label: "1. Web Infrastructure", value: "srv_web" },
+                        { label: "2. Marketing & Positioning", value: "srv_marketing" },
+                        { label: "3. Automation & Agents", value: "srv_automation" }
+                    ]
+                },
+                srv_web: {
+                    text: "**Web Architecture:** We do not just build websites; we engineer sovereign digital infrastructures. We deploy scalable, high-performance web applications using Google Cloud and Cloudflare, ensuring pixel-perfect corporate identity and military-grade security.",
+                    options: [
+                        { label: "Request Strategy Audit", value: "open_contact" },
+                        { label: "Explore Other Services", value: "services_menu" }
+                    ]
+                },
+                srv_marketing: {
+                    text: "**Digital Marketing & ROI:** We run 'Traffic Amplification Protocols.' We do not just run ads; we leverage AI-generated assets (synthesizing high-fidelity video and copy) to run Micro-Spend Validation campaigns. This allows us to prove market viability and inject high-precision traffic directly into your ROI calculator.",
+                    options: [
+                        { label: "Request Strategy Audit", value: "open_contact" },
+                        { label: "Explore Other Services", value: "services_menu" }
+                    ]
+                },
+                srv_automation: {
+                    text: "**Process Automation & IDP:** We architect secure data pipelines utilizing Intelligent Document Processing (IDP). Using tools like Supabase and workflow automation, we extract, clean, and route unstructured back-office data (invoices, PDFs, CRM exports) into actionable intelligence.",
+                    options: [
+                        { label: "Request Strategy Audit", value: "open_contact" },
+                        { label: "Explore Other Services", value: "services_menu" }
+                    ]
+                },
+                fipa_compliance: {
+                    text: "**Data Security:** We strictly adhere to the Florida Information Protection Act (FIPA) and utilize secure, encrypted environments for all data processing.",
+                    options: [{ label: "Request Strategy Audit", value: "open_contact" }]
+                },
+                fdutpa_compliance: {
+                    text: "**ROI Projections:** We never promise specific financial returns or guaranteed ROI. All projections are data-backed estimates and rely on market conditions.",
+                    options: [{ label: "Request Strategy Audit", value: "open_contact" }]
+                },
+                ultimate_cta: {
+                    text: "For personalized pricing, complex technical specifications, or to initiate a project, please proceed to our Architecture Wizard / Strategy Audit.",
+                    options: [{ label: "Initialize Audit", value: "open_contact" }]
+                },
+                fallback: {
+                    text: "Could you elaborate on that? I want to ensure I direct you to the right architectural solution.",
+                    options: [{ label: "Explore Services", value: "services_menu" }, { label: "Request Strategy Audit", value: "open_contact" }]
+                },
+                sovereignty_node: {
+                    text: "**Ownership is the only KPI.** Most agencies rent you their tools. Nivo installs infrastructure in your own cloud (Supabase, GCP, Vercel). You own the data. You own the code.",
+                    options: [
+                        { label: "Deploy Sovereign Unit", value: "web_types" }
+                    ]
+                },
+                web_types: {
+                    text: "Three levels of Infrastructure Deployment:\n1. **Core Unit:** Conversion Architecture.\n2. **Growth Reactor:** Aggressive Acquisition.\n3. **Sovereign Ecosystem:** Full operational autonomy.",
+                    options: [
+                        { label: "Specify My Ecosystem →", value: "open_contact" }
+                    ]
+                },
+                footer_info: {
+                    text: "Our strategic operations and legal jurisdiction are based in Tampa, Florida (Hillsborough County). We operate globally under strict data sovereignty standards, including the Florida Information Protection Act (FIPA). You can reach our executive team directly at contact@nivopartners.com.",
+                    options: [{ label: "Request Strategy Audit", value: "open_contact" }]
+                },
+                core_image: {
+                    text: "The **Nivo Revenue Core** diagram illustrates our sovereign architecture: Data Ingestion (Left), Neural Engine Processing (Center), and Marketing Effectors (Right).",
+                    options: [{ label: "Deploy Sovereign Unit", value: "web_types" }]
+                },
+                process_info: {
+                    text: "Our process is engineered for scale:\n1. **Ingest Data:** We connect to your data sources.\n2. **Process:** Our Neural Engine identifies high-value opportunities.\n3. **Execute:** Autonomous systems deploy marketing and sales protocols.",
+                    options: [{ label: "Audit My Readiness", value: "open_contact" }]
+                },
+                open_contact: {
+                    text: "Redirecting to the **Strategic Audit Protocol**. Please provide your current specifications for analysis.",
+                    options: [{ label: "Back to Knowledge Interface", value: "hello" }]
+                }
+            }
+        }, definitions: {
+            def_review_guardian: {
+                text: "**The Review Guardian** is an autonomous engine that monitors reputation signals 24/7, ingesting reviews and drafting professional responses.",
+                options: [{ label: "Deploy Protocol", value: "growth_audit" }]
+            },
+            def_smart_inbox: {
+                text: "**The Smart Inbox** is a neural filtering system that categorizes communications and drafts high-fidelity responses based on user behavior data.",
+                options: [{ label: "Deploy Protocol", value: "growth_audit" }]
+            },
+            def_lead_sniper: {
+                text: "**Prospect Intelligence Engine** utilizes algorithmic intelligence to identify high-value B2B targets based on intent signals and market positioning.",
+                options: [{ label: "Deploy Protocol", value: "growth_audit" }]
+            },
+            growth_audit: {
+                text: "Every infrastructure is unique. Investment is calculated based on technical complexity and ROI potential.",
+                options: [{ label: "Request Infrastructure Audit", value: "open_contact" }]
+            },
+            def_brand_assets: {
+                text: "We engineer **High-Fidelity Brand Assets** ensuring every pixel aligns with your market authority.",
+                options: [{ label: "Include in Audit", value: "web_quote" }]
+            },
+            tech_stack: {
+                text: "We utilize **Secure Cloud-Native Architecture**, **Custom Algorithmic Engines**, and **Advanced LLMs**.",
+                options: [{ label: "Learn More", value: "growth" }]
+            },
+            pricing: {
+                text: "As a computer systems design firm, we build custom infrastructure, not templated websites. To give you an accurate projection, we need to run a Strategy Audit. Would you like the link to our Architecture Wizard to start the assessment?",
+                options: [{ label: "Initialize Audit", value: "open_contact" }]
+            }
+        },
+        company_info: {
+            methodology: {
+                text: "We don't sell hours. We sell **Assets**. 1. Ingest Data. 2. Process via Neural Engine. 3. Execute Autonomously.",
+                options: [{ label: "See Architecture", value: "growth" }]
+            },
+            criteria: {
+                text: "We work with partners who value **Ownership** over renting. If you seek a 'quick fix', we are not the right firm.",
+                options: [{ label: "I am a Partner", value: "open_contact" }]
+            }
+        },
         modal: {
-            title: "Growth Infrastructure Audit",
-            subtitle: "We only work with 3 new partners per quarter. Let's see if we're a match.",
-            step1: "About You",
-            step2: "Your Goals",
-            step3: "Strategy",
+            badge: "Strategic Audit Request",
+            title: "Growth Infrastructure <span class='text-gradient'>Audit</span>",
+            subtitle: "We accept a limited number of partners per quarter. Let's evaluate technical compatibility.",
+            step1: "Entity Identification",
+            step2: "Commercial Goals",
+            step3: "Strategy Selection",
             labels: {
-                name: "Full Name",
-                email: "Work Email",
-                website: "Company Website",
+                name: "Director / Lead Name",
+                email: "Corporate Entity Email",
+                company: "Entity / Company Name",
+                website: "Corporate Website",
                 revenue: "Current Monthly Revenue",
-                interest: "What process would you like to automate today?"
+                service: "Architecture Segment",
+                interest: "Infrastructure Goal",
+                requirements: "Requirements / Context",
+                button: "Initialize Protocol Audit",
+                note: "Secure Transmission Active | Bank-Grade Encryption Verified"
             },
             options: {
-                rev1: "< $10k/mo (Startup)",
+                rev1: "< $10k/mo (Early State)",
                 rev2: "$10k - $50k/mo (Growth)",
                 rev3: "> $50k/mo (Scaling)",
                 int1: "Full Growth System (Recommended)",
-                int2: "Web Design / Infrastructure Only",
-                int3: "Paid Ads / Marketing Only"
+                int2: "Digital Infrastructure Expansion",
+                int3: "Yield Optimization (Ads/Marketing)"
             },
-            next: "Next Step",
+            next: "Continue",
             submit: "Submit Application",
-            successTitle: "Application Received",
-            successDesc: "Our team is analyzing your digital infrastructure. If qualified, you will receive an invitation to a Strategy Call within 24 hours.",
+            successTitle: "Protocol Initialized",
+            successDesc: "Your Institutional data has been securely archived in our Sovereign Engine.",
+            emailAction: "Recommended Action:",
+            emailDesc: "To ensure immediate processing by our team, please confirm your request via email:",
+            emailBtn: "Send Confirmation Email",
             close: "Close"
         },
         legal: {
+            common: {
+                nav_home: "Home",
+                footer_privacy: "Privacy Policy",
+                footer_terms: "Terms of Service",
+                footer_disclaimer: "Earnings Disclaimer",
+                footer_ethics: "Ethics & Anti-Spam",
+                seal_label: "<strong>Certified Infrastructure:</strong> Florida FIPA & FDUTPA Compliant",
+                seal_tooltip: "Nivo Partners guarantees data sovereignty and transparency in every autonomous process."
+            },
             privacy: {
                 title: "Privacy Policy & Data Protection",
                 content: `
                     <h1>Privacy Policy & Data Protection</h1>
                     <p>Effective Date: February 2026 | Jurisdiction: Hillsborough County, FL</p>
-                    
-                    <h3>1. Compliance with Florida Law</h3>
-                    <p>Nivo Partners is committed to protecting your data in accordance with the Florida Information Protection Act (FIPA) (Fla. Stat. § 501.171). We implement reasonable security measures to protect the integrity of the B2B data we process.</p>
-                    
+                    <h3>1. Compliance with Florida Law (FIPA)</h3>
+                    <p>Nivo Partners is committed to protecting data in accordance with the <strong>Florida Information Protection Act (FIPA) (Fla. Stat. § 501.171)</strong>. We utilize Supabase RLS (Row Level Security) and Edge Functions to ensure data integrity.</p>
                     <h3>2. Data Collection & AI</h3>
-                    <p>We collect professional B2B data from public sources and third-party enrichment tools to identify legitimate business interests.</p>
-                    <p><strong>AI Processing:</strong> We use Artificial Intelligence to analyze this data. We guarantee that NO confidential client data is used to train public AI models.</p>
-                    
-                    <h3>3. Your Rights (Opt-Out)</h3>
-                    <p>Residents of Florida and other jurisdictions have the right to request the deletion of their data. To exercise this right, please email <strong>contact@nivopartners.com</strong> with the subject "DATA REMOVAL". We honor all requests within 48 hours.</p>
+                    <p>We collect professional B2B data from public sources. We guarantee that <strong>NO confidential client data</strong> is used to train public AI models.</p>
+                    <h3>3. Your Rights (10-Day Removal Protocol)</h3>
+                    <p>Residents of Florida and other jurisdictions have the right to request data deletion. Email contact@nivopartners.com with subject "DATA REMOVAL". We execute all requests within <strong>10 days</strong>.</p>
                 `
             },
-            content: `
-                    <h1>Terms and Conditions of Service</h1>
-                    
-                    <h3>1. Nature of Service</h3>
-                    <p>Nivo Partners is a growth technology firm that provides infrastructure, strategy, and execution of B2B campaigns. We are not a traditional advertising agency; we act as technology partners.</p>
-                    
-                    <h3>2. Intellectual Property</h3>
-                    <p><strong>Client's:</strong> You retain total ownership of the "Results" generated (potential client lists, scheduled meetings, sales metrics).</p>
-                    <p><strong>Nivo Partners':</strong> We retain exclusive ownership of our "Methodology", our "AI Agents" (including prompts, code scripts, and workflows in Antigravity), and our operating platform.</p>
-                    
-                    <h3>3. AI Disclaimer & Limitation of Liability</h3>
-                    <p>Our services utilize experimental Artificial Intelligence technology. While we strive for human-level accuracy, the Client acknowledges that AI may produce factual errors ("hallucinations").</p>
-                    <blockquote>
-                        Nivo Partners is not liable for critical business decisions made solely based on unverified AI-generated data.
-                    </blockquote>
-                    
-                    <h3>4. Governing Law and Jurisdiction</h3>
-                    <p>These Terms shall be governed by and construed in accordance with the laws of the State of Florida, without regard to its conflict of law principles. Any legal action, suit, or proceeding arising out of or relating to these Terms shall be instituted exclusively in the federal or state courts located in Hillsborough County, Florida. You and Nivo Partners irrevocably consent to the exclusive personal jurisdiction of such courts.</p>
+            terms: {
+                title: "Terms & Service Protocols",
+                content: `
+                    <h1>Terms & Service Protocols</h1>
+                    <h3>1. Service Nature: The Simplicity Protocol</h3>
+                    <p>Nivo Partners operates under the <strong>"Simplicity Protocol"</strong>, a proprietary methodology for high-velocity B2B infrastructure deployment. We act as a fractional technology partner ("Agency Mode"), not as employees.</p>
+                    <h3>2. Intellectual Property & Sovereignty</h3>
+                    <p><strong>Client Assets:</strong> You retain 100% ownership of all "Results" (SQL databases, lead lists, campaign metrics).</p>
+                    <p><strong>Nivo IP:</strong> We retain exclusive ownership of the "Engine" (including Python scrapers, "Kai" persona logic, and codebase patterns). Grant of license is for deployment only.</p>
+                    <h3>3. AI Liability & "Hallucinations"</h3>
+                    <p>Our infrastructure utilizes generative AI. While we engineer for precision, AI models may produce factual anomalies ("hallucinations"). Nivo Partners disclaims liability for business decisions made solely on unverified AI output.</p>
+                    <p><em>"Trust but Verify."</em> The Client is responsible for final data validation before execution.</p>
+                    <h3>4. Jurisdiction</h3>
+                    <p>Governed by the laws of <strong>Hillsborough County, Florida</strong>. Arbitration required for disputes under $25,000.</p>
                 `
-        },
-        disclaimer: {
-            title: "Earnings & Performance Disclaimer",
-            content: `
+            },
+            disclaimer: {
+                title: "Earnings & Performance Disclaimer",
+                content: `
                     <h1>Earnings & Performance Disclaimer</h1>
-                    
                     <h3>1. No Guarantees (FDUTPA Compliance)</h3>
                     <p>In compliance with the FTC guidelines and the Florida Deceptive and Unfair Trade Practices Act (FDUTPA), Nivo Partners explicitly states that:</p>
-                    
                     <p>The success stories and "ROI" examples shown on this website are exceptional results from specific clients. They are not a guarantee that you will achieve the same results.</p>
-                    <blockquote>
-                        Your success depends on your market, your offer, and your execution. We provide the infrastructure; you provide the business driver.
-                    </blockquote>
-                    
                     <h3>2. Forward-Looking Statements</h3>
                     <p>Any statement regarding future income is an opinion and not a binding promise. Growth involves risk.</p>
                 `
-        },
-        ethics: {
-            title: "Anti-Spam Policy & B2B Ethics",
-            content: `
-                    <h1>Anti-Spam Policy & B2B Ethics</h1>
-                    
-                    <h3>1. Legal Compliance</h3>
-                    <p>Our outreach campaigns strictly adhere to the federal CAN-SPAM Act and the Florida Electronic Mail Communications Act (Chapter 668, Part III, F.S.).</p>
-                    
-                    <h3>2. Zero Tolerance for Spam</h3>
-                    <p><strong>B2B Only:</strong> We do not contact personal email addresses.</p>
-                    <p><strong>No False Headers:</strong> We never disguise the origin of our emails.</p>
-                    <p><strong>Immediate Opt-Out:</strong> Every communication includes a working unsubscribe mechanism.</p>
+            },
+            ethics: {
+                title: "Ethics & Anti-Spam (CAN-SPAM/FIPA)",
+                content: `
+                    <h1>Ethics & Anti-Spam (CAN-SPAM/FIPA)</h1>
+                    <h3>1. Technical Compliance (The Pre-flight Check)</h3>
+                    <p>Our outbound systems utilize a <strong>"Pre-flight Compliance Check"</strong>. Before any email is sent via Resend API, our Edge Functions query the leads database to verify the user's unsubscribed status. This prevents accidental outreach to opted-out entities.</p>
+                    <h3>2. Regulatory Adherence</h3>
+                    <p>We strictly adhere to the <strong>Federal CAN-SPAM Act of 2003</strong> and the <strong>Florida Electronic Mail Communications Act</strong> (Chapter 668, Part III, F.S.).</p>
+                    <h3>3. Transparency Protocol</h3>
+                    <p><strong>Identity:</strong> All emails are cryptographically signed (DKIM) to prove origin.</p>
+                    <p><strong>Mechanism:</strong> One-click opt-out headers are injected into every message payload.</p>
                 `
+            },
+            ceoLetter: {
+                date: "February 2026",
+                title: "CEO COMMITMENT LETTER: <br>Our Promise of Sovereignty and Transparency",
+                greeting: "To our future partners and visitors:",
+                intro: "At Nivo Partners, we believe the most powerful technology is built on a foundation of unwavering trust and rigorous compliance. As a Computer Systems Design firm based in Tampa, Florida, we don't just design digital infrastructures; we set standards for integrity.",
+                heading: "Our Ironclad Commitment:",
+                points: [
+                    { title: "Jurisdiction & Local Law", text: "Our operations are governed by the laws of the State of Florida." },
+                    { title: "Data Protection (FIPA)", text: "We proactively comply with the Florida Information Protection Act." },
+                    { title: "Commercial Transparency (FDUTPA)", text: "We adhere to the Florida Deceptive and Unfair Trade Practices Act." },
+                    { title: "Communication Ethics", text: "Zero Tolerance policy for Spam, in compliance with federal CAN-SPAM regulations." },
+                    { title: "Clear Intellectual Property", text: "You own the building; we are the architects." },
+                    { title: "AI Transparency", text: "We are transparent about the use of autonomous intelligence." }
+                ],
+                closing: "By choosing Nivo Partners, you are forming an alliance with a firm that prioritizes your success and sovereignty.",
+                signoff: "Sincerely,<br><strong>The CEO and Executive Team</strong><br>Nivo Partners, LLC<br>Tampa, Florida"
+            }
         },
-        common: {
-            nav_home: "Home",
-            nav_services: "Services",
-            nav_legal: "Legal",
-            btn_contact: "Book a Call",
-            btn_audit: "Get Free Audit",
-            footer_privacy: "Privacy Policy",
-            footer_terms: "Terms of Service",
-            footer_disclaimer: "Earnings Disclaimer",
-            footer_ethics: "Ethics & Anti-Spam",
-            btn_accept_cookies: "Accept",
-            btn_decline_cookies: "Decline"
+        footer: {
+            rights: "© 2026 Nivo Partners.",
+            careers: "Careers"
         },
         webPage: {
             badge: "Digital Architecture Deployment",
             title: "Start Converting Visitors into <span class='text-gradient'>Revenue</span>",
-            desc: "We leverage modern architecture to build assets that are not just beautiful, but are engineered to sell.",
+            desc: "We leverage modern architecture to build assets that are engineered to sell.",
             cta: "Get a Quote",
             branding: {
                 title: "Visual Identity Infrastructure",
-                subtitle: "A high-performance architecture requires a high-fidelity identity. We don't just build pages; we engineer the visual sovereignty of your brand.",
+                subtitle: "High-performance architecture requires high-fidelity identity. We engine the visual sovereignty of your brand.",
                 service1_title: "Brand Archetype Design",
-                service1_desc: "Creation of logotypes from scratch based on the DNA of your business.",
+                service1_desc: "Creation of logotypes based on your business DNA.",
                 service2_title: "Visual Asset Refactoring",
-                service2_desc: "Modernization of existing logotypes to adapt to 4K aesthetics and Dark Mode.",
+                service2_desc: "Modernization for 4K aesthetics and Dark Mode compatibility.",
                 service3_title: "Typography & Color Systems",
-                service3_desc: "Definition of palettes and fonts that project authority."
+                service3_desc: "Definition of palettes that project authority."
             },
-            contactTitle: "Ready to Upgrade Your Infrastructure?",
-            contactDesc: "Tell us about your project requirements.",
-            contactBtn: "Contact Us",
             wizard: {
                 title: "Architectural Infrastructure <span class='text-gradient'>Wizard</span>",
-                subtitle: "Configure your system bypass static templates. Engineering a unique blueprint for your market position.",
+                subtitle: "Configure your system bypassing static templates. Engineering a unique blueprint for your market position.",
                 steps: {
                     step1: {
                         q: "What is the primary revenue engine of your business?",
@@ -456,27 +526,27 @@ const translations = {
                     step2: {
                         q: "How do you want clients to perceive your brand at first glance?",
                         options: [
-                            { id: "minimal", label: "Clean & Professional", detail: "Trust through simplicity" },
-                            { id: "vanguard", label: "Bold & Modern", detail: "Stand out from competitors" },
-                            { id: "dark", label: "Premium & Tech", detail: "High-end, sophisticated" },
-                            { id: "typo", label: "Authoritative", detail: "Expert, industry leader" },
-                            { id: "visual", label: "Visual-First", detail: "Show, don't tell" }
+                            { id: "minimal", label: "Institutional", detail: "Trust through simplicity" },
+                            { id: "vanguard", label: "Bold & Modern", detail: "Disruptive presence" },
+                            { id: "dark", label: "Premium & Tech", detail: "High-end sophistication" },
+                            { id: "typo", label: "Authoritative", detail: "Expert industry leader" },
+                            { id: "visual", label: "Visual-First", detail: "High-fidelity impact" }
                         ]
                     },
                     step3: {
                         q: "How do your clients prefer to consume information?",
                         options: [
-                            { id: "onepage", label: "All in One Place", detail: "Single page, no clicks" },
-                            { id: "scrolling", label: "Story-Driven", detail: "Guided journey with narrative" },
-                            { id: "responsive", label: "Works on Any Device", detail: "Mobile-first priority" }
+                            { id: "onepage", label: "Frictionless", detail: "Single navigation plane" },
+                            { id: "scrolling", label: "Story-Driven", detail: "Guided narrative journey" },
+                            { id: "responsive", label: "Omni-Device", detail: "Seamless cross-platform" }
                         ]
                     },
                     step4: {
                         q: "How should clients navigate to find what they need?",
                         options: [
-                            { id: "hierarchical", label: "Clear Menu Structure", detail: "Organized, easy to browse" },
-                            { id: "sequential", label: "Guided Step-by-Step", detail: "Lead them to conversion" },
-                            { id: "network", label: "Free Exploration", detail: "Let them discover at will" }
+                            { id: "hierarchical", label: "Structured", detail: "Organized exploration" },
+                            { id: "sequential", label: "Guided", detail: "Directed conversion path" },
+                            { id: "network", label: "Fluid", detail: "Discovery-based navigation" }
                         ]
                     }
                 },
@@ -484,11 +554,6 @@ const translations = {
                 result_title: "Architecture Identified: High-Availability [NICHE] Infrastructure",
                 result_desc: "Our diagnostic indicates a [DNA] aesthetic paired with a [NAV] framework to optimize user retention and conversion-loop efficiency.",
                 audit_cta: "Request Strategic Audit to determine investment and deployment timeline"
-            },
-            brandingAssets: {
-                asset1: "Logo Design",
-                asset2: "Brand Guidelines",
-                asset3: "Visual Systems"
             }
         },
         marketingPage: {
@@ -496,77 +561,150 @@ const translations = {
             title: "Marketing of <span class='text-gradient'>Precision</span>",
             desc: "We don't chase clicks. We chase purchase intent. High-quality traffic for high-ticket sales.",
             cta: "Get a Quote",
-            contactTitle: "Start Capturing Demand",
-            contactDesc: "Let's discuss your campaign goals.",
-            contactBtn: "Contact Us"
+            amplification: {
+                title: "Traffic Amplification Protocols",
+                subtitle: "Unlock the dormant capacity of your digital infrastructure. We deploy high-precision, AI-generated video assets to validate markets and accelerate lead velocity with minimal capital exposure.",
+                b1_title: "AI-Driven Asset Generation",
+                b1_desc: "Leveraging next-gen video synthesis for rapid creative testing.",
+                b2_title: "Micro-Spend Validation",
+                b2_desc: "Utilizing minimal advertising budgets to identify high-yield audience segments before scaling.",
+                b3_title: "Architectural Feedback Loop",
+                b3_desc: "Feeding campaign performance data directly back into your system to optimize the ROI projections."
+            }
         },
         growthPage: {
             badge: "AI Automation Ecosystem",
-            title: "Scale Operations with <span class='text-gradient'>Autonomous Intelligence</span>",
-            desc: "We implement full AI ecosystems. From CS agents to autonomous CRMs. You own the system; we provide the engineering.",
-            cta: "Consult Implementation",
-            contactTitle: "Ready to Automate?",
-            contactDesc: "Tell us where your bottleneck is.",
-            contactBtn: "Contact Us"
+            title: "Stop Renting Labor. Start Owning <span class='text-gradient'>Efficiency</span>.",
+            desc: "Automate your text, data, and email workflows. We build systems that run your business on autopilot.",
+            cta: "View Automation Products"
+        },
+        common: {
+            nav_home: "Home",
+            nav_services: "Services",
+            nav_legal: "Legal",
+            btn_contact: "Start Consultation",
+            btn_audit: "Get Free Audit",
+            btn_accept_cookies: "Accept",
+            btn_decline_cookies: "Decline",
+            power_statement: "Powered by Serverless Enterprise Infrastructure & Proprietary Algorithmic Engines.",
+            careers: "Careers & Talent"
         }
     },
     es: {
+        seo: {
+            index: {
+                title: "Nivo Partners | Ingeniería de Ingresos e Infraestructura B2B Autónoma",
+                desc: "Nivo Partners construye y opera infraestructura de ingresos autónoma para líderes B2B. Crecimiento impulsado por inteligencia mediante ingeniería de precisión."
+            },
+            web: {
+                title: "Digital Architecture Deployment | Nivo Partners",
+                desc: "Identidad visual de alta fidelidad y arquitectura web de alto rendimiento para líderes del mercado."
+            },
+            marketing: {
+                title: "High-Precision Yield Engineering | Nivo Partners",
+                desc: "Marketing estratégico a través de la precisión. Inyectamos tráfico de alta intención y optimizamos la eficiencia del ciclo de conversión.",
+                amplification: {
+                    title: "Protocolos de Amplificación de Tráfico",
+                    subtitle: "Desbloquee la capacidad latente de su infraestructura digital. Desplegamos activos de video generados por IA de alta precisión para validar mercados y acelerar la velocidad de leads con una exposición mínima de capital.",
+                    b1_title: "Generación de Activos Impulsada por IA",
+                    b1_desc: "Aprovechando la síntesis de video de próxima generación para pruebas creativas rápidas.",
+                    b2_title: "Validación de Micro-Gasto",
+                    b2_desc: "Utilizando presupuestos publicitarios mínimos para identificar segmentos de audiencia de alto rendimiento antes de escalar.",
+                    b3_title: "Bucle de Retroalimentación Arquitectónica",
+                    b3_desc: "Alimentando los datos de rendimiento de la campaña directamente en su sistema para optimizar las proyecciones de ROI."
+                }
+            },
+            ai: {
+                title: "Asynchronous Neural Protocols | Nivo Partners",
+                desc: "Escale operaciones con inteligencia autónoma. Desde agentes especializados hasta ecosistemas de CRM autónomos."
+            }
+        },
         nav: {
             mechanism: "El Mecanismo",
             services: {
                 main: "Servicios",
                 web: "Digital Architecture Deployment",
                 marketing: "High-Precision Yield Engineering",
-                growth: "Asynchronous Neural Protocols"
+                growth: "Asynchronous Neural Protocols",
+                idp: "Arquitectura de Datos Internos (IDP)"
             },
-            why: "Por qué Nivo",
-            audit: "Agendar Cita"
+            why: "Por qué Nivo Partners",
+            audit: "Solicitud de Auditoría"
         },
         hero: {
-            badge: "Computer Systems Design and Related Services",
-            title: "Construimos Sistemas de Crecimiento Digital para <span class='text-gradient'>Empresas Ambiciosas</span>",
+            badge: "Computer Systems Design & Related Services",
+            title: "Construimos Sistemas de Adquisición de Clientes para <span class='text-gradient'>Empresas Ambiciosas</span>",
             subtitle: "No es un rediseño. Es una máquina de adquisición de clientes. Nivo Partners construye, opera y transfiere infraestructura de ingresos autónoma.",
-            cta: "Agendar Llamada Estratégica",
+            cta: "Inicializar Protocolo Revenue Core",
             caseStudyBtn: "Casos de Éxito"
         },
         paths: {
-            title: "Arquitectura Modular de Crecimiento",
-            subtitle: "Despliega nuestras soluciones individualmente o combínalas para un ecosistema de ingresos completo.",
+            title: "Tres <span class='text-gradient'>Ecosistemas Soberanos</span>",
+            subtitle: "Tu negocio merece infraestructura que trabaje mientras duermes. Elige el ecosistema que se adapta a dónde estás — y hacia dónde vas.",
             web: {
-                title: "Digital Architecture Deployment",
-                subtitle: "Modernize tu sitio actual o construye desde cero. Nos integramos con tu stack o lo reimaginamos totalmente.",
-                cta: "Explorar Arquitectura"
+                tag: "Presencia Digital",
+                title: "Autoridad Digital",
+                subtitle: "Tu servicio es de clase mundial. Tu presencia digital debería serlo también. Construimos infraestructura que inspira respeto y cierra tratos premium.",
+                f1: "Arquitectura orientada a conversión",
+                f2: "Captación de leads con IA (Kai)",
+                f3: "Tú eres el dueño del código. Siempre.",
+                cta: "Ver Cómo Funciona"
             },
             marketing: {
-                title: "High-Precision Yield Engineering",
-                subtitle: "¿Ya tienes sitio? Inyectamos tráfico de alta intención y optimizamos tu conversión sin tocar tu código.",
-                cta: "Explorar Ingeniería"
+                tag: "Crecimiento de Ingresos",
+                title: "Motor de Ingresos",
+                subtitle: "Deja de adivinar. Comienza a ingeniear. Instalamos un sistema de adquisición de precisión que entrega oportunidades calificadas directamente en tu calendario.",
+                f1: "Segmentación de audiencia de alta intención",
+                f2: "Seguimiento de ROI — no solo clics",
+                f3: "Optimización algorítmica (sin conjeturas)",
+                cta: "Ver Cómo Funciona"
             },
             growth: {
-                title: "Asynchronous Neural Protocols",
-                subtitle: "Deja de alquilar labor. Empieza a ser dueño de la inteligencia.",
-                bullets: ["Agentes a Medida", "Operación 24/7", "Asignación de recursos personalizada"],
-                examplesTitle: "Lo que Construimos:",
-                examples: [" El Recepcionista 24/7", " El Scraper Francotirador", " El Review Guardian"],
-                cta: "Aplicar para Auditoría"
-            }
+                tag: "IA Soberana",
+                title: "Ecosistema Inteligente",
+                subtitle: "Las empresas que dominarán su mercado en 2027 están instalando infraestructura de IA hoy. No herramientas. <strong>Sistemas que poseen.</strong>",
+                bullets: ["Sistemas de Inteligencia Soberana", "Operación 24/7", "Asignación de Recursos Personalizada"],
+                examplesTitle: "Lo Que Desplegamos:",
+                examples: ["Inteligencia & Visibilidad (Analytics/UX)", "Motor de Inteligencia de Prospectos", "El Review Guardian"],
+                cta: "Solicitar Auditoría de Inteligencia"
+            },
+            bottomText: "¿No sabes qué ecosistema encaja con tu etapa?",
+            bottomCta: "Pregunta a Kai — Toma 2 Minutos"
         },
         auth: {
-            text: "Potenciado por <span>Antigravity Intelligence</span> y Confiado por Líderes de Mercado",
-            infrastructure: "Infraestructura Empresarial Serverless",
-            openai: "OpenAI Enterprise",
-            hubspot: "HubSpot",
-            antigravity: "Antigravity"
+            text: "Construido con un <span>Stack Tecnológico Empresarial</span> y Estándares de Seguridad Modernos",
+            infrastructure: "Sistemas Serverless Cloud-Native",
+            openai: "Modelos Neurales de OpenAI",
+            hubspot: "Integración de CRM Lista",
+            antigravity: "Nivo Antigravity OS"
         },
         core: {
-            title: "El <span class='text-gradient'>Núcleo de Ingresos</span> Nivo",
+            title: "El <span class='text-gradient'>Revenue Core</span> de Nivo Partners",
             manifesto: "Nivo Partners no es una agencia; es un sistema operativo.",
-            desc1: "Instalamos una capa de infraestructura dedicada sobre su negocio que opera 24/7 sin fatiga.",
-            desc2: "Tú eres dueño del código. Tú eres dueño de los datos. Nosotros proveemos la arquitectura.",
-            feature_core: "<strong>El Núcleo:</strong> Procesamiento de Datos Neuronal (Motor Algorítmico Propietario)",
+            desc1: "Instalamos una capa de infraestructura dedicada sobre su negocio que trabaja 24/7 sin fatiga.",
+            desc2: "Usted es el dueño del código. Usted es el dueño de los datos. Nosotros proporcionamos la arquitectura.",
+            feature_core: "<strong>El Núcleo:</strong> Procesamiento de Datos Neurales (Motor Algorítmico Propietario)",
             feature_shield: "<strong>El Escudo:</strong> Encriptación de Grado Bancario y CDN",
-            feature_effectors: "<strong>Los Efectores:</strong> Despliegue Multi-Canal",
-            feature_core_label: "Procesamiento de Datos Neuronal"
+            feature_effectors: "<strong>Los Efectores:</strong> Despliegue Omnicanal",
+            feature_core_label: "Procesamiento de Datos Neurales",
+            feature_shield_label: "Encriptación de Grado Bancario",
+            feature_effectors_label: "Despliegue Omnicanal",
+            view_3d: "Vista 3D Mejorada",
+            view_static: "Volver a Esquema Core"
+        },
+        filter: {
+            title: "Buscamos <span class='text-gradient'>Socios</span>, No Clientes",
+            subtitle: "Transparencia radical sobre nuestros criterios de selección.",
+            yesTitle: "Alineación Estratégica Si...",
+            noTitle: "No Alineados Si...",
+            yes1: "Tiene un B2B LTV > $5,000 USD.",
+            yes2: "Tiene un producto validado con casos de éxito.",
+            yes3: "Busca una asociación de crecimiento a largo plazo.",
+            yes4: "Prioriza los datos sobre el instinto.",
+            no1: "Vende commodities de bajo costo.",
+            no2: "Busca atajos de 'enriquecimiento rápido'.",
+            no3: "Intenta microgestionar sistemas automatizados.",
+            no4: "No puede escalar al triple de volumen de leads."
         },
         ai: {
             hero: {
@@ -580,19 +718,46 @@ const translations = {
                 subtitle: "Sistemas de alto apalancamiento para crecimiento con costo operativo cero."
             },
             tier1: {
-                title: "Gestión de Reputación (Review Guardian)",
+                title: "Gestión de Reputación",
                 tag: "Reputación",
                 desc: "Convierta reseñas en ingresos. Nuestra IA monitorea su Perfil de Google 24/7 y redacta respuestas profesionales y optimizadas para SEO al instante."
             },
             tier2: {
-                title: "Infraestructura de Bandeja de Entrada (Smart Inbox)",
+                title: "Infraestructura de Inbox",
                 tag: "Eficiencia",
-                desc: "Deje de ahogarse en el correo. Nuestros algoritmos categorizan, etiquetan y redactan respuestas para su Gmail, **optimizando el rendimiento operativo y la asignación de recursos**."
+                desc: "Deje de ahogarse en emails. Nuestros algoritmos categorizan, etiquetan y redactan respuestas para su bandeja de entrada de Gmail, optimizando el rendimiento operativo y la asignación de recursos."
             },
             tier3: {
-                title: "Inteligencia de Mercado (Lead Sniper)",
+                title: "Inteligencia de Mercado",
                 tag: "Crecimiento",
-                desc: "Listas de prospectos con precisión de francotirador generadas diariamente. Encontramos a sus clientes B2B perfectos para que a su equipo de ventas nunca le falten oportunidades."
+                desc: "Listas de leads con precisión de francotirador generadas diariamente. Encontramos a sus clientes B2B perfectos para que su equipo de ventas nunca se quede sin prospectos."
+            }
+        },
+        idp: {
+            hero: {
+                badge: "Soberanía de Datos Empresariales",
+                title: "Arquitectura de <span class='text-gradient'>Datos Internos</span> (IDP)",
+                subtitle: "Transforme los datos caóticos de su back-office en inteligencia soberana y accionable. Diseñamos pipelines seguros y automatizados que extraen información vital de sus operaciones internas, convirtiendo los datos históricos en un activo estratégico.",
+                cta: "Solicitar Auditoría de Inteligencia"
+            },
+            products: {
+                title: "Protocolos de <span class='text-gradient'>Inteligencia Interna</span>",
+                subtitle: "Ingeniería de pipelines de datos de alta fidelidad para claridad operativa."
+            },
+            tier1: {
+                title: "Síntesis Histórica",
+                tag: "Conocimiento",
+                desc: "Extraiga valor latente de operaciones previas. Refactorizamos bases de datos fragmentadas en una capa de inteligencia unificada y consultable."
+            },
+            tier2: {
+                title: "Pipelines ETL Autónomos",
+                tag: "Flujo",
+                desc: "Transferencia segura y automatizada de datos internos a paneles estratégicos, eliminando la intervención manual y el error humano."
+            },
+            tier3: {
+                title: "Insights Soberanos",
+                tag: "Soberanía",
+                desc: "Analítica propietaria de la que usted es dueño total. Sin dependencia de datos de terceros. Pura dominancia estratégica interna."
             }
         },
         caseStudy: {
@@ -609,323 +774,358 @@ const translations = {
         comparison: {
             title: "El Modelo de \"Agencia Tradicional\" está <span class='text-gradient'>Roto</span>",
             subtitle: "Deja de alquilar esfuerzos. Empieza a ser dueño de los resultados.",
-            oldWay: "La Vieja Escuela",
+            oldWay: "Agencia Tradicional",
             vanity: "Métricas Vanidosas (Likes, Clicks)",
-            renting: "Alquilar \"Magia\" Mensualmente",
-            blackBox: "Retorno de Inversión (ROI) Opaco",
-            cold: "Prospección Ineficiente",
-            nivoWay: "El Método Nivo",
+            renting: "Alquiler de Servicios Mensuales",
+            blackBox: "ROI Obscuro",
+            cold: "Prospección Manual Ineficiente",
+            nivoWay: "Protocolo Nivo Partners",
             financial: "Métricas Financieras (Ingresos, ROI)",
             owning: "Ser Dueño de tu Infraestructura",
-            transparency: "Transparencia Total y Datos",
-            intent: "Inteligencia de Cuentas Basada en Intención"
+            transparency: "Transparencia Absoluta de Datos",
+            intent: "Inteligencia Basada en Intención"
         },
         mechanism: {
             title: "Ingeniería de Ingresos en <span class='text-gradient'>3 Fases</span>",
-            subtitle: "Un protocolo científico para convertir extraños en contratos firmados.",
+            subtitle: "Un protocolo científico para convertir la intención del mercado en contratos firmados.",
             step1Title: "Nivo Web Studio",
-            step1Desc: "Digital Architecture Deployment. Diseñamos activos digitales de alto rendimiento e identificamos su mercado ideal con precisión estratégica.",
-            step2Title: "Nivo Digital",
-            step2Desc: "Marketing de Resultados. Implementamos sistemas inteligentes de adquisición que interactúan y califican prospectos las 24 horas",
+            step1Desc: "Digital Architecture Deployment. Diseñamos activos de alto rendimiento e identificamos puntos de apalancamiento precisos.",
+            step2Title: "Nivo High-Precision",
+            step2Desc: "High-Precision Yield Engineering. Implementamos sistemas de adquisición inteligentes que califican prospectos 24/7.",
             step3Title: "Nivo Growth Lab",
-            step3Desc: "Optimización de Ingresos. Rastreamos científicamente el retorno de cada dólar para maximizar el valor de vida del cliente."
+            step3Desc: "Optimización de Ingresos. Rastreamos cada dólar invertido para maximizar el Valor de Vida del Cliente (LTV)."
         },
-
-        footer: {
-            title: "Artesanía Digital. <br> <span class='text-gradient'>Velocidad de Ejecución IA.</span>",
-            desc: "Fusionamos estrategia de consultoría experta con la agilidad de una startup tecnológica. Implementa el motor que impulsará tus próximos 10 años de crecimiento.",
-            cta: "Aplicar para ser Socio",
-            limited: "Cupos limitados sujetos a estudio.",
-            rights: "© 2026 Nivo Partners.",
-            power_statement: "Potenciado por Infraestructura Empresarial Serverless, Motor Algorítmico Propietario y LLMs de Generación Avanzada."
-        },
-        chat: {
-            label: "Chatea con Kai",
-            agentName: "Kai | Arquitecto de Crecimiento Líder",
-            placeholder: "Pregunta sobre Infraestructura, Crecimiento o Automatización...",
-            send: "Desplegar Consulta",
-            greeting: "Soy Kai, Arquitecto de Crecimiento Líder en Nivo Partners. Ayudo a empresas a transicionar de alquilar labor a ser dueñas de la inteligencia. ¿Buscas construir **Digital Architecture Deployment**, ejecutar **High-Precision Yield Engineering** o instalar **Asynchronous Neural Protocols**?",
-            options: {
-                web: "Digital Architecture Deployment",
-                marketing: "High-Precision Yield Engineering",
-                growth: "Asynchronous Neural Protocols"
-            },
-            responses: {
-                // 1. Digital Architecture Deployment (Web)
-                web: {
-                    text: "**Digital Architecture Deployment** no es un sitio web; es un Activo Digital que reduce tu Costo de Adquisición de Clientes. No construimos páginas; desplegamos arquitecturas de alta fidelidad optimizadas para conversión que determinan tu valor de mercado.",
-                    options: [
-                        { label: "Ver Tipos de Arquitectura", value: "web_types" },
-                        { label: "Solicitar Auditoría de Infraestructura", value: "web_quote" }
-                    ]
+        simulator: {
+            label: "Predictor de ROI en Vivo",
+            title: "Modele su crecimiento: Impacto proyectado de la <span class='text-gradient'>optimización de infraestructura</span>",
+            subtitle: "Ajusta los parámetros para estimar el impacto de la infraestructura de Nivo Partners en tu negocio.",
+            inputTitle: "Métricas Core",
+            inputDesc: "Ingresa tu ingreso mensual actual y presupuesto publicitario. Nuestro motor proyecta una ganancia de eficiencia del 25%. *Resultados son proyecciones.*",
+            revenueLabel: "Ingreso Mensual Actual",
+            budgetLabel: "Presupuesto Mensual de Publicidad",
+            projectedLabel: "Ingreso Mensual Proyectado (Est.)",
+            projectedSub: "+25% Meta de Eficiencia",
+            leadsLabel: "Leads Nuevos Estimados / Mes",
+            cta: "Obtener Mi Hoja de Ruta →",
+            education: {
+                minimal: {
+                    title: "La Estética de la Confianza",
+                    desc: "El minimalismo en B2B proyecta **Soberanía Institucional**. Al eliminar el ruido, señalas valor inherente. Ideal para SaaS empresarial y consultoría."
                 },
-                web_types: {
-                    text: "Desplegamos tres niveles arquitectónicos:\n1. **The Authority:** Validación de alto estatus para consultores.\n2. **The SaaS:** Enfoque en bucles de conversión para tech.\n3. **The Industrial:** Robustez y confiabilidad para logística/construcción.",
-                    options: [
-                        { label: "Necesito Autoridad", value: "web_quote" },
-                        { label: "Necesito Conversión", value: "web_quote" }
-                    ]
+                bold: {
+                    title: "Dominio de Mercado",
+                    desc: "La tipografía de alto contraste señala **Disrupción**. Esta estética exige atención. Perfecta para infraestructura y retadores del sector."
                 },
-                web_quote: {
-                    text: "**Inversión escalada a la complejidad de la infraestructura**. Nos enfocamos en el ROI y la Escalabilidad mediante un **Despliegue ágil basado en hitos arquitectónicos**. ¿Te gustaría una auditoría para ver qué requiere tu negocio?",
-                    options: [
-                        { label: "Sí, Iniciar Auditoría", value: "open_contact" },
-                        { label: "Solo Navegando", value: "hello" }
-                    ]
-                },
-                // Respuestas de Arquetipos
-                arch_spa: {
-                    text: "Excelente elección. La estética **The Spa** está diseñada para marcas de bienestar de alto nivel que buscan serenidad y confianza premium. ¿Buscas implementar esta infraestructura para un proyecto nuevo o una marca existente?",
-                    options: [
-                        { label: "Proyecto Nuevo", value: "web_quote" },
-                        { label: "Marca Existente", value: "web_quote" }
-                    ]
-                },
-                arch_saas: {
-                    text: "La arquitectura **The SaaS** se enfoca en onboarding sin fricción y visualización de producto. Essencial para escalamiento tecnológico. ¿Tienes un producto validado?",
-                    options: [
-                        { label: "Sí, Validado", value: "web_quote" },
-                        { label: "Fase de Idea", value: "web_quote" }
-                    ]
-                },
-                arch_industrial: {
-                    text: "El estilo **The Industrial** proyecta estabilidad y escala. Ideal para logística, construcción y manufactura B2B. Enfatizamos confiabilidad y capacidad.",
-                    options: [
-                        { label: "Iniciar Auditoría de Infraestructura", value: "web_quote" }
-                    ]
-                },
-                arch_authority: {
-                    text: "**The Authority** es para marcas personales y consultores que necesitan comandar precios high-ticket. Te posicionamos como el líder del mercado.",
-                    options: [
-                        { label: "Soy Consultor", value: "web_quote" }
-                    ]
-                },
-                conversion_audit: {
-                    text: "**Conversión** es la métrica principal de nuestras arquitecturas. Para darte un roadmap preciso y discutir una estrategia de inversión alineada con tus metas, necesito ver tus datos de tráfico actuales. ¿Te gustaría iniciar una Auditoría de Infraestructura formal?",
-                    options: [
-                        { label: "Iniciar Auditoría Formal", value: "open_contact" }
-                    ]
-                },
-                branding_trigger: {
-                    text: "¿Su identidad visual actual refleja los estándares de alta fidelidad de su nueva infraestructura, o deberíamos incluir una **Refactorización de Identidad de Marca** en su auditoría?",
-                    options: [
-                        { label: "Añadir Refactorización", value: "def_brand_assets" },
-                        { label: "La identidad ya es 4K", value: "web_quote" }
-                    ]
-                },
-
-                // 2. High-Precision Yield Engineering (Revenue Engineering)
-                marketing: {
-                    text: "**Ingeniería de Ingresos** es adquisición basada en datos, no conjeturas. Utilizamos Inteligencia Conductual (Microsoft Clarity) y Rastreo Server-Side para apuntar a tu nicho exacto con cero desperdicio.",
-                    options: [
-                        { label: "Cómo apuntamos", value: "marketing_how" },
-                        { label: "Iniciar Campañas", value: "marketing_call" }
-                    ]
-                },
-                marketing_how: {
-                    text: "Ignoramos métricas de vanidad (likes). Optimizamos para **Eficiencia de Ingresos**. Al rastrear señales de intención de compra, ponemos tu oferta frente a tomadores de decisiones listos para comprar.",
-                    options: [
-                        { label: "Auditar mi Estrategia", value: "marketing_call" }
-                    ]
-                },
-                marketing_call: {
-                    text: "Construimos activos de grado empresarial. Si buscas anuncios genéricos, quizás no somos el fit. Si estás listo para un **Motor Algorítmico Personalizado** para crecimiento, hablemos.",
-                    options: [
-                        { label: "Agendar Sesión Estratégica", value: "open_booking" }
-                    ]
-                },
-
-                // 3. Asynchronous Neural Protocols (AI)
-                growth: {
-                    text: "**Asynchronous Neural Protocols** implica instalar motores neuronales propietarios en tu negocio. Tú eres dueño del código. Tú eres dueño de los datos. Nosotros proveemos la arquitectura.",
-                    options: [
-                        { label: "Review Guardian", value: "def_review_guardian" },
-                        { label: "Smart Inbox", value: "def_smart_inbox" },
-                        { label: "Lead Sniper", value: "def_lead_sniper" }
-                    ]
-                },
-
-                // General
-                hello: {
-                    text: "Soy Kai, Arquitecto de Crecimiento Líder en Nivo Partners. Ayudo a empresas a transicionar de alquilar labor a ser dueñas de la inteligencia. ¿Buscas construir **Digital Architecture Deployment**, ejecutar **High-Precision Yield Engineering** o instalar **Asynchronous Neural Protocols**?",
-                    options: [
-                        { label: "Digital Architecture Deployment", value: "web" },
-                        { label: "High-Precision Yield Engineering", value: "marketing" },
-                        { label: "Asynchronous Neural Protocols", value: "growth" }
-                    ]
-                },
-                default: {
-                    text: "Estoy analizando tu solicitud. Para asistirte óptimamente: ¿buscas actualizar tu **Infraestructura**, escalar **Ingresos**, o automatizar **Operaciones**?",
-                    options: [
-                        { label: "Actualizar Infraestructura", value: "web" },
-                        { label: "Escalar Ingresos", value: "marketing" },
-                        { label: "Automatizar Operaciones", value: "growth" }
-                    ]
-                },
-
-                // Actions
-                open_contact: {
-                    text: "Iniciando protocolo de ingesta segura. Por favor provee tus especificaciones mejoradas.",
-                    options: [{ label: "Volver a Consola", value: "hello" }]
-                },
-                open_booking: {
-                    text: "Abriendo enlace de calendario seguro. Selecciona una hora para tu revisión arquitectónica.",
-                    options: [{ label: "Volver a Consola", value: "hello" }]
-                }
-            },
-            definitions: {
-                def_review_guardian: {
-                    text: "**The Review Guardian** es un motor autónomo que monitorea señales de reputación 24/7. Ingiere reseñas, analiza sentimiento y redacta respuestas instantáneamente.",
-                    options: [{ label: "Desplegar Esto", value: "growth_audit" }]
-                },
-                def_smart_inbox: {
-                    text: "**The Smart Inbox** es un filtro neuronal que categoriza comunicación entrante y redacta respuestas, ahorrando un promedio de 10 horas por semana.",
-                    options: [{ label: "Desplegar Esto", value: "growth_audit" }]
-                },
-                def_lead_sniper: {
-                    text: "**The Lead Sniper** utiliza inteligencia de mercado algorítmica para identificar prospectos B2B de alto valor que coinciden con tus criterios exactos.",
-                    options: [{ label: "Desplegar Esto", value: "growth_audit" }]
-                },
-                growth_audit: {
-                    text: "Cada infraestructura que desplegamos es única. La inversión se calcula en función de la complejidad técnica y el potencial de retorno de inversión (ROI) de su operación específica. Definimos el alcance exacto y el presupuesto durante la fase de Auditoría de Infraestructura.",
-                    options: [{ label: "Solicitar Auditoría de Infraestructura", value: "open_contact" }]
-                },
-                pricing: {
-                    text: "Cada infraestructura que desplegamos es única. La inversión se calcula en función de la complejidad técnica y el potencial de retorno de inversión (ROI) de su operación específica. Definimos el alcance exacto y el presupuesto durante la fase de Auditoría de Infraestructura.",
-                    options: [
-                        { label: "Solicitar Auditoría Estratégica", value: "open_contact" }
-                    ]
-                },
-                delivery: {
-                    text: "Nuestro proceso de despliegue sigue una hoja de ruta de ingeniería rigurosa. La sincronización del cronograma depende de la profundidad de integración requerida para su ecosistema. Proporcionamos un calendario definitivo una vez que se aprueba el Plano (Blueprint).",
-                    options: [
-                        { label: "Ver Metodología", value: "methodology" }
-                    ]
-                },
-                def_brand_assets: {
-                    text: "Ingenierizamos **Activos de Marca de Alta Fidelidad**. Una construcción de identidad de marca es una **inversión accesoria personalizada basada en la complejidad de la marca**, asegurando que cada píxel se alinee con su autoridad de mercado.",
-                    options: [
-                        { label: "Incluir en Auditoría", value: "web_quote" }
-                    ]
-                }, tech_stack: {
-                    text: "Utilizamos **Arquitectura Cloud-Native Segura** (Google Cloud), **Motores Algorítmicos Personalizados** (Python) y **LLMs Avanzados**.",
-                    options: [{ label: "Aprender Más", value: "growth" }]
-                }
-            },
-            company_info: {
-                methodology: {
-                    text: "No vendemos horas. Vendemos **Activos**. 1. Ingestar Datos. 2. Procesar vía Motor Neuronal. 3. Ejecutar Autónomamente.",
-                    options: [{ label: "Ver Arquitectura", value: "growth" }]
-                },
-                criteria: {
-                    text: "Trabajamos con socios que valoran **Propiedad** sobre alquiler. Si quieres una 'solución rápida', no somos la firma correcta.",
-                    options: [{ label: "Soy un Socio", value: "open_contact" }]
+                luxury: {
+                    title: "Exclusividad & Legado",
+                    desc: "Serifas elegantes evocan **Prestigio**. Esta identidad declara 'No somos para todos'. La elección para gestión de patrimonio y servicios premium."
                 }
             }
         },
+        chat: {
+            label: "Consultar con Kai",
+            agentName: "Kai | Interfaz de Conocimiento Nivo",
+            placeholder: "Sobre Infraestructura, Propiedad o la Biblia Nivo...",
+            send: "Enviar",
+            disclaimer: "Kai es un Estratega Principal de IA. Aunque altamente preciso, todas las proyecciones estratégicas, planes de infraestructura y datos deben verificarse mediante una Auditoría Estratégica oficial de Nivo Partners. No se garantiza ningún ROI financiero.",
+            greeting: "Soy Kai, la Interfaz Principal de Conocimiento de Nivo Partners. Estoy programado para ayudarte a transitar de **Rentar Presencia** a **Ser Dueño de tu Infraestructura**. ¿Cómo procedemos con tu soberanía comercial?",
+            options: {
+                infrastructure: "Analizar mi Infraestructura",
+                blueprint: "El Blueprint (Propiedad)",
+                standards: "Estándares Bilingües y Mobile"
+            },
+            responses: {
+                hello: {
+                    text: "Hola, soy Kai, Estratega Principal en Nivo Partners. Nos especializamos en tres pilares fundamentales de soberanía digital. ¿Qué área te gustaría explorar?",
+                    options: [
+                        { label: "1. Infraestructura Web", value: "srv_web" },
+                        { label: "2. Marketing y Posicionamiento", value: "srv_marketing" },
+                        { label: "3. Automatización y Agentes", value: "srv_automation" }
+                    ]
+                },
+                infrastructure_node: {
+                    text: "Construimos sobre el **Nivo Revenue Core** (el diagrama en esta página). Es una infraestructura de triple capa: **El Núcleo** (Motor Neural), **El Escudo** (Seguridad) y **Los Efectores** (Despliegue). ¿Deseas auditar tu stack actual?",
+                    options: [
+                        { label: "Inicializar Auditoría Estratégica", value: "open_contact" },
+                        { label: "Explicar Capas Primero", value: "core_layers" }
+                    ]
+                },
+                core_layers: {
+                    text: "1. **Núcleo:** Motores Algorítmicos Propietarios.\n2. **Escudo:** Encriptación de grado bancario que tú controlas.\n3. **Efectores:** Despliegue multicanal sin fatiga.",
+                    options: [{ label: "Iniciar Auditoría Estratégica", value: "open_contact" }]
+                },
+                blueprint_node: {
+                    text: "Entregamos más que código. Ingenierizamos ecosistemas aislados de Datos y Web. Esto asegura que si nosotros desaparecemos, tu negocio no.",
+                    options: [
+                        { label: "Ver Niveles de Infraestructura", value: "web_types" },
+                        { label: "Auditar mi Preparación", value: "open_contact" }
+                    ]
+                },
+                services_menu: {
+                    text: "Nos especializamos en tres pilares fundamentales de soberanía digital. ¿Qué área te gustaría explorar?",
+                    options: [
+                        { label: "1. Infraestructura Web", value: "srv_web" },
+                        { label: "2. Marketing y Posicionamiento", value: "srv_marketing" },
+                        { label: "3. Automatización y Agentes", value: "srv_automation" }
+                    ]
+                },
+                srv_web: {
+                    text: "**Arquitectura Web:** No solo hacemos sitios web; diseñamos infraestructuras digitales soberanas. Desplegamos aplicaciones escalables y de alto rendimiento utilizando Google Cloud y Cloudflare, asegurando una identidad corporativa perfecta y seguridad de grado militar.",
+                    options: [
+                        { label: "Solicitar Auditoría Estratégica", value: "open_contact" },
+                        { label: "Explorar Otros Servicios", value: "services_menu" }
+                    ]
+                },
+                srv_marketing: {
+                    text: "**Marketing Digital y ROI:** Ejecutamos 'Protocolos de Amplificación de Tráfico'. No solo hacemos anuncios; utilizamos activos generados por IA (sintetizando video y copy de alta fidelidad) para lanzar campañas de Validación de Micro-Gasto. Esto nos permite probar la viabilidad del mercado e inyectar tráfico de alta precisión directamente en tu calculadora de ROI.",
+                    options: [
+                        { label: "Solicitar Auditoría Estratégica", value: "open_contact" },
+                        { label: "Explorar Otros Servicios", value: "services_menu" }
+                    ]
+                },
+                srv_automation: {
+                    text: "**Automatización de Procesos e IDP:** Arquitectamos conductos de datos seguros utilizando Procesamiento Inteligente de Documentos (IDP). Con herramientas como Supabase y automatización de flujos, extraemos, limpiamos y enrutamos datos no estructurados de tu back-office (facturas, PDFs, exportaciones de CRM) hacia inteligencia accionable.",
+                    options: [
+                        { label: "Solicitar Auditoría Estratégica", value: "open_contact" },
+                        { label: "Explorar Otros Servicios", value: "services_menu" }
+                    ]
+                },
+                fipa_compliance: {
+                    text: "**Seguridad de Datos:** Nos adherimos estrictamente a la Ley de Protección de Información de Florida (FIPA) y utilizamos entornos seguros y encriptados para todo el procesamiento de datos.",
+                    options: [{ label: "Solicitar Auditoría Estratégica", value: "open_contact" }]
+                },
+                fdutpa_compliance: {
+                    text: "**Proyecciones de ROI:** Nunca prometemos retornos financieros específicos ni ROI garantizado. Todas las proyecciones son estimaciones respaldadas por datos y dependen de las condiciones del mercado.",
+                    options: [{ label: "Solicitar Auditoría Estratégica", value: "open_contact" }]
+                },
+                ultimate_cta: {
+                    text: "Para precios personalizados, especificaciones técnicas complejas o para iniciar un proyecto, por favor continúa hacia nuestro Asistente de Arquitectura / Auditoría Estratégica.",
+                    options: [{ label: "Inicializar Auditoría", value: "open_contact" }]
+                },
+                fallback: {
+                    text: "¿Podrías elaborar sobre eso? Quiero asegurarme de dirigirte a la solución arquitectónica correcta.",
+                    options: [{ label: "Explorar Servicios", value: "services_menu" }, { label: "Solicitar Auditoría Estratégica", value: "open_contact" }]
+                },
+                fipa_compliance: {
+                    text: "**Seguridad de Datos:** Nos adherimos estrictamente a la Ley de Protección de Información de Florida (FIPA) y utilizamos entornos seguros y encriptados para todo el procesamiento de datos.",
+                    options: [{ label: "Solicitar Auditoría Estratégica", value: "open_contact" }]
+                },
+                fdutpa_compliance: {
+                    text: "**Proyecciones de ROI:** Nunca prometemos retornos financieros específicos ni ROI garantizado. Todas las proyecciones son estimaciones respaldadas por datos y dependen de las condiciones del mercado.",
+                    options: [{ label: "Solicitar Auditoría Estratégica", value: "open_contact" }]
+                },
+                ultimate_cta: {
+                    text: "Para precios personalizados, especificaciones técnicas complejas o para iniciar un proyecto, por favor continúa hacia nuestro Asistente de Arquitectura / Auditoría Estratégica.",
+                    options: [{ label: "Inicializar Auditoría", value: "open_contact" }]
+                },
+                fallback: {
+                    text: "¿Podrías elaborar sobre eso? Quiero asegurarme de dirigirte a la solución arquitectónica correcta.",
+                    options: [{ label: "Explorar Servicios", value: "services_menu" }, { label: "Solicitar Auditoría Estratégica", value: "open_contact" }]
+                },
+                sovereignty_node: {
+                    text: "**La propiedad es el único KPI.** La mayoría de las agencias te rentan sus herramientas. Nivo instala infraestructura en tu propia nube (Supabase, GCP, Vercel). Eres dueño de los datos. Eres dueño del código.",
+                    options: [
+                        { label: "Desplegar Unidad Soberana", value: "web_types" }
+                    ]
+                },
+                web_types: {
+                    text: "Tres niveles de Despliegue de Infraestructura:\n1. **Unidad Core:** Arquitectura de Conversión.\n2. **Reactor de Crecimiento:** Adquisición Agresiva.\n3. **Ecosistema Soberano:** Autonomía operativa total.",
+                    options: [
+                        { label: "Especificar mi Ecosistema →", value: "open_contact" }
+                    ]
+                },
+                footer_info: {
+                    text: "Nuestras operaciones estratégicas y jurisdicción legal se basan en Tampa, Florida (Condado de Hillsborough). Operamos globalmente bajo estrictos estándares de soberanía de datos, incluyendo la Ley de Protección de Información de Florida (FIPA). Puedes contactar a nuestro equipo ejecutivo en contact@nivopartners.com.",
+                    options: [{ label: "Solicitar Auditoría Estratégica", value: "open_contact" }]
+                },
+                core_image: {
+                    text: "El diagrama del **Nivo Revenue Core** ilustra nuestra arquitectura soberana: Ingesta de Datos (Izquierda), Procesamiento en el Motor Neural (Centro) y Ejecución de Marketing (Derecha).",
+                    options: [{ label: "Desplegar Unidad Soberana", value: "web_types" }]
+                },
+                process_info: {
+                    text: "Nuestro proceso está diseñado para escalar:\n1. **Ingesta de Datos:** Conectamos tus fuentes de información.\n2. **Procesamiento:** Nuestro Motor Neural identifica oportunidades de alto valor.\n3. **Ejecución:** Sistemas autónomos activan campañas y protocolos de venta.",
+                    options: [{ label: "Auditar mi Preparación", value: "open_contact" }]
+                },
+                open_contact: {
+                    text: "Redirigiendo al **Protocolo de Auditoría Estratégica**. Por favor, proporciona tus especificaciones actuales para el análisis.",
+                    options: [{ label: "Volver a Interfaz de Conocimiento", value: "hello" }]
+                }
+            }
+        },
+        definitions: {
+            def_review_guardian: {
+                text: "**El Guardian de Reseñas** es un motor autónomo que monitorea señales de reputación 24/7, ingiriendo reseñas y redactando respuestas profesionales.",
+                options: [{ label: "Desplegar Protocolo", value: "growth_audit" }]
+            },
+            def_smart_inbox: {
+                text: "**El Smart Inbox** es un sistema de filtrado neural que categoriza comunicaciones y redacta respuestas de alta fidelidad basado en el comportamiento del usuario.",
+                options: [{ label: "Desplegar Protocolo", value: "growth_audit" }]
+            },
+            def_lead_sniper: {
+                text: "**Motor de Inteligencia de Prospectos** utiliza inteligencia algorítmica para identificar objetivos B2B de alto valor basados en señales de intención.",
+                options: [{ label: "Desplegar Protocolo", value: "growth_audit" }]
+            },
+            growth_audit: {
+                text: "Cada infraestructura es única. La inversión se calcula basándose en la complejidad técnica y el potencial ROI.",
+                options: [{ label: "Solicitar Auditoría de Infraestructura", value: "open_contact" }]
+            },
+            def_brand_assets: {
+                text: "Ingenierizamos **Activos de Marca de Alta Fidelidad** asegurando que cada píxel se alinee con su autoridad de mercado.",
+                options: [{ label: "Incluir en Auditoría", value: "web_quote" }]
+            },
+            tech_stack: {
+                text: "Utilizamos **Arquitectura Cloud-Native Segura**, **Motores Algorítmicos Personalizados** y **LLMs Avanzados**.",
+                options: [{ label: "Aprender Más", value: "growth" }]
+            },
+            pricing: {
+                text: "Como firma de diseño de sistemas de computación, construimos infraestructura a medida, no sitios web con plantillas. Para darte una proyección precisa, necesitamos realizar una Auditoría Estratégica. ¿Te gustaría el enlace a nuestro Asistente de Arquitectura para comenzar la evaluación?",
+                options: [{ label: "Inicializar Auditoría", value: "open_contact" }]
+            }
+        },
+        company_info: {
+            methodology: {
+                text: "No vendemos horas. Vendemos **Activos**. 1. Ingesta de Datos. 2. Procesamiento vía Motor Neural. 3. Ejecución Autónoma.",
+                options: [{ label: "Ver Arquitectura", value: "growth" }]
+            },
+            criteria: {
+                text: "Trabajamos con socios que valoran la **Propiedad** sobre el alquiler. Si busca una 'solución rápida', no somos la firma adecuada.",
+                options: [{ label: "Soy un Socio", value: "open_contact" }]
+            }
+        },
         modal: {
-            title: "Auditoría de Crecimiento",
-            subtitle: "Solo trabajamos con 3 nuevos socios por trimestre. Veamos si hay fit.",
-            step1: "Sobre Ti",
-            step2: "Tus Metas",
-            step3: "Estrategia",
+            badge: "Solicitud de Auditoría Estratégica",
+            title: "Auditoría de Infraestructura de <span class='text-gradient'>Crecimiento</span>",
+            subtitle: "Aceptamos un número limitado de socios por trimestre. Evaluemos la compatibilidad técnica.",
+            step1: "Identificación de Entidad",
+            step2: "Metas Comerciales",
+            step3: "Selección de Estrategia",
             labels: {
-                name: "Nombre Completo",
-                email: "Email de Trabajo",
-                website: "Sitio Web",
-                revenue: "Facturación Mensual Actual",
-                interest: "¿Qué buscas?"
+                name: "Nombre del Director / Líder",
+                email: "Email Corporativo",
+                company: "Nombre de la Entidad / Empresa",
+                website: "Sitio Web Corporativo",
+                revenue: "Ingreso Mensual Actual",
+                service: "Segmento de Arquitectura",
+                interest: "Meta de Infraestructura",
+                requirements: "Requisitos / Contexto",
+                button: "Inicializar Auditoría de Protocolo",
+                note: "Transmisión Segura Activa | Encriptación de Grado Bancario Verificada"
             },
             options: {
-                rev1: "< $10k/mes (Startup)",
-                rev2: "$10k - $50k/mes (Growth)",
-                rev3: "> $50k/mes (Scaling)",
+                rev1: "< $10k/mes (Estado Temprano)",
+                rev2: "$10k - $50k/mes (Crecimiento)",
+                rev3: "> $50k/mes (Escalamiento)",
                 int1: "Sistema de Crecimiento Completo (Recomendado)",
-                int2: "Solo Diseño Web / Infraestructura",
-                int3: "Solo Publicidad / Marketing"
+                int2: "Expansión de Infraestructura Digital",
+                int3: "Optimización de Rendimiento (Ads/Marketing)"
             },
-            next: "Siguiente Paso",
+            next: "Continuar",
             submit: "Enviar Aplicación",
-            successTitle: "Aplicación Recibida",
-            successDesc: "Nuestro equipo está analizando tu infraestructura digital. Si calificas, recibirás una invitación a una Llamada Estratégica en 24 horas.",
+            successTitle: "Protocolo Inicializado",
+            successDesc: "Sus datos institucionales han sido archivados de forma segura en nuestro Motor Soberano.",
+            emailAction: "Acción Recomendada:",
+            emailDesc: "Para asegurar el procesamiento inmediato por nuestro equipo, por favor confirme su solicitud vía email:",
+            emailBtn: "Enviar Email de Confirmación",
             close: "Cerrar"
         },
         legal: {
+            common: {
+                nav_home: "Inicio",
+                footer_privacy: "Política de Privacidad",
+                footer_terms: "Términos de Servicio",
+                footer_disclaimer: "Renuncia de Ganancias",
+                footer_ethics: "Ética y Anti-Spam",
+                seal_label: "<strong>Arquitectura Certificada:</strong> Cumplimiento Florida FIPA & FDUTPA",
+                seal_tooltip: "Nivo Partners garantiza la soberanía de sus datos y la transparencia en cada proceso autónomo."
+            },
             privacy: {
                 title: "Política de Privacidad y Protección de Datos",
                 content: `
-                        <h1>Política de Privacidad</h1>
-                        <p>Fecha Efectiva: Febrero 2026 | Jurisdicción: Hillsborough County, FL</p>
-                        <h3>1. Cumplimiento Legal</h3>
-                        <p>Nivo Partners se compromete a proteger sus datos de acuerdo con las leyes aplicables.</p>
-                        <h3>2. Colección de Datos e IA</h3>
-                        <p>Utilizamos Inteligencia Artificial para analizar datos B2B públicos. Garantizamos que NO se utilizan datos confidenciales para entrenar modelos públicos.</p>
-                        <h3>3. Sus Derechos</h3>
-                        <p>Para ejercer sus derechos de privacidad, por favor contáctenos en <strong>contact@nivopartners.com</strong>.</p>
-                    `
+                    <h1>Política de Privacidad y Protección de Datos</h1>
+                    <p>Fecha Efectiva: Febrero 2026 | Jurisdicción: Hillsborough County, FL</p>
+                    <h3>1. Cumplimiento con la Ley de Florida (FIPA)</h3>
+                    <p>Nivo Partners se compromete a proteger sus datos de acuerdo con la <strong>Ley de Protección de Información de Florida (FIPA) (Fla. Stat. § 501.171)</strong>. Utilizamos Supabase RLS y Edge Functions para garantizar la integridad de los datos.</p>
+                    <h3>2. Colección de Datos e IA</h3>
+                    <p>Recopilamos datos profesionales B2B de fuentes públicas. Garantizamos que <strong>NO se utilizan datos confidenciales</strong> de clientes para entrenar modelos de IA públicos.</p>
+                    <h3>3. Sus Derechos (Protocolo de Eliminación 10 días)</h3>
+                    <p>Los residentes de Florida y otras jurisdicciones tienen el derecho de solicitar la eliminación de sus datos. Envíe un correo a contact@nivopartners.com con el asunto "DATA REMOVAL". Ejecutamos todas las solicitudes en un plazo de <strong>10 días</strong>.</p>
+                `
             },
             terms: {
-                title: "Términos y Condiciones",
+                title: "Términos y Protocolos de Servicio",
                 content: `
-                        <h1>Términos de Servicio</h1>
-                        <h3>1. Naturaleza del Servicio</h3>
-                        <p>Nivo Partners es una firma de tecnología de crecimiento. No somos una agencia tradicional.</p>
-                        <h3>2. Propiedad Intelectual</h3>
-                        <p>Usted retiene la propiedad de los resultados. Nivo Partners retiene la propiedad de la metodología y la tecnología (Agentes).</p>
-                        <h3>3. Disclaimer de IA</h3>
-                        <p>Nuestros servicios utilizan tecnología experimental de IA.</p>
-                    `
+                    <h1>Términos y Protocolos de Servicio</h1>
+                    <h3>1. Naturaleza del Servicio: El Protocolo de Simplicidad</h3>
+                    <p>Nivo Partners opera bajo el <strong>"Protocolo de Simplicidad"</strong>, una metodología propia para el despliegue de infraestructura B2B de alta velocidad. Actuamos como un socio tecnológico fraccional ("Modo Agencia"), no como empleados.</p>
+                    <h3>2. Propiedad Intelectual y Soberanía</h3>
+                    <p><strong>Activos del Cliente:</strong> Usted retiene el 100% de la propiedad de todos los "Resultados" (bases de datos SQL, listas de leads, métricas de campaña).</p>
+                    <p><strong>IP de Nivo:</strong> Retenemos la propiedad exclusiva del "Motor" (incluyendo scrapers de Python, lógica de persona "Kai" y patrones de código). La licencia otorgada es solo para el despliegue.</p>
+                    <h3>3. Responsabilidad de IA y "Alucinaciones"</h3>
+                    <p>Nuestra infraestructura utiliza IA generativa. Aunque diseñamos para la precisión, los modelos de IA pueden producir anomalías fácticas ("alucinaciones"). Nivo Partners renuncia a la responsabilidad por decisiones comerciales tomadas únicamente con resultados de IA no verificados.</p>
+                    <p><em>"Confíe pero Verifique."</em> El Cliente es responsable de la validación final de los datos antes de la ejecución.</p>
+                    <h3>4. Jurisdicción</h3>
+                    <p>Regido por las leyes del <strong>Condado de Hillsborough, Florida</strong>. Se requiere arbitraje para disputas menores a $25,000.</p>
+                `
             },
             disclaimer: {
-                title: "Renuncia de Ganancias",
+                title: "Renuncia de Ganancias y Rendimiento",
                 content: `
-                        <h1>Renuncia de Ganancias</h1>
-                        <h3>1. Sin Garantías</h3>
-                        <p>Los resultados mostrados son excepcionales y no garantizan resultados futuros. Su éxito depende de su ejecución.</p>
-                    `
+                    <h1>Renuncia de Ganancias y Rendimiento</h1>
+                    <h3>1. Sin Garantías (Cumplimiento FDUTPA)</h3>
+                    <p>En cumplimiento con las guías de la FTC y la Ley de Prácticas de Comercio Desleales y Engañosas de Florida (FDUTPA), Nivo Partners declara explícitamente que:</p>
+                    <p>Las historias de éxito y ejemplos de "ROI" mostrados en este sitio son resultados excepcionales de clientes específicos. No son una garantía de que usted logrará los mismos resultados.</p>
+                `
             },
             ethics: {
                 title: "Ética y Anti-Spam",
                 content: `
-                        <h1>Política Anti-Spam y Ética B2B</h1>
-                        <h3>1. Cumplimiento Legal</h3>
-                        <p>Nuestras campañas cumplen estrictamente con la ley CAN-SPAM y regulaciones aplicables.</p>
-                        <h3>2. Cero Tolerancia al Spam</h3>
-                        <p>Solo contactamos direcciones de negocios legítimas (B2B).</p>
-                    `
+                    <h1>Ética y Anti-Spam (CAN-SPAM/FIPA)</h1>
+                    <h3>1. Cumplimiento Técnico (El Chequeo Pre-vuelo)</h3>
+                    <p>Nuestros sistemas de salida utilizan un <strong>"Chequeo de Cumplimiento Pre-vuelo"</strong>. Antes de enviar cualquier correo vía la API de Resend, nuestras Edge Functions consultan la base de datos de leads para verificar el estado de baja del usuario. Esto evita el contacto accidental con entidades que han optado por no participar.</p>
+                    <h3>2. Adherencia Regulatoria</h3>
+                    <p>Cumplimos estrictamente con la <strong>Ley Federal CAN-SPAM de 2003</strong> y la <strong>Ley de Comunicaciones Electrónicas de Florida</strong> (Capítulo 668, Parte III, F.S.).</p>
+                    <h3>3. Protocolo de Transparencia</h3>
+                    <p><strong>Identidad:</strong> Todos los correos están firmados criptográficamente (DKIM) para probar su origen.</p>
+                    <p><strong>Mecanismo:</strong> Se inyectan cabeceras de baja de un solo clic en cada mensaje.</p>
+                `
+            },
+            ceoLetter: {
+                date: "Febrero 2026",
+                title: "CARTA DE COMPROMISO DEL CEO: <br>Nuestra Promesa de Soberanía y Transparencia",
+                greeting: "A nuestros futuros socios y visitantes:",
+                intro: "En Nivo Partners, creemos que la tecnología más potente es aquella que se construye sobre una base de confianza inquebrantable y cumplimiento riguroso. Como firma de Diseño de Sistemas de Computación con sede en Tampa, Florida, no solo diseñamos infraestructuras digitales; establecemos estándares de integridad.",
+                heading: "Nuestro Compromiso Blindado:",
+                points: [
+                    { title: "Jurisdicción y Ley Local", text: "Nuestras operaciones se rigen por las leyes del Estado de Florida." },
+                    { title: "Protección de Datos (FIPA)", text: "Cumplimos proactivamente con la Ley de Protección de Información de Florida." },
+                    { title: "Transparencia Comercial (FDUTPA)", text: "Nos adherimos a la Ley de Prácticas Comerciales Desleales y Engañosas de Florida." },
+                    { title: "Ética en Comunicaciones", text: "Política de Cero Tolerancia al Spam, cumpliendo con las regulaciones federales CAN-SPAM." },
+                    { title: "Propiedad Intelectual Clara", text: "Usted es dueño del edificio; nosotros somos los arquitectos." },
+                    { title: "Transparencia en IA", text: "Somos transparentes sobre el uso de inteligencia autónoma." }
+                ],
+                closing: "Al elegir a Nivo Partners, forma una alianza con una firma que prioriza su éxito y soberanía.",
+                signoff: "Sinceramente,<br><strong>El CEO y Equipo Ejecutivo</strong><br>Nivo Partners, LLC<br>Tampa, Florida"
             }
         },
-        common: {
-            nav_home: "Inicio",
-            nav_services: "Servicios",
-            nav_legal: "Legal",
-            btn_contact: "Agendar Llamada",
-            btn_audit: "Auditoría Gratis",
-            footer_privacy: "Privacidad",
-            footer_terms: "Términos",
-            footer_disclaimer: "Disclaimer",
-            footer_ethics: "Ética",
-            btn_accept_cookies: "Aceptar",
-            btn_decline_cookies: "Rechazar"
+        footer: {
+            rights: "© 2026 Nivo Partners.",
+            careers: "Talento e Ingeniería"
         },
         webPage: {
             badge: "Digital Architecture Deployment",
-            title: "Empieza a Convertir Visitantes en <span class='text-gradient'>Ingresos</span>",
-            desc: "Aprovechamos la arquitectura moderna para construir activos que no solo son hermosos, sino que están diseñados para vender.",
-            cta: "Cotizar",
+            title: "Empiece a Convertir Visitantes en <span class='text-gradient'>Revenue</span>",
+            desc: "Aprovechamos la arquitectura moderna para construir activos que están diseñados para vender.",
+            cta: "Obtener Cotización",
             branding: {
                 title: "Infraestructura de Identidad Visual",
-                subtitle: "Una arquitectura de alto rendimiento requiere una identidad de alta fidelidad. No solo construimos páginas; diseñamos la soberanía visual de su marca.",
+                subtitle: "Una arquitectura de alto rendimiento requiere una identidad de alta fidelidad. Diseñamos la soberanía visual de su marca.",
                 service1_title: "Diseño de Arquetipo de Marca",
-                service1_desc: "Creación de logotipos desde cero basados en el ADN de su negocio.",
+                service1_desc: "Creación de logotipos basados en el ADN de su negocio.",
                 service2_title: "Refactorización de Activos Visuales",
-                service2_desc: "Modernización de logotipos existentes para adaptarlos a estéticas 4K y Dark Mode.",
+                service2_desc: "Modernización para estética 4K y compatibilidad con Dark Mode.",
                 service3_title: "Sistemas de Tipografía y Color",
-                service3_desc: "Definición de paletas y fuentes que proyecten autoridad."
+                service3_desc: "Definición de paletas que proyectan autoridad."
             },
-            contactTitle: "¿Listo para Mejorar tu Infraestructura?",
-            contactDesc: "Cuéntanos sobre los requisitos de tu proyecto.",
-            contactBtn: "Contáctanos",
             wizard: {
                 title: "Asistente de <span class='text-gradient'>Arquitectura</span> Interactiva",
                 subtitle: "Configure su sistema evitando plantillas estáticas. Ingenierizando un plano único para su posición en el mercado.",
@@ -942,27 +1142,27 @@ const translations = {
                     step2: {
                         q: "¿Cómo quiere que sus clientes perciban su marca a primera vista?",
                         options: [
-                            { id: "minimal", label: "Limpia y Profesional", detail: "Confianza por simplicidad" },
-                            { id: "vanguard", label: "Audaz y Moderna", detail: "Destacar de la competencia" },
-                            { id: "dark", label: "Premium y Tecnológica", detail: "Alta gama, sofisticada" },
-                            { id: "typo", label: "Autoritaria", detail: "Experto, líder del sector" },
-                            { id: "visual", label: "Visual Primero", detail: "Mostrar, no decir" }
+                            { id: "minimal", label: "Institucional", detail: "Confianza por simplicidad" },
+                            { id: "vanguard", label: "Audaz y Moderna", detail: "Presencia disruptiva" },
+                            { id: "dark", label: "Premium y Tecnológica", detail: "Sofisticación de alta gama" },
+                            { id: "typo", label: "Autoritaria", detail: "Experto líder del sector" },
+                            { id: "visual", label: "Visual Primero", detail: "Impacto de alta fidelidad" }
                         ]
                     },
                     step3: {
                         q: "¿Cómo prefieren sus clientes consumir información?",
                         options: [
-                            { id: "onepage", label: "Todo en un Lugar", detail: "Una página, sin clics" },
-                            { id: "scrolling", label: "Narrativa Guiada", detail: "Viaje con historia" },
-                            { id: "responsive", label: "Funciona en Cualquier Dispositivo", detail: "Prioridad móvil" }
+                            { id: "onepage", label: "Sin Fricciones", detail: "Plano de navegación único" },
+                            { id: "scrolling", label: "Narrativa Guiada", detail: "Viaje narrativo guiado" },
+                            { id: "responsive", label: "Omni-Dispositivo", detail: "Multiplataforma sin fisuras" }
                         ]
                     },
                     step4: {
                         q: "¿Cómo deben navegar sus clientes para encontrar lo que necesitan?",
                         options: [
-                            { id: "hierarchical", label: "Menú Claro y Organizado", detail: "Fácil de explorar" },
-                            { id: "sequential", label: "Paso a Paso Guiado", detail: "Llevarlos a la conversión" },
-                            { id: "network", label: "Exploración Libre", detail: "Que descubran a su ritmo" }
+                            { id: "hierarchical", label: "Estructurado", detail: "Exploración organizada" },
+                            { id: "sequential", label: "Guiado", detail: "Ruta de conversión dirigida" },
+                            { id: "network", label: "Fluido", detail: "Navegación basada en descubrimiento" }
                         ]
                     }
                 },
@@ -970,30 +1170,30 @@ const translations = {
                 result_title: "Arquitectura Identificada: Infraestructura de Alta Disponibilidad [NICHE]",
                 result_desc: "Nuestro diagnóstico indica una estética [DNA] junto con un marco de trabajo [NAV] para optimizar la retención de usuarios y la eficiencia del ciclo de conversión.",
                 audit_cta: "Solicitar Auditoría Estratégica para determinar la inversión y el cronograma de despliegue"
-            },
-            brandingAssets: {
-                asset1: "Diseño de Logo",
-                asset2: "Manual de Marca",
-                asset3: "Sistemas Visuales"
             }
         },
         marketingPage: {
             badge: "Marketing de Resultados",
             title: "Marketing de <span class='text-gradient'>Precisión</span>",
             desc: "No perseguimos clics. Perseguimos intención de compra. Tráfico de alta calidad para ventas de alto valor.",
-            cta: "Cotizar",
-            contactTitle: "Empieza a Capturar Demanda",
-            contactDesc: "Hablemos de los objetivos de tu campaña.",
-            contactBtn: "Contáctanos"
+            cta: "Obtener Cotización"
         },
         growthPage: {
             badge: "Ecosistema de Automatización IA",
-            title: "Escala Operaciones con <span class='text-gradient'>Inteligencia Autónoma</span>",
-            desc: "Implementamos ecosistemas de IA completos. Desde agentes de CS hasta CRMs autónomos. Tú eres dueño del sistema; nosotros proveemos la ingeniería.",
-            cta: "Consultar Implementación",
-            contactTitle: "¿Listo para Automatizar?",
-            contactDesc: "Cuéntanos dónde está tu cuello de botella.",
-            contactBtn: "Contáctanos"
+            title: "Deje de Rentar Mano de Obra. Comience a Poseer <span class='text-gradient'>Eficiencia</span>.",
+            desc: "Automatice sus flujos de trabajo de texto, datos y correo electrónico. Construimos sistemas que dirigen su negocio en piloto automático.",
+            cta: "Ver Productos de Automatización"
+        },
+        common: {
+            nav_home: "Inicio",
+            nav_services: "Servicios",
+            nav_legal: "Legal",
+            btn_contact: "Iniciar Consulta",
+            btn_audit: "Auditoría Gratis",
+            btn_accept_cookies: "Aceptar",
+            btn_decline_cookies: "Rechazar",
+            power_statement: "Potenciado por Infraestructura Empresarial Serverless y Motores Algorítmicos Propietarios.",
+            careers: "Talento e Ingeniería"
         }
     }
 };

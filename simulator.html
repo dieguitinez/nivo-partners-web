@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Lab | Nivo Partners</title>
+    <meta name="description" content="Visual Identity Simulator by Nivo Partners. Construct your sovereign signal.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/revenue_core.css">
+
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Embedding Overrides for Page Mode */
+        body {
+            background: #000;
+        }
+
+        #identity-lab-container {
+            width: 100%;
+            height: calc(100vh - 80px);
+            /* Minus header */
+            margin-top: 80px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" class="logo-link">NIVO<span>PARTNERS</span></a>
+            </div>
+            <nav class="nav-links">
+                <div class="nav-item has-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-i18n="nav.services.main">Services <i
+                            class="fas fa-chevron-down nav-chevron"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="services/web_infrastructure.html" class="dropdown-item"
+                            data-i18n="nav.services.web">Digital Architecture Deployment</a>
+                        <a href="services/performance_marketing.html" class="dropdown-item"
+                            data-i18n="nav.services.marketing">High-Precision Yield Engineering</a>
+                        <a href="services/ai_infrastructure.html" class="dropdown-item"
+                            data-i18n="nav.services.growth">Asynchronous Neural Protocols</a>
+                    </div>
+                </div>
+                <a href="index.html#methodology" data-i18n="nav.mechanism">The Mechanism</a>
+                <a href="index.html#comparison" data-i18n="nav.why">Why Nivo</a>
+                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Simulator Container -->
+    <main id="identity-lab-container"></main>
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/visual-simulator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Simulator in Embedded Mode
+            if (window.visualSimulator) {
+                window.visualSimulator.embed('identity-lab-container');
+            }
+        });
+    </script>
+</body>
+
+</html>

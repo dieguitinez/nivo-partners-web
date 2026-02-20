@@ -6,6 +6,17 @@ class AntigravityChat {
         this.hasGreeted = false;
         this.messages = [];
         this.currentLang = localStorage.getItem('nivo_lang') || 'en';
+
+        // Load persistent state and memory
+        const savedState = localStorage.getItem('ag_chat_state');
+        this.state = savedState ? JSON.parse(savedState) : { discussedValueProp: false };
+
+        const savedMemory = localStorage.getItem('ag_chat_memory');
+        this.memory = savedMemory ? JSON.parse(savedMemory) : {};
+
+        // Hydrate messages if they exist in state, else empty
+        this.messages = this.state.messages || [];
+
         // Safety check: if lang is not in translations, revert to en
         if (!translations[this.currentLang]) {
             this.currentLang = 'en';
@@ -80,6 +91,15 @@ class AntigravityChat {
             }
         }, 2000);
 
+        // Close button listener
+        const closeBtn = widget.querySelector('.close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.toggle();
+            });
+        }
+
         // Click outside to close
         document.addEventListener('click', (e) => {
             if (this.isOpen && this.widget && !this.widget.contains(e.target)) {
@@ -124,10 +144,28 @@ class AntigravityChat {
             btn.classList.add('active');
             document.querySelector('.notification-dot').style.display = 'none';
             if (label) label.classList.remove('visible');
+
+            // Force initial greeting IF chat is completely empty
+            const body = widget.querySelector('.ag-chat-body');
+            if (body && body.innerHTML.trim() === '') {
+                const currentLang = localStorage.getItem('nivo_lang') || 'en';
+                const t = translations[currentLang].chat;
+                if (t && t.responses && t.responses.hello) {
+                    this.addMessage(t.responses.hello.text, 'agent');
+                    if (t.responses.hello.options) {
+                        this.addOptions(t.responses.hello.options);
+                    }
+                }
+            }
         } else {
             chatWindow.classList.remove('active');
             btn.classList.remove('active');
         }
+    }
+
+    saveState() {
+        localStorage.setItem('ag_chat_state', JSON.stringify(this.state));
+        localStorage.setItem('ag_chat_memory', JSON.stringify(this.memory));
     }
 
     handleEnter(e) {
@@ -141,11 +179,22 @@ class AntigravityChat {
         }
 
         const input = document.getElementById('ag-input');
-        const text = forceText || input.value.trim();
+        let text = '';
+        let isForced = false;
+
+        // Verify forceText is actually a string and not an Event object
+        if (typeof forceText === 'string' && forceText.trim() !== '') {
+            text = forceText.trim();
+            isForced = true;
+        } else if (input && input.value) {
+            text = input.value.trim();
+        }
 
         if (text) {
             this.addMessage(text, 'user');
-            if (!forceText) input.value = ''; // Clear input if typed
+            if (!isForced && input) {
+                input.value = ''; // Clear input if typed
+            }
             this.simulateResponse(text);
         }
     }
@@ -215,17 +264,16 @@ class AntigravityChat {
             title: document.title
         };
 
-        // Initialize State if not present
+        // Initialize State if not present (constructor handles this now, but safety first)
         if (!this.state) {
-            this.state = {
-                discussedValueProp: false
-            };
+            this.state = { discussedValueProp: false };
         }
 
         // Simple Memory (if they mention their name)
         if (lowercaseText.includes('name is') || lowercaseText.includes('soy')) {
             const name = text.split(' ').pop();
             this.memory = { name: name };
+            this.saveState();
         }
 
         // ---------------------------------------------------------
@@ -270,8 +318,37 @@ class AntigravityChat {
         if (/(new business|new company|startup|start-up|just started|nueva empresa|negocio nuevo|empresa nueva)/i.test(lowercaseText)) brandingTrigger = true;
         if (/(old website|outdated|redesign|vieja|antigua|hace años|rediseño|actualizar)/i.test(lowercaseText)) brandingTrigger = true;
 
+        // General Website Sections (Footer, Images, Processes)
+        let siteQueryTrigger = null;
+        // Includes: location, where, address, footer, contact, ubicacion, ubicados, donde estan, correo, etc.
+        if (/(footer|address|location|contact email|where are you|ubicacion|ubicación|ubicados|dónde están|donde estan|pie de pagina|correo de contacto)/i.test(lowercaseText)) {
+            siteQueryTrigger = 'footer_info';
+        } else if (/(diagram|image|core|revenue core|diagrama|imagen|foto|dibujo|grafico|núcleo)/i.test(lowercaseText)) {
+            siteQueryTrigger = 'core_image';
+        } else if (/(process|methodology|how does it work|steps|proceso|pasos|metodologia|como funciona)/i.test(lowercaseText)) {
+            siteQueryTrigger = 'process_info';
+        }
+
+        // Services Queries
+        let serviceQueryTrigger = null;
+        if (/(web|website|page|site|sitio web|página|pagina web)/i.test(lowercaseText)) {
+            serviceQueryTrigger = 'srv_web';
+        } else if (/(marketing|ads|traffic|seo|posicionamiento|lead|trafico)/i.test(lowercaseText)) {
+            serviceQueryTrigger = 'srv_marketing';
+        } else if (/(automation|agent|ai|artificial intelligence|automatizacion|agente|ia|bot)/i.test(lowercaseText)) {
+            serviceQueryTrigger = 'srv_automation';
+        }
+
         // Terminology Alignment (Logo -> Engineered Brand Assets)
         if (lowercaseText.includes('logo') || lowercaseText.includes('logotipo')) intent.technical += 5;
+
+        // Security / Compliance Trigger
+        let securityTrigger = false;
+        if (/(security|data|fipa|fdutpa|privacy|secure|compliance|seguridad|datos|privacidad)/i.test(lowercaseText)) securityTrigger = true;
+
+        // ROI / Returns Trigger
+        let roiTrigger = false;
+        if (/(roi|return|profit|guarantee|garantia|retorno|ganancia)/i.test(lowercaseText)) roiTrigger = true;
 
 
         // ---------------------------------------------------------
@@ -285,7 +362,10 @@ class AntigravityChat {
                 responseNode = responses.web_types; // Skip straight to types
             } else {
                 responseNode = responses[text];
-                if (text === 'web') this.state.discussedValueProp = true; // Mark as discussed
+                if (text === 'web') {
+                    this.state.discussedValueProp = true; // Mark as discussed
+                    this.saveState();
+                }
             }
         }
         else if (definitions[text]) {
@@ -295,6 +375,16 @@ class AntigravityChat {
         // B. Archetype Recognition
         else if (intent.archetype >= 5 && archetypeKey) {
             responseNode = responses[archetypeKey];
+        }
+
+        // B2. Website Section Queries
+        else if (siteQueryTrigger) {
+            responseNode = responses[siteQueryTrigger];
+        }
+
+        // B3. Service Queries
+        else if (serviceQueryTrigger) {
+            responseNode = responses[serviceQueryTrigger];
         }
 
         // C. Branding Protocol Trigger
@@ -309,7 +399,7 @@ class AntigravityChat {
 
         // E. Guardrail Activation (redirect low-quality leads to strict pricing)
         else if (intent.guardrail >= 5) {
-            responseNode = definitions.pricing || responses.default;
+            responseNode = definitions.pricing || responses.fallback || responses.hello;
         }
 
         // F. Timeline Inquiries (Senior Roadmap Logic)
@@ -371,6 +461,7 @@ class AntigravityChat {
 
             // Company Info Matches
             else if (lowercaseText.includes('trust') || lowercaseText.includes('client') || lowercaseText.includes('partner')) responseNode = companyInfo.trusted_by;
+            else if (lowercaseText.includes('location') || lowercaseText.includes('where') || lowercaseText.includes('ubicacion') || lowercaseText.includes('donde') || lowercaseText.includes('contact') || lowercaseText.includes('email')) responseNode = responses.footer_info;
             else if (lowercaseText.includes('method') || lowercaseText.includes('process') || lowercaseText.includes('fase')) responseNode = companyInfo.methodology;
             else if (lowercaseText.includes('criteria') || lowercaseText.includes('who')) responseNode = companyInfo.criteria;
 
@@ -386,15 +477,15 @@ class AntigravityChat {
             else if (lowercaseText.includes('market') || lowercaseText.includes('ads')) responseNode = responses.marketing;
             else if (lowercaseText.includes('growth') || lowercaseText.includes('ai') || lowercaseText.includes('auto')) responseNode = responses.growth;
 
-            // Greetings
-            else if (/(hello|hi|hola|hey)/i.test(lowercaseText)) responseNode = responses.hello;
+            // Greetings and Conversational Fluidity (Handling ok, yes, etc.)
+            else if (/(hello|hi|hola|hey|ok|yes|si|sí|bueno)/i.test(lowercaseText)) responseNode = responses.hello;
         }
 
         // ---------------------------------------------------------
         // 3. FALLBACK & CONTEXT INJECTION
         // ---------------------------------------------------------
         if (!responseNode) {
-            responseNode = responses.default;
+            responseNode = responses.fallback || responses.hello;
             // Inject context if possible
             if (this.memory && this.memory.name) {
                 // Determine greeting based on language
@@ -405,32 +496,31 @@ class AntigravityChat {
         }
 
         // Safety Fallback for missing nodes
-        if (!responseNode) responseNode = responses.default;
+        if (!responseNode) responseNode = responses.fallback || responses.hello;
 
         // ---------------------------------------------------------
-        // 6. Handle Special Actions
-        // ---------------------------------------------------------
-        if (text === 'open_contact' || text === 'web_quote') {
-            const contactBtn = document.querySelector('a[href="#apply"]'); // Updated anchor
-            if (contactBtn) contactBtn.click();
-        }
-        // ---------------------------------------------------------
         // 6. Handle Special Actions (Form Triggers)
+        // open_contact: triggered AFTER Kai shows the 'opening form...' message
         // ---------------------------------------------------------
-        // These triggers now happen ALONGSIDE the response, not replacing it.
-        if (text === 'open_contact' || text.includes('web_final')) {
+        if (text === 'open_contact') {
             setTimeout(() => {
-                const contactBtn = document.querySelector('a[href="#apply"]');
-                if (contactBtn) contactBtn.click();
-            }, 800); // Slight delay for effect
+                if (window.nivoCRM) {
+                    window.nivoCRM.open();
+                } else {
+                    const contactBtn = document.querySelector('a[href="#apply"]');
+                    if (contactBtn) contactBtn.click();
+                }
+            }, 1200); // Delay so Kai's message renders first
         }
-        if (text === 'open_booking' || text.includes('mkt_final')) {
+        if (text === 'open_booking') {
             setTimeout(() => {
-                const contactBtn = document.querySelector('a[href="#book"]'); // Assuming #book anchor or similar
-                // Fallback to apply if no specific book anchor
-                const target = contactBtn || document.querySelector('a[href="#apply"]');
-                if (target) target.click();
-            }, 800);
+                if (window.nivoCRM) {
+                    window.nivoCRM.open();
+                } else {
+                    const contactBtn = document.querySelector('a[href="#apply"]');
+                    if (contactBtn) contactBtn.click();
+                }
+            }, 1200);
         }
 
         // ---------------------------------------------------------
@@ -444,12 +534,35 @@ class AntigravityChat {
             this.hideTyping();
             this.addMessage(responseNode.text, 'agent');
 
-            if (responseNode.options && responseNode.options.length > 0) {
+            if (responseNode.type === 'exit' && responseNode.options && responseNode.options.length > 0) {
+                setTimeout(() => {
+                    this.addExitButton(responseNode.options[0]);
+                }, 400);
+            } else if (responseNode.options && responseNode.options.length > 0) {
                 setTimeout(() => {
                     this.addOptions(responseNode.options);
                 }, 400);
             }
         }, baseLatency + typingTime);
+    }
+
+    addExitButton(option) {
+        const container = document.getElementById('ag-messages');
+        const btnDiv = document.createElement('div');
+        btnDiv.className = 'ag-chat-options exit-mode';
+
+        const btn = document.createElement('button');
+        btn.className = 'ag-option-btn btn-primary full-width';
+        btn.innerHTML = `<i class="fas fa-check-circle"></i> ${option.label}`;
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            this.simulateResponse(option.value); // Will trigger the action handler
+            btnDiv.remove();
+        };
+
+        btnDiv.appendChild(btn);
+        container.appendChild(btnDiv);
+        container.scrollTop = container.scrollHeight;
     }
 
     showTyping() {

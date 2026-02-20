@@ -27,6 +27,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/revenue_core.css">
+    <link rel="stylesheet" href="css/digital-twin.css">
 
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -36,8 +37,7 @@
          Replace placeholder IDs with your real IDs
          ============================================ -->
 
-    <!-- 1. Google Tag Manager (manages GA4, Meta Pixel, LinkedIn) -->
-    <!-- REPLACE: GTM-NMPJT6GM with your GTM Container ID -->
+    <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
@@ -46,9 +46,9 @@
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NMPJT6GM');</script>
+    <!-- End Google Tag Manager -->
 
-    <!-- 2. Microsoft Clarity (Heatmaps & Session Recordings) -->
-    <!-- REPLACE: clarity_id with your Clarity Project ID -->
+    <!-- Microsoft Clarity -->
     <script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
             c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
@@ -56,28 +56,17 @@
             y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "vjbcyanvea");
     </script>
-
-    <!-- 3. Hotjar (UX Heatmaps & Feedback) -->
-    <!-- REPLACE: YOUR_HOTJAR_ID with your Hotjar Site ID -->
-    <script>
-        (function (h, o, t, j, a, r) {
-            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
-            h._hjSettings = { hjid: YOUR_HOTJAR_ID, hjsv: 6 };
-            a = o.getElementsByTagName('head')[0];
-            r = o.createElement('script'); r.async = 1;
-            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    </script>
+    <!-- End Microsoft Clarity -->
 
 </head>
 
 <body>
-
-    <!-- Google Tag Manager (noscript fallback) -->
-    <!-- REPLACE: GTM-NMPJT6GM with your GTM Container ID -->
+    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMPJT6GM" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
 
 
     <!-- Header -->
@@ -88,11 +77,13 @@
             </div>
 
             <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
             </button>
 
             <nav class="nav-links">
-                <div class="nav-item dropdown">
+                <div class="nav-item has-dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-i18n="nav.services.main">Services <i
                             class="fas fa-chevron-down nav-chevron"></i></a>
                     <div class="dropdown-menu">
@@ -100,14 +91,17 @@
                             data-i18n="nav.services.web">Digital Architecture Deployment</a>
                         <a href="services/performance_marketing.html" class="dropdown-item"
                             data-i18n="nav.services.marketing">High-Precision Yield Engineering</a>
-                        <a href="#mechanism" class="dropdown-item" data-i18n="nav.services.growth">Asynchronous Neural
-                            Protocols</a>
+                        <a href="services/ai_infrastructure.html" class="dropdown-item"
+                            data-i18n="nav.services.growth">Asynchronous Neural Protocols</a>
+                        <a href="services/internal_data.html" class="dropdown-item"
+                            data-i18n="nav.services.idp">Internal Data Architecture (IDP)</a>
                     </div>
                 </div>
                 <a href="#methodology" data-i18n="nav.mechanism">The Mechanism</a>
                 <a href="#comparison" data-i18n="nav.why">Why Nivo</a>
-                <a href="#apply" class="btn btn-primary btn-audit" data-i18n="nav.audit">Audit
-                    Request</a>
+                <button class="btn btn-primary" onclick="openNivoCRM()">
+                    <span data-i18n="nav.audit">Audit Request</span>
+                </button>
 
                 <!-- Language Switcher -->
                 <div class="lang-switch">
@@ -139,8 +133,8 @@
                 </p>
 
                 <div class="animate-fade-in delay-3 hero-cta-group">
-                    <a href="#apply" class="btn btn-primary" data-i18n="hero.cta">
-                        Request Growth Infrastructure Audit
+                    <a href="#methodology" class="btn btn-primary" data-i18n="hero.cta">
+                        Explore Our Methodology
                     </a>
                     <a href="#case-study" class="btn btn-secondary" data-i18n="hero.caseStudyBtn">
                         Success Stories
@@ -173,57 +167,81 @@
 
 
 
-    <!-- Modular Growth Architecture Section -->
+    <!-- Ecosystems Section -->
     <section class="section-padding paths-section" id="paths">
         <div class="container">
             <div class="section-header">
-                <h2 class="animate-on-scroll" data-i18n="paths.title">Modular Growth Architecture</h2>
-                <p class="text-muted animate-on-scroll" data-i18n="paths.subtitle">Deploy our solutions individually to
-                    plug specific gaps, or combine them for a complete revenue ecosystem.</p>
+                <h2 class="animate-on-scroll" data-i18n="paths.title">Three <span class="text-gradient">Sovereign
+                        Ecosystems</span></h2>
+                <p class="text-muted animate-on-scroll" data-i18n="paths.subtitle">
+                    Your business deserves infrastructure that works while you sleep. Choose the ecosystem that matches
+                    where you are — and where you're going.
+                </p>
             </div>
 
             <div class="paths-grid animate-on-scroll">
-                <!-- Card 1: Web -->
+
+                <!-- Ecosystem 1: Digital Authority -->
                 <div class="path-card animate-fade-in delay-1">
-                    <div class="path-icon card-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3 data-i18n="paths.web.title">Digital Architecture Deployment</h3>
-                    <p data-i18n="paths.web.subtitle">Modernize your legacy site or build from scratch. We integrate
-                        with your existing stack or reimagine it entirely.</p>
-                    <a href="services/web_infrastructure.html" class="btn btn-outline small"
-                        data-i18n="paths.web.cta">Explore Architecture</a>
-                </div>
-
-                <!-- Card 2: Marketing -->
-                <div class="path-card animate-fade-in delay-2">
-                    <div class="path-icon card-icon"><i class="fas fa-chart-pie"></i></div>
-                    <h3 data-i18n="paths.marketing.title">High-Precision Yield Engineering</h3>
-                    <p data-i18n="paths.marketing.subtitle">Already have a site? We inject high-intent traffic and
-                        optimize your conversion rate without touching your code.</p>
-                    <a href="services/performance_marketing.html" class="btn btn-outline small"
-                        data-i18n="paths.marketing.cta">Explore Engineering</a>
-                </div>
-
-                <!-- Card 3: Growth (Elite) -->
-                <div class="path-card elite animate-fade-in delay-3">
-                    <div class="path-icon card-icon"><i class="fas fa-magic"></i></div>
-                    <h3 data-i18n="paths.growth.title">Asynchronous Neural Protocols</h3>
-                    <p data-i18n="paths.growth.subtitle">Stop renting labor. Start owning intelligence.</p>
-
-                    <!-- Dynamic Content -->
-                    <ul id="growth-bullets" class="feature-list">
-                        <!-- Populated by JS -->
+                    <div class="path-card-tag" data-i18n="paths.web.tag">Digital Presence</div>
+                    <div class="path-icon card-icon"><i class="fas fa-fingerprint"></i></div>
+                    <h3 data-i18n="paths.web.title">Digital Authority</h3>
+                    <p data-i18n="paths.web.subtitle">
+                        Your service is world-class. Your digital presence should be too. We build infrastructure that
+                        commands respect and closes deals at a premium.
+                    </p>
+                    <ul class="path-feature-list">
+                        <li data-i18n="paths.web.f1">Conversion-first architecture</li>
+                        <li data-i18n="paths.web.f2">AI-powered lead capture (Kai)</li>
+                        <li data-i18n="paths.web.f3">You own the code. Always.</li>
                     </ul>
+                    <a href="services/web_infrastructure.html" class="btn btn-outline small" data-i18n="paths.web.cta">
+                        See How It Works <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
 
-                    <div class="examples-container">
-                        <h4 data-i18n="paths.growth.examplesTitle" class="examples-title">What We Build:</h4>
-                        <ul id="growth-examples" class="examples-list">
-                            <!-- Populated by JS -->
-                        </ul>
-                    </div>
+                <!-- Ecosystem 2: Revenue Engine -->
+                <div class="path-card animate-fade-in delay-2">
+                    <div class="path-card-tag" data-i18n="paths.marketing.tag">Revenue Growth</div>
+                    <div class="path-icon card-icon"><i class="fas fa-bolt"></i></div>
+                    <h3 data-i18n="paths.marketing.title">Revenue Engine</h3>
+                    <p data-i18n="paths.marketing.subtitle">
+                        Stop guessing. Start engineering. We install a precision acquisition system that delivers
+                        qualified opportunities directly into your calendar.
+                    </p>
+                    <ul class="path-feature-list">
+                        <li data-i18n="paths.marketing.f1">High-intent audience targeting</li>
+                        <li data-i18n="paths.marketing.f2">ROI tracking — not just clicks</li>
+                        <li data-i18n="paths.marketing.f3">Algorithmic optimization (no guesswork)</li>
+                    </ul>
+                    <a href="services/performance_marketing.html" class="btn btn-outline small"
+                        data-i18n="paths.marketing.cta">
+                        See How It Works <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
 
-                    <a href="#apply" class="btn btn-primary small" data-i18n="paths.growth.cta">Apply for Audit</a>
+                <!-- Ecosystem 3: Intelligent Ecosystem (Elite) -->
+                <div class="path-card elite animate-fade-in delay-3">
+                    <div class="path-card-tag" data-i18n="paths.growth.tag">Sovereign AI</div>
+                    <div class="path-icon card-icon"><i class="fas fa-brain"></i></div>
+                    <h3 data-i18n="paths.growth.title">Intelligent Ecosystem</h3>
+                    <p data-i18n="paths.growth.subtitle">
+                        The firms that will dominate their market in 2027 are installing AI infrastructure today. Not
+                        tools. <strong>Systems they own.</strong>
+                    </p>
+                    <ul class="path-feature-list">
+                        <li>Proprietary Prospect Intelligence Engine</li>
+                        <li>The Review Guardian (Reputation AI)</li>
+                        <li>24/7 Autonomous Operations</li>
+                    </ul>
+                    <a href="services/ai_infrastructure.html" class="btn btn-primary small"
+                        data-i18n="paths.growth.cta">
+                        Request Intelligence Audit <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
+
+
         </div>
     </section>
 
@@ -306,25 +324,27 @@
                 </div>
 
                 <div class="core-visual">
-                    <div class="revenue-core-diagram">
-                        <!-- Layer 3: Effectors -->
+                    <div class="revenue-core-diagram animate-fade-in delay-2">
+                        <!-- Layer 3: Effectors (Outer) -->
                         <div class="layer layer-effectors">
-                            <span class="layer-label">Multi-Channel Deployment</span>
                             <div class="orbit orbit-cw"></div>
-
-                            <!-- Layer 2: Shield -->
-                            <div class="layer layer-shield">
-                                <span class="layer-label">Bank-Grade Encryption</span>
-                                <div class="orbit orbit-ccw"></div>
-
-                                <!-- Layer 1: Core -->
-                                <div class="layer layer-core">
-                                    <span class="layer-label core-label" data-i18n="core.feature_core_label">Neural Data
-                                        Processing</span>
-                                    <div class="core-pulse"></div>
-                                </div>
+                            <div class="layer-label" data-i18n="core.feature_effectors_label">Multi-Channel Deployment
                             </div>
                         </div>
+
+                        <!-- Layer 2: Shield (Middle) -->
+                        <div class="layer layer-shield">
+                            <div class="orbit orbit-ccw"></div>
+                            <div class="layer-label" data-i18n="core.feature_shield_label">Bank-Grade Encryption</div>
+                        </div>
+
+                        <!-- Layer 1: Core (Inner) -->
+                        <div class="layer layer-core">
+                            <div class="core-pulse"></div>
+                            <div class="layer-label" data-i18n="core.feature_core_label">Neural Data Processing</div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -374,8 +394,10 @@
     </section>
 
 
+
+
     <!-- Case Study Section -->
-    <section class="case-study-section" id="case-study">
+    <section id="growth" class="case-study-section">
         <div class="container">
             <div class="case-study-grid animate-on-scroll">
                 <div class="case-content">
@@ -411,30 +433,42 @@
     </section>
 
     <!-- Final CTA & Footer -->
-    <footer class="final-cta" id="apply">
-        <div class="container">
-            <h2 class="animate-on-scroll" data-i18n="footer.title">Digital Craftsmanship. <br> <span
-                    class="text-gradient">AI Execution
-                    Speed.</span></h2>
-            <p class="animate-on-scroll" data-i18n="footer.desc">We fuse "Big 4" consulting strategy with the agility
-                of a tech startup.
-                Implement the engine that will power your next 10 years of growth.</p>
-            <a href="#" class="btn btn-primary animate-on-scroll" data-i18n="footer.cta">Apply to Become a Partner</a>
-            <p class="footer-limited" data-i18n="footer.limited">Only 3 spots per
-                quarter.</p>
-        </div>
-
+    <footer id="footer-main">
         <div class="footer-bottom">
             <div class="container footer-content">
                 <div class="logo footer-logo">NIVO<span>PARTNERS</span></div>
+
+                <!-- Compliance Seal -->
+                <div class="compliance-seal-container">
+                    <div class="compliance-seal">
+                        <svg class="seal-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7V12C3 17.5228 12 22 12 22C12 22 21 17.5228 21 12V7L12 2Z"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M12 8V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <div class="seal-text" data-i18n="legal.common.seal_label">
+                            <strong>Certified Infrastructure:</strong> Florida FIPA & FDUTPA Compliant
+                        </div>
+                        <div class="seal-tooltip" data-i18n="legal.common.seal_tooltip">
+                            Nivo Partners garantiza la soberanía de sus datos y la transparencia en cada proceso de IA.
+                        </div>
+                    </div>
+                </div>
+
                 <div class="footer-links">
+                    <a href="mailto:contact@nivopartners.com?subject=Engineering%20Application"
+                        data-i18n="footer.careers">Careers</a>
                     <a href="legal/privacy.html" data-i18n="legal.common.footer_privacy">Privacy Policy</a>
                     <a href="legal/terms.html" data-i18n="legal.common.footer_terms">Terms of Service</a>
                     <a href="legal/disclaimer.html" data-i18n="legal.common.footer_disclaimer">Earnings Disclaimer</a>
                     <a href="legal/ethics.html" data-i18n="legal.common.footer_ethics">Ethics & Anti-Spam</a>
                 </div>
                 <div class="footer-rights" data-i18n="footer.rights">
-                    Â© 2026 Nivo Partners.
+                    &copy; 2026 Nivo Partners.
                 </div>
             </div>
         </div>
@@ -454,7 +488,7 @@
                         <img src="images/agent-avatar.png" alt="Kai Agent">
                     </div>
                     <div>
-                        <h4 data-i18n="chat.agentName">Kai | Nivo Sr. Strategist</h4>
+                        <h4 data-i18n="chat.agentName">Kai | Nivo Principal Architect</h4>
                         <span class="status-indicator">Online</span>
                     </div>
                 </div>
@@ -469,17 +503,69 @@
                     id="ag-input" onkeypress="window.agChat.handleEnter(event)">
                 <button onclick="window.agChat.sendMessage()" data-i18n="chat.send" class="ag-send-btn">Send</button>
             </div>
+            <div class="ag-chat-disclaimer" data-i18n="chat.disclaimer">
+                Kai is an AI Lead Strategist. While highly precise, all strategic projections, infrastructure plans, and
+                data must be verified through an official Nivo Partners Strategy Audit. No financial ROI is guaranteed.
+            </div>
+        </div>
+    </div>
+
+    <!-- CEO Letter Modal -->
+    <div id="ceo-modal" class="modal-overlay">
+        <div class="modal-content paper-modal">
+            <button class="modal-close" onclick="closeCeoModal()">&times;</button>
+            <div class="letter-container">
+                <div class="letter-header">
+                    <div class="letter-logo">NIVO<span>PARTNERS</span></div>
+                    <div class="letter-date" data-i18n="legal.ceoLetter.date">February 2026</div>
+                </div>
+                <h2 data-i18n="legal.ceoLetter.title">CEO COMMITMENT LETTER</h2>
+                <div class="letter-body">
+                    <p class="letter-greeting" data-i18n="legal.ceoLetter.greeting">To our future partners:</p>
+                    <p class="letter-intro" data-i18n="legal.ceoLetter.intro">At Nivo Partners, we believe the most
+                        powerful technology is built on a foundation of unwavering trust and rigorous compliance.</p>
+
+                    <h3 class="letter-subhead" data-i18n="legal.ceoLetter.heading">Our Ironclad Commitment:</h3>
+                    <div id="ceo-letter-points" class="letter-points">
+                        <!-- Dynamic Content -->
+                    </div>
+
+                    <p class="letter-closing" data-i18n="legal.ceoLetter.closing">By choosing Nivo Partners, you are
+                        forming an alliance with a firm that prioritizes your success and sovereignty.</p>
+
+                    <div class="letter-signoff">
+                        <div class="signature-image">
+                            <!-- SVG Signature Placeholder -->
+                            <svg width="150" height="40" viewBox="0 0 150 40" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path d="M10 30c10-10 20-25 30-10s10 20 20 5c5-10 15-15 25-5s10 20 20 0c10-20 20-5 30 5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div data-i18n="legal.ceoLetter.signoff">The CEO</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/translations.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/modal.js"></script>
+
+    <script src="js/digital-twin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.twinEngine) {
+                window.twinEngine.init('twin-visualizer');
+            }
+        });
+    </script>
+
     <script src="js/chat.js"></script>
+    <script src="js/visual-simulator.js"></script>
     <script src="js/contact.js"></script>
 </body>
 
 </html>
-
-

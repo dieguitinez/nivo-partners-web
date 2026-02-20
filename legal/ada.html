@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Statement | Nivo Partners</title>
+    <meta name="description"
+        content="Nivo Partners' commitment to web accessibility under ADA and WCAG 2.1 Level AA guidelines.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="legal-page">
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">NIVO<span>PARTNERS</span></a>
+            </div>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <div class="lang-switch">
+                    <span class="active" onclick="switchLanguage('en')">EN</span>
+                    <span class="divider">|</span>
+                    <span onclick="switchLanguage('es')">ES</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="legal-container">
+        <div class="legal-content">
+            <h1>Accessibility Statement</h1>
+            <p><strong>Last updated:</strong> February 19, 2026 &nbsp;|&nbsp; <strong>Standard:</strong> WCAG 2.1 Level
+                AA</p>
+
+            <h2>Our Commitment</h2>
+            <p>Nivo Partners, LLC is committed to ensuring that our digital presence is accessible to everyone,
+                including people with visual, auditory, motor, or cognitive disabilities. We continuously work to
+                improve accessibility in conformance with:</p>
+            <ul>
+                <li><strong>ADA</strong> — Americans with Disabilities Act (Title III)</li>
+                <li><strong>WCAG 2.1 Level AA</strong> — Web Content Accessibility Guidelines by W3C</li>
+                <li><strong>Section 508</strong> — Federal accessibility standards (reference)</li>
+            </ul>
+
+            <h2>Current Conformance Status</h2>
+            <p>nivopartners.com is <strong>partially conformant</strong> with WCAG 2.1 Level AA. We meet most criteria
+                and continue to address remaining gaps.</p>
+
+            <h3>What We Do</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Area</th>
+                        <th>Practice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Color contrast</td>
+                        <td>Minimum 4.5:1 ratio for normal text</td>
+                    </tr>
+                    <tr>
+                        <td>Keyboard navigation</td>
+                        <td>All interactive elements are reachable via Tab</td>
+                    </tr>
+                    <tr>
+                        <td>Alternative text</td>
+                        <td>All informative images include descriptive <code>alt</code> attributes</td>
+                    </tr>
+                    <tr>
+                        <td>Heading structure</td>
+                        <td>Consistent H1→H2→H3 hierarchy across all pages</td>
+                    </tr>
+                    <tr>
+                        <td>Forms</td>
+                        <td>All form fields have associated labels</td>
+                    </tr>
+                    <tr>
+                        <td>Links</td>
+                        <td>All links use descriptive text (no "click here")</td>
+                    </tr>
+                    <tr>
+                        <td>Typography</td>
+                        <td>Minimum 16px body text size</td>
+                    </tr>
+                    <tr>
+                        <td>Responsive design</td>
+                        <td>Content works with up to 200% browser zoom</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Known Limitations</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Action Plan</th>
+                        <th>Target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kai chatbot missing full ARIA announcement on open</td>
+                        <td>Add <code>aria-live="polite"</code> to chat container</td>
+                        <td>Q1 2026</td>
+                    </tr>
+                    <tr>
+                        <td>CSS animations lack reduced-motion option</td>
+                        <td>Implement <code>prefers-reduced-motion</code> media query</td>
+                        <td>Q1 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Assistive Technologies</h2>
+            <p>Our site has been tested for compatibility with:</p>
+            <ul>
+                <li><strong>Screen readers:</strong> NVDA (Windows), VoiceOver (macOS/iOS), TalkBack (Android)</li>
+                <li><strong>Keyboard navigation:</strong> Tab, Enter, Escape, arrow keys</li>
+                <li><strong>Browser zoom:</strong> Up to 200% without content loss</li>
+                <li><strong>High contrast mode:</strong> Compatible with Windows and macOS high-contrast settings</li>
+                <li><strong>Browsers:</strong> Chrome, Firefox, Safari, Edge (current versions)</li>
+            </ul>
+
+            <h2>Evaluation Approach</h2>
+            <p>We evaluate the accessibility of our site through:</p>
+            <ol>
+                <li><strong>Automated audits:</strong> Google Lighthouse (Accessibility section) — target: ≥90/100</li>
+                <li><strong>Manual review:</strong> Heading structure, keyboard navigation, and color contrast checks on
+                    each deploy</li>
+                <li><strong>Ongoing review:</strong> Any time new pages or features are added to the site</li>
+            </ol>
+
+            <h2>Report an Accessibility Issue</h2>
+            <p>If you encounter any accessibility barrier on our site, or if you need content in an alternative format,
+                please contact us:</p>
+            <p>
+                <strong>Email:</strong> <a
+                    href="mailto:accessibility@nivopartners.com">accessibility@nivopartners.com</a><br>
+                <strong>Subject:</strong> [Accessibility] Brief description of the issue<br>
+                <strong>Include:</strong> Page URL, issue description, and assistive technology you were using (if
+                applicable)
+            </p>
+            <p>We will respond within <strong>5 business days</strong> with a solution or an action plan with a target
+                date.</p>
+
+            <h2>Formal Complaints</h2>
+            <p>If you are not satisfied with our response, you may contact the U.S. Department of Justice's ADA
+                Information Line at 1-800-514-0301 (voice) or 1-800-514-0383 (TTY).</p>
+
+            <h2>Updates to This Statement</h2>
+            <p>This statement was first published on February 19, 2026. It is reviewed and updated whenever significant
+                changes are made to the site.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer-main">
+        <div class="footer-bottom">
+            <div class="container footer-content">
+                <div class="logo footer-logo">NIVO<span>PARTNERS</span></div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="disclaimer.html">Earnings Disclaimer</a>
+                    <a href="ethics.html">Ethics &amp; Anti-Spam</a>
+                    <a href="cookies.html">Cookie Policy</a>
+                    <a href="ada.html">Accessibility</a>
+                </div>
+                <div class="footer-rights">
+                    &copy; 2026 Nivo Partners.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/translations.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

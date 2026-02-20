@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>High-Precision Yield Engineering | Nivo Partners</title>
+    <meta name="description"
+        content="Nivo Partners constructs and operates autonomous revenue infrastructure for B2B leaders.">
     <meta name="robots" content="noai, noimageai">
 
     <!-- Fonts -->
@@ -22,46 +24,28 @@
 
     <!-- ============================================
          ANALYTICS & INTELLIGENCE STACK
-         Replace placeholder IDs with your real IDs
          ============================================ -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NMPJT6GM');</script>
 
-    <!-- 1. Google Tag Manager (manages GA4, Meta Pixel, LinkedIn) -->
-    <!-- REPLACE: GTM-NMPJT6GM with your GTM Container ID -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NMPJT6GM');</script>
-
-    <!-- 2. Microsoft Clarity (Heatmaps & Session Recordings) -->
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
         })(window, document, "clarity", "script", "vjbcyanvea");
     </script>
-
-    <!-- 3. Hotjar (UX Heatmaps & Feedback) -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:YOUR_HOTJAR_ID,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
-
 </head>
 
 <body>
-
-    <!-- Google Tag Manager (noscript fallback) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMPJT6GM"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMPJT6GM" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Header -->
     <header>
@@ -70,16 +54,18 @@
                 <a href="../index.html" class="logo-link">NIVO<span>PARTNERS</span></a>
             </div>
             <nav class="nav-links">
-                <div class="nav-item dropdown">
+                <div class="nav-item has-dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-i18n="nav.services.main">Services <i
                             class="fas fa-chevron-down nav-chevron"></i></a>
                     <div class="dropdown-menu">
                         <a href="web_infrastructure.html" class="dropdown-item" data-i18n="nav.services.web">Digital
                             Architecture Deployment</a>
-                        <a href="performance_marketing.html" class="dropdown-item"
+                        <a href="performance_marketing.html" class="dropdown-item active"
                             data-i18n="nav.services.marketing">High-Precision Yield Engineering</a>
                         <a href="../index.html#mechanism" class="dropdown-item"
                             data-i18n="nav.services.growth">Asynchronous Neural Protocols</a>
+                        <a href="internal_data.html" class="dropdown-item" data-i18n="nav.services.idp">Internal Data
+                            Architecture (IDP)</a>
                     </div>
                 </div>
                 <a href="../index.html#methodology" data-i18n="nav.mechanism">The Mechanism</a>
@@ -103,21 +89,21 @@
 
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge animate-fade-in delay-1">
-                    Performance Marketing
+                <div class="hero-badge animate-fade-in delay-1" data-i18n="nav.services.marketing">
+                    High-Precision Yield Engineering
                 </div>
 
-                <h1 class="animate-fade-in delay-2">
+                <h1 class="animate-fade-in delay-2" data-i18n="marketingPage.hero.title">
                     Marketing of <span class="text-gradient">Precision</span>
                 </h1>
 
-                <p class="animate-fade-in delay-3">
+                <p class="animate-fade-in delay-3" data-i18n="marketingPage.hero.subtitle">
                     We don't chase clicks. We chase purchase intent. High-quality traffic for high-ticket sales.
                 </p>
 
                 <div class="animate-fade-in delay-3 hero-cta-group">
-                    <a href="#contact" class="btn btn-primary">
-                        Get a Quote
+                    <a href="#contact" class="btn btn-primary" data-i18n="nav.audit">
+                        Audit Request
                     </a>
                 </div>
             </div>
@@ -128,15 +114,18 @@
     <section class="section-padding simulator-section" id="marketing-simulator">
         <div class="container">
             <div class="section-header">
-                <h2 class="animate-on-scroll">Predict Your <span class="text-gradient">ROI</span></h2>
-                <p class="text-muted animate-on-scroll">Stop guessing. See what your budget should actually deliver.</p>
+                <h2 class="animate-on-scroll" data-i18n="marketingPage.simulator.title">Predict Your <span
+                        class="text-gradient">ROI</span></h2>
+                <p class="text-muted animate-on-scroll" data-i18n="marketingPage.simulator.subtitle">Stop guessing. See
+                    what your budget should actually deliver.</p>
             </div>
 
             <div class="simulator-container animate-on-scroll">
                 <div class="simulator-controls">
                     <!-- New: Current Revenue Slider -->
                     <div class="control-group mb-2rem">
-                        <label for="current-revenue-slider">Current Monthly Revenue: <span id="current-revenue-value"
+                        <label for="current-revenue-slider"><span data-i18n="simulator.revenueLabel">Current Monthly
+                                Revenue</span>: <span id="current-revenue-value"
                                 class="text-gradient">$50,000</span></label>
                         <input type="range" id="current-revenue-slider" min="10000" max="500000" step="5000"
                             value="50000">
@@ -148,8 +137,8 @@
 
                     <!-- Existing: Budget Slider -->
                     <div class="control-group">
-                        <label for="budget-slider">Monthly Ad Budget: <span id="budget-value"
-                                class="text-gradient">$5,000</span></label>
+                        <label for="budget-slider" data-i18n="simulator.budgetLabel">Monthly Ad Budget</label>
+                        <span id="budget-value" class="text-gradient">$5,000</span>
                         <input type="range" id="budget-slider" min="1000" max="50000" step="1000" value="5000">
                         <div class="range-labels">
                             <span>$1k</span>
@@ -160,53 +149,103 @@
 
                 <div class="simulator-results">
                     <div class="sim-metric">
-                        <span class="sim-label">Est. Leads / Month</span>
+                        <span class="sim-label" data-i18n="simulator.leadsLabel">Est. Leads / Month</span>
                         <span class="sim-value" id="leads-value">100</span>
                         <span class="sim-sub">@ ~$50 avg CPL</span>
                     </div>
                     <div class="sim-metric highlight">
-                        <span class="sim-label">Projected New Revenue</span>
+                        <span class="sim-label" data-i18n="simulator.projectedLabel">Projected Monthly Revenue</span>
                         <span class="sim-value text-gradient" id="revenue-value">$70,000</span>
-                        <span class="sim-sub">Current + (Ads x 4.0 ROAS)</span>
+                        <span class="sim-sub" data-i18n="simulator.projectedSub">Current + (Ads x 4.0 ROAS)</span>
                     </div>
                 </div>
 
                 <div class="simulator-cta text-center">
-                    <button class="btn btn-primary" onclick="window.agChat.sendMessage('Unlock these numbers')">Unlock
-                        these numbers</button>
+                    <button class="btn btn-primary" onclick="window.nivoCRM.open()"
+                        data-i18n="marketingPage.simulator.cta">Initialize Revenue Protocol</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="section-padding" id="contact">
-        <div class="container text-center">
-            <h2>Start Capturing Demand</h2>
-            <p class="mb-2rem text-muted-color">Let's discuss your campaign goals.</p>
-            <a href="#" onclick="window.location.href = 'mailto:' + 'contact' + '@' + 'nivopartners.com'"
-                class="btn btn-primary">Contact Us</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">NIVO<span>PARTNERS</span></div>
-                    <p data-i18n="footer.desc">The revenue engineering firm for the AI era.</p>
+            <!-- Traffic Amplification Protocols Module -->
+            <div class="amplification-module animate-on-scroll delay-2">
+                <div class="amplification-header">
+                    <h3 data-i18n="marketingPage.amplification.title">Traffic Amplification Protocols</h3>
+                    <p class="amplification-subtitle" data-i18n="marketingPage.amplification.subtitle">
+                        Unlock the dormant capacity of your digital infrastructure. We deploy high-precision,
+                        AI-generated video assets to validate markets and accelerate lead velocity with minimal capital
+                        exposure.
+                    </p>
                 </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>Legal</h4>
-                        <a href="../legal/privacy.html" data-i18n="footer.privacy">Privacy</a>
-                        <a href="../legal/terms.html" data-i18n="footer.terms">Terms</a>
+
+                <div class="amplification-grid">
+                    <div class="amplification-card">
+                        <div class="amp-icon-wrapper">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h4 data-i18n="marketingPage.amplification.b1_title">AI-Driven Asset Generation</h4>
+                        <p data-i18n="marketingPage.amplification.b1_desc">Leveraging next-gen video synthesis for rapid
+                            creative testing.</p>
+                    </div>
+
+                    <div class="amplification-card">
+                        <div class="amp-icon-wrapper">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h4 data-i18n="marketingPage.amplification.b2_title">Micro-Spend Validation</h4>
+                        <p data-i18n="marketingPage.amplification.b2_desc">Utilizing minimal advertising budgets to
+                            identify high-yield audience segments before scaling.</p>
+                    </div>
+
+                    <div class="amplification-card">
+                        <div class="amp-icon-wrapper">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4 data-i18n="marketingPage.amplification.b3_title">Architectural Feedback Loop</h4>
+                        <p data-i18n="marketingPage.amplification.b3_desc">Feeding campaign performance data directly
+                            back into your system to optimize the ROI projections.</p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p data-i18n="footer.rights">&copy; 2026 Nivo Partners.</p>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footer-main">
+        <div class="footer-bottom">
+            <div class="container footer-content">
+                <div class="logo footer-logo">NIVO<span>PARTNERS</span></div>
+                <!-- Compliance Seal -->
+                <div class="compliance-seal-container">
+                    <div class="compliance-seal">
+                        <svg class="seal-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7V12C3 17.5228 12 22 12 22C12 22 21 17.5228 21 12V7L12 2Z"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M12 8V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <div class="seal-text" data-i18n="legal.common.seal_label">
+                            <strong>Certified Infrastructure:</strong> Florida FIPA & FDUTPA Compliant
+                        </div>
+                        <div class="seal-tooltip" data-i18n="legal.common.seal_tooltip">
+                            Nivo Partners garantiza la soberanía de sus datos y la transparencia en cada proceso de IA.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <a href="../legal/privacy.html" data-i18n="legal.common.footer_privacy">Privacy Policy</a>
+                    <a href="../legal/terms.html" data-i18n="legal.common.footer_terms">Terms of Service</a>
+                    <a href="../legal/disclaimer.html" data-i18n="legal.common.footer_disclaimer">Earnings
+                        Disclaimer</a>
+                    <a href="../legal/ethics.html" data-i18n="legal.common.footer_ethics">Ethics & Anti-Spam</a>
+                </div>
+                <div class="footer-rights" data-i18n="footer.rights">
+                    &copy; 2026 Nivo Partners.
+                </div>
             </div>
         </div>
     </footer>
@@ -214,43 +253,8 @@
     <!-- Scripts -->
     <script src="../js/translations.js"></script>
     <script src="../js/script.js"></script>
-
-    <!-- AI Chat Widget (Hardcoded for reliability) -->
-    <div id="ag-chat-widget">
-        <div class="chat-label" data-i18n="chat.label">Chat with us</div>
-        <div class="ag-chat-button" onclick="window.agChat.toggle()">
-            <img src="../images/agent-avatar.png" alt="Agent">
-            <span class="notification-dot"></span>
-        </div>
-        <div class="ag-chat-window">
-            <div class="ag-chat-header">
-                <div class="ag-agent-info">
-                    <div class="ag-avatar">
-                        <img src="../images/agent-avatar.png" alt="Kai Agent">
-                    </div>
-                    <div>
-                        <h4 data-i18n="chat.agentName">Kai | Nivo Sr. Strategist</h4>
-                        <span class="status-indicator">Online</span>
-                    </div>
-                </div>
-                <div class="ag-chat-controls">
-                    <button class="close-btn" onclick="window.agChat.toggle()" aria-label="Close chat"><i
-                            class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="ag-chat-messages" id="ag-messages"></div>
-            <div class="ag-chat-input">
-                <input type="text" data-i18n-placeholder="chat.placeholder" placeholder="Ask about Nivo..."
-                    id="ag-input" onkeypress="window.agChat.handleEnter(event)">
-                <button onclick="window.agChat.sendMessage()" data-i18n="chat.send" class="ag-send-btn">Send</button>
-            </div>
-        </div>
-    </div>
-
     <script src="../js/chat.js"></script>
     <script src="../js/contact.js"></script>
 </body>
 
 </html>
-
-

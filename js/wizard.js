@@ -123,10 +123,19 @@ class NivoArchitectureWizard {
         `;
     }
 
-    getOptionLabel(stepNum, id) {
+    sanitize(text) {
+        if (!text) return "";
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    getOptionLabel(step, optionId) {
         const t = this.getTranslations();
-        const option = t.steps[`step${stepNum}`].options.find(o => o.id === id);
-        return option ? option.label : id;
+        const stepData = t.steps[`step${step}`];
+        if (!stepData) return optionId;
+        const opt = stepData.options.find(o => o.id === optionId);
+        return opt ? opt.label : optionId;
     }
 
     saveToContact() {
@@ -143,7 +152,9 @@ class NivoArchitectureWizard {
 
             const requirementsField = document.getElementById('lead-requirements');
             if (requirementsField) {
-                requirementsField.value = `Architecture Blueprint Generated: ${this.getOptionLabel(1, this.selections.niche)} core with ${this.getOptionLabel(2, this.selections.dna)} DNA.`;
+                const niche = this.getOptionLabel(1, this.selections.niche);
+                const dna = this.getOptionLabel(2, this.selections.dna);
+                requirementsField.value = `Architecture Blueprint Generated: ${this.sanitize(niche)} core with ${this.sanitize(dna)} DNA.`;
             }
         }
     }
