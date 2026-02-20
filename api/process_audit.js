@@ -152,7 +152,7 @@ export default async function handler(req, res) {
                 from: 'Operations Node <system@nivopartners.com>',
                 to: 'contact@nivopartners.com',
                 subject: `NEW AUDIT SUBMITTED: ${sanitizedData.name} - ${sanitizedData.company}`,
-                text: `System Alert:\n\nA new Architecture Wizard audit has been submitted.\n\nName: ${sanitizedData.name}\nCompany: ${sanitizedData.company}\nService Request: ${sanitizedData.service}\n\nCheck the Supabase 'leads' dashboard for full context.`
+                text: `System Alert:\n\nA new Architecture Wizard audit has been submitted.\n\nName: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nCompany: ${sanitizedData.company}\nService Request: ${sanitizedData.service}\nRequirements: ${sanitizedData.requirements}\n\nCheck the Supabase 'leads' dashboard for full context.`
             });
             internalEmailError = error;
             internalEmailData = data;
@@ -160,7 +160,8 @@ export default async function handler(req, res) {
 
         if (internalEmailError) {
             console.error('Internal Notification Transmission Error:', internalEmailError);
-            throw new Error(`Critical: Internal Email Delivery Failed (Resend). Details: ${internalEmailError.message || JSON.stringify(internalEmailError)}`);
+            // Non-blocking in production: we prioritize the user seeing the success UI
+            // and the data being safe in Supabase.
         }
 
         // Successful Payload Response
@@ -168,7 +169,6 @@ export default async function handler(req, res) {
             success: true,
             message: 'Audit parameters securely ingested. Communication protocols triggered.',
             audit_ref: auditId,
-            handoff_id: internalEmailData ? internalEmailData.id : null,
             email_status: (clientEmailError || internalEmailError) ? 'partial_failure' : 'all_green'
         });
 
