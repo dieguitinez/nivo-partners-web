@@ -110,18 +110,33 @@ Este sistema tiene **tres audiencias**:
 | [GOV_03_Ethical_AI_Charter_EN.md](../EN/GOV_03_Ethical_AI_Charter_EN.md) | EN | Ethical AI Charter (English Version). |
 | [GOV_04_Strategic_Growth_Roadmap_2026_ES.md](../ES/GOV_04_Strategic_Growth_Roadmap_2026_ES.md) | ES | Hitos de Crecimiento y Expansión. |
 | [GOV_04_Strategic_Growth_Roadmap_2026_EN.md](../EN/GOV_04_Strategic_Growth_Roadmap_2026_EN.md) | EN | Strategic Growth Roadmap (English Version). |
+| [GOV_05_Operating_Agreement.md](../06_CORPORATE_GOVERNANCE/GOV_05_Operating_Agreement.md) | EN | LLC Operating Agreement (Florida Compliant). |
+| [GOV_06_Corporate_Resolutions.md](../06_CORPORATE_GOVERNANCE/GOV_06_Corporate_Resolutions.md) | EN | Standard format for major corporate decisions. |
 
-### 07. INFRAESTRUCTURA CONTRACTUAL ⚖️
+### 07. INFRAESTRUCTURA CONTRACTUAL Y CUMPLIMIENTO (FL) ⚖️
 
 | Documento | Idioma | Descripción |
 | :--- | :---: | :--- |
-| [MSA_Core_Framework.md](../07_LEGAL_CONTRACTS/MSA_Core_Framework.md) | ES | Acuerdo Maestro de Servicios (Framework Legal). |
-| [SOW_Templates_Modular.md](../07_LEGAL_CONTRACTS/SOW_Templates_Modular.md) | ES | Templates para Anexos (Web, Marketing, Datos). |
+| [LEG_01_Master_Service_Agreement_FL.md](../06_CORPORATE_GOVERNANCE/LEG_01_Master_Service_Agreement_FL.md) | EN | Master Service Agreement (Hillsborough Jurisdiction). |
+| [LEG_02_SOW_Template.md](../06_CORPORATE_GOVERNANCE/LEG_02_SOW_Template.md) | EN | Modular Statement of Work (SOW) Template. |
+| [LEG_03_Mutual_NDA.md](../06_CORPORATE_GOVERNANCE/LEG_03_Mutual_NDA.md) | EN | Mutual Non-Disclosure Agreement (Trade Secrets). |
+| [COMP_01_Compliance_Roadmap_FL.md](../06_CORPORATE_GOVERNANCE/COMP_01_Compliance_Roadmap_FL.md) | EN | Sunbiz, BTR, and Tax Roadmap for Florida. |
+| [COMP_02_FIPA_Privacy_Policy.md](../06_CORPORATE_GOVERNANCE/COMP_02_FIPA_Privacy_Policy.md) | EN | Internal FIPA-Compliant Data Privacy Policy. |
+| [MSA_Core_Framework.md](../07_LEGAL_CONTRACTS/MSA_Core_Framework.md) | ES | Acuerdo Maestro de Servicios (Referencia ES). |
 | [USE_CASE_Spa_Example.md](../07_LEGAL_CONTRACTS/USE_CASE_Spa_Example.md) | ES | Ejemplo Práctico: Caso "Spa" (Full Pack vs Modular). |
+
+### 08. OPERACIONES Y ADMINISTRACIÓN 📁
+
+| Documento | Idioma | Descripción |
+| :--- | :---: | :--- |
+| [OPS_01_Quote_Estimate.md](../06_CORPORATE_GOVERNANCE/OPS_01_Quote_Estimate.md) | EN | Professional Quote/Estimate Template. |
+| [OPS_02_Official_Invoice.md](../06_CORPORATE_GOVERNANCE/OPS_02_Official_Invoice.md) | EN | Official Invoice Template (Tax ID Placeholders). |
+| [OPS_03_Service_Acceptance.md](../06_CORPORATE_GOVERNANCE/OPS_03_Service_Acceptance.md) | EN | Service Delivery Acceptance (Anti-Scope Creep). |
+| [CEO_Checklist.md](../06_CORPORATE_GOVERNANCE/CEO_Administrative_Fortress_Checklist.md) | EN | Master Checklist for CEO Compliance & Ops. |
 
 ---
 
-### SECCIÓN 8 — [MÓDULOS TÉCNICOS (CORE)](../)
+### SECCIÓN 9 — [MÓDULOS TÉCNICOS (CORE)](../)
 
 | Módulo | Descripción |
 |---|---|
