@@ -24,7 +24,7 @@ module.exports = async function handler(req, res) {
         try {
             const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
             const response = await ai.models.generateContent({
-                model: 'gemini-2.0-flash',
+                model: 'gemini-1.5-flash',
                 contents: 'Say "OK" in one word.',
             });
             report.gemini_test = response.text.trim();

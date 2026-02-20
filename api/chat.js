@@ -104,7 +104,7 @@ module.exports = async function handler(req, res) {
 };
 
 // ============================================================
-// GEMINI 2.0 FLASH INVOCATION (New @google/genai SDK)
+// GEMINI 1.5 FLASH INVOCATION (New @google/genai SDK - API v1)
 // ============================================================
 async function callGemini(userMessage, lang = 'en') {
     const langHint = lang === 'es'
@@ -112,7 +112,7 @@ async function callGemini(userMessage, lang = 'en') {
         : '';
 
     const response = await ai.models.generateContent({
-        model: 'gemini-2.0-flash',
+        model: 'gemini-1.5-flash',
         contents: langHint + userMessage,
         config: {
             systemInstruction: KAI_SYSTEM_PROMPT,

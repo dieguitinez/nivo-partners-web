@@ -418,9 +418,15 @@ header .container {
 }
 
 .logo-img {
-    height: 32px;
+    height: 38px;
     width: auto;
     filter: drop-shadow(0 0 8px rgba(0, 102, 255, 0.3));
+}
+
+.logo-img-footer {
+    height: 28px;
+    width: auto;
+    filter: drop-shadow(0 0 6px rgba(0, 102, 255, 0.25));
 }
 
 .logo-link {
