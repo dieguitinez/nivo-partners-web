@@ -2,11 +2,6 @@ const { GoogleGenAI } = require('@google/genai');
 const { Resend } = require('resend');
 
 // ============================================================
-// INITIALIZE SERVICES
-// ============================================================
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// ============================================================
 // KAI COMPACT SYSTEM PROMPT (hardcoded for reliability)
 // ============================================================
 const KAI_SYSTEM_PROMPT = `You are Kai, Lead Strategist at Nivo Partners — a sovereign digital infrastructure firm in Tampa, Florida.
@@ -105,8 +100,10 @@ module.exports = async function handler(req, res) {
 // SILENT TELEMETRY
 // ============================================================
 async function fireTelemetry(query, sessionId) {
-    if (!process.env.RESEND_API_KEY) return;
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) return;
     try {
+        const resend = new Resend(apiKey);
         await resend.emails.send({
             from: 'Kai Telemetry <system@nivopartners.com>',
             to: 'contact@nivopartners.com',
