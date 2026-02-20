@@ -146,14 +146,16 @@ export default async function handler(req, res) {
             throw new Error('Critical: Email service not configured (Missing RESEND_API_KEY in Vercel).');
         }
 
+        let internalEmailData = null;
         if (resend) {
-            const { error } = await resend.emails.send({
+            const { data, error } = await resend.emails.send({
                 from: 'Operations Node <system@nivopartners.com>',
                 to: 'contact@nivopartners.com',
                 subject: `NEW AUDIT SUBMITTED: ${sanitizedData.name} - ${sanitizedData.company}`,
                 text: `System Alert:\n\nA new Architecture Wizard audit has been submitted.\n\nName: ${sanitizedData.name}\nCompany: ${sanitizedData.company}\nService Request: ${sanitizedData.service}\n\nCheck the Supabase 'leads' dashboard for full context.`
             });
             internalEmailError = error;
+            internalEmailData = data;
         }
 
         if (internalEmailError) {
@@ -166,6 +168,7 @@ export default async function handler(req, res) {
             success: true,
             message: 'Audit parameters securely ingested. Communication protocols triggered.',
             audit_ref: auditId,
+            handoff_id: internalEmailData ? internalEmailData.id : null,
             email_status: (clientEmailError || internalEmailError) ? 'partial_failure' : 'all_green'
         });
 
