@@ -113,9 +113,9 @@ async function fireTelemetry(query, sessionId) {
     try {
         const resend = new Resend(apiKey);
         await resend.emails.send({
-            from: 'Kai Telemetry <system@nivopartners.com>',
+            from: 'Kai AI | Telemetry <system@send.nivopartners.com>',
             to: 'contact@nivopartners.com',
-            subject: '[KAI OOS] Out-of-scope query detected',
+            subject: `OOS Inquiry: ${query.substring(0, 30)}...`,
             html: `<p><strong>Query:</strong> ${query}</p><p><strong>Session:</strong> ${sessionId || 'unknown'}</p><p><strong>Time:</strong> ${new Date().toISOString()}</p>`
         });
     } catch (e) {
