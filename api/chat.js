@@ -1,7 +1,7 @@
-import { Resend } from 'resend';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+const { Resend } = require('resend');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { readFileSync } = require('fs');
+const { join } = require('path');
 
 // ============================================================
 // INITIALIZE EXTERNAL SERVICES
@@ -11,7 +11,6 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // ============================================================
 // LOAD KAI'S KNOWLEDGE BASE AT COLD START (Cached in memory)
-// This reads the .md file once when Vercel loads the function.
 // ============================================================
 let KAI_KNOWLEDGE_BASE = '';
 try {
@@ -53,7 +52,7 @@ Always answer naturally. Do not use headers or bullet lists unless explaining mu
 // ============================================================
 // MAIN HANDLER
 // ============================================================
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     // Add CORS headers FIRST — before any method checks
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -110,10 +109,11 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error('[KAI] Handler error:', error);
         return res.status(500).json({
-            error: 'Neural link interrupted. Please try again.'
+            error: 'Neural link interrupted. Please try again.',
+            details: error.message
         });
     }
-}
+};
 
 // ============================================================
 // GEMINI FLASH INVOCATION
@@ -124,8 +124,8 @@ async function callGemini(userMessage, lang = 'en') {
         model: 'gemini-1.5-flash',
         systemInstruction: KAI_SYSTEM_PROMPT,
         generationConfig: {
-            maxOutputTokens: 300, // Keep responses concise
-            temperature: 0.7,     // Balanced: creative but grounded
+            maxOutputTokens: 300,
+            temperature: 0.7,
         }
     });
 
