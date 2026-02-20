@@ -240,286 +240,58 @@ class AntigravityChat {
 
 
     simulateResponse(text) {
-        /* 
-        KAI 3.0 LOGIC ENGINE - THE SOVEREIGN ARCHITECT
-        - Context Awareness: Knows which page the user is on.
-        - Intent Recognition: Scores input for Buying vs Learning vs Technical.
-        - Black Box Protocol: Redirects cheap/free inquiries to High-Ticket Pricing.
-        */
-
         let currentLang = this.currentLang || localStorage.getItem('nivo_lang') || 'en';
         if (!translations[currentLang]) currentLang = 'en';
 
         const t = translations[currentLang].chat;
         const responses = t.responses;
-        const definitions = t.definitions || {};
-        const companyInfo = t.company_info || {};
-
-        let responseNode = null;
-        let lowercaseText = text.toLowerCase();
 
         // ---------------------------------------------------------
-        // 0. CONTEXT AWARENESS & MEMORY
+        // STEP 1: Handle structural button actions first (open_contact, open_booking)
         // ---------------------------------------------------------
-        const pageContext = {
-            isWeb: window.location.pathname.includes('web'),
-            isMarketing: window.location.pathname.includes('marketing'),
-            isGrowth: window.location.pathname.includes('growth') || window.location.pathname.includes('ai'),
-            title: document.title
-        };
-
-        // Initialize State if not present (constructor handles this now, but safety first)
-        if (!this.state) {
-            this.state = { discussedValueProp: false };
-        }
-
-        // Simple Memory (if they mention their name)
-        if (lowercaseText.includes('name is') || lowercaseText.includes('soy')) {
-            const name = text.split(' ').pop();
-            this.memory = { name: name };
-            this.saveState();
+        if (text === 'open_contact' || text === 'open_booking') {
+            setTimeout(() => {
+                const contactBtn = document.querySelector('a[href="#apply"]');
+                if (contactBtn) contactBtn.click();
+                else if (window.nivoCRM) window.nivoCRM.open();
+            }, 1200);
+            // Still show the node text if it exists
         }
 
         // ---------------------------------------------------------
-        // 1. INTENT RECOGNITION (Scoring System)
+        // STEP 2: Only handle EXACT button value matches locally.
+        // All other text → backend (Gemini 2.5 Flash).
         // ---------------------------------------------------------
-        let intent = {
-            buying: 0,
-            learning: 0,
-            technical: 0,
-            guardrail: 0,
-            archetype: 0,
-            conversion: 0
-        };
+        const BUTTON_KEYS = [
+            'web', 'marketing', 'growth', 'audit', 'hello',
+            'web_types', 'web_portfolio', 'web_saas', 'web_industrial', 'web_authority',
+            'web_quote', 'marketing_call', 'growth_audit',
+            'arch_spa', 'arch_saas', 'arch_industrial', 'arch_authority',
+            'conversion_audit', 'footer_info', 'process_info',
+            'srv_web', 'srv_marketing', 'srv_automation'
+        ];
 
-        // Buying Signals
-        if (/(price|cost|quote|audit|hire|comprar|precio|costo|cotizar|contract|agreement|how much|cuanto cuesta|cuánto cuesta)/i.test(lowercaseText)) intent.buying += 5;
+        const isButtonValue = BUTTON_KEYS.includes(text) || (responses[text] !== undefined);
 
-        // Timeline Signals
-        if (/(duration|how long|timeline|schedule|deadline|timeframe|tiempo|tardan|entrega|plazo)/i.test(lowercaseText)) intent.timeline = 5;
-
-        // Learning Signals
-        if (/(what is|define|explain|mean|que es|explicar|significa|how does|como funciona)/i.test(lowercaseText)) intent.learning += 5;
-
-        // Technical Signals (Black Box Protocol)
-        if (/(api|json|react|stack|cloud|framework|code|codigo|python|javascript|node|sql)/i.test(lowercaseText)) intent.technical += 5;
-
-        // Guardrail Signals (Cheap/Free/Template)
-        if (/(free|cheap|barato|gratis|template|plantilla|wordpress|wix|fiverr|upwork)/i.test(lowercaseText)) intent.guardrail += 10;
-
-        // Archetype Detection
-        let archetypeKey = null;
-        if (lowercaseText.includes('spa')) { intent.archetype = 5; archetypeKey = 'arch_spa'; }
-        if (lowercaseText.includes('saas')) { intent.archetype = 5; archetypeKey = 'arch_saas'; }
-        if (lowercaseText.includes('industrial')) { intent.archetype = 5; archetypeKey = 'arch_industrial'; }
-        if (lowercaseText.includes('authority')) { intent.archetype = 5; archetypeKey = 'arch_authority'; }
-
-        // Conversion Intent
-        if (lowercaseText.includes('conversion') || lowercaseText.includes('conversión')) intent.conversion = 5;
-
-        // Branding Protocol Trigger (New / Old Business)
-        let brandingTrigger = false;
-        if (/(new business|new company|startup|start-up|just started|nueva empresa|negocio nuevo|empresa nueva)/i.test(lowercaseText)) brandingTrigger = true;
-        if (/(old website|outdated|redesign|vieja|antigua|hace años|rediseño|actualizar)/i.test(lowercaseText)) brandingTrigger = true;
-
-        // General Website Sections (Footer, Images, Processes)
-        let siteQueryTrigger = null;
-        // Includes: location, where, address, footer, contact, ubicacion, ubicados, donde estan, correo, etc.
-        if (/(footer|address|location|contact email|where are you|ubicacion|ubicación|ubicados|dónde están|donde estan|pie de pagina|correo de contacto)/i.test(lowercaseText)) {
-            siteQueryTrigger = 'footer_info';
-        } else if (/(diagram|image|core|revenue core|diagrama|imagen|foto|dibujo|grafico|núcleo)/i.test(lowercaseText)) {
-            siteQueryTrigger = 'core_image';
-        } else if (/(process|methodology|how does it work|steps|proceso|pasos|metodologia|como funciona)/i.test(lowercaseText)) {
-            siteQueryTrigger = 'process_info';
-        }
-
-        // Services Queries
-        let serviceQueryTrigger = null;
-        if (/(web|website|page|site|sitio web|página|pagina web)/i.test(lowercaseText)) {
-            serviceQueryTrigger = 'srv_web';
-        } else if (/(marketing|ads|traffic|seo|posicionamiento|lead|trafico)/i.test(lowercaseText)) {
-            serviceQueryTrigger = 'srv_marketing';
-        } else if (/(automation|agent|ai|artificial intelligence|automatizacion|agente|ia|bot)/i.test(lowercaseText)) {
-            serviceQueryTrigger = 'srv_automation';
-        }
-
-        // Terminology Alignment (Logo -> Engineered Brand Assets)
-        if (lowercaseText.includes('logo') || lowercaseText.includes('logotipo')) intent.technical += 5;
-
-        // Security / Compliance Trigger
-        let securityTrigger = false;
-        if (/(security|data|fipa|fdutpa|privacy|secure|compliance|seguridad|datos|privacidad)/i.test(lowercaseText)) securityTrigger = true;
-
-        // ROI / Returns Trigger
-        let roiTrigger = false;
-        if (/(roi|return|profit|guarantee|garantia|retorno|ganancia)/i.test(lowercaseText)) roiTrigger = true;
-
-
-        // ---------------------------------------------------------
-        // 2. ROUTING LOGIC
-        // ---------------------------------------------------------
-
-        // A. Direct Matches (Buttons or Specific Keywords)
-        if (responses[text]) {
-            // REDUNDANCY CONTROL: If user clicks "Digital Infrastructure" (web) again
-            if (text === 'web' && this.state.discussedValueProp) {
-                responseNode = responses.web_types; // Skip straight to types
-            } else {
-                responseNode = responses[text];
-                if (text === 'web') {
-                    this.state.discussedValueProp = true; // Mark as discussed
-                    this.saveState();
-                }
-            }
-        }
-        else if (definitions[text]) {
-            responseNode = definitions[text];
-        }
-
-        // B. Archetype Recognition
-        else if (intent.archetype >= 5 && archetypeKey) {
-            responseNode = responses[archetypeKey];
-        }
-
-        // B2. Website Section Queries
-        else if (siteQueryTrigger) {
-            responseNode = responses[siteQueryTrigger];
-        }
-
-        // B3. Service Queries
-        else if (serviceQueryTrigger) {
-            responseNode = responses[serviceQueryTrigger];
-        }
-
-        // C. Branding Protocol Trigger
-        else if (brandingTrigger) {
-            responseNode = responses.branding_trigger;
-        }
-
-        // D. Conversion -> Audit Flow
-        else if (intent.conversion >= 5) {
-            responseNode = responses.conversion_audit;
-        }
-
-        // E. Guardrail Activation (redirect low-quality leads to strict pricing)
-        else if (intent.guardrail >= 5) {
-            responseNode = definitions.pricing;
-        }
-
-        // F. Timeline Inquiries (Senior Roadmap Logic)
-        else if (intent.timeline >= 5) {
-            responseNode = definitions.delivery;
-        }
-
-        // G. Technical Inquiries -> Route to Tech Stack or Branding Asset definition
-        else if (intent.technical >= 5) {
-            if (lowercaseText.includes('logo')) {
-                responseNode = definitions.def_brand_assets;
-            } else {
-                responseNode = definitions.tech_stack || definitions.infrastructure;
-            }
-        }
-
-        // H. High Intent (Buying) -> Push to Conversion based on Context
-        else if (intent.buying >= 5) {
-            // If specifically asking for price/cost, show pricing node first
-            if (/(price|cost|precio|costo|how much|cuanto|cuánto)/i.test(lowercaseText)) {
-                responseNode = definitions.pricing;
-            } else {
-                // Otherwise general buying intent -> Contextual Call to Action
-                if (pageContext.isWeb) responseNode = responses.web_quote;
-                else if (pageContext.isMarketing) responseNode = responses.marketing_call;
-                else responseNode = responses.growth_audit;
-            }
-        }
-
-        // I. Learning Intent -> Check Definitions First
-        else if (intent.learning >= 5) {
-            // Search Definitions keys
-            for (const key in definitions) {
-                if (key.length > 3 && lowercaseText.includes(key)) {
-                    responseNode = definitions[key];
-                    break;
-                }
-            }
-        }
-
-        // H. Concept Matching (Keywords without explicit question)
-        else {
-            if (lowercaseText.includes('seo')) responseNode = definitions.seo;
-            else if (lowercaseText.includes('b2b')) responseNode = definitions.b2b;
-            else if (lowercaseText.includes('roi')) responseNode = definitions.roi;
-            else if (lowercaseText.includes('abm')) responseNode = definitions.abm || definitions.marketing;
-
-            // Product Specifics
-            else if (lowercaseText.includes('review') || lowercaseText.includes('guardian')) responseNode = definitions.def_review_guardian || definitions.agents;
-            else if (lowercaseText.includes('inbox') || lowercaseText.includes('email')) responseNode = definitions.def_smart_inbox || definitions.agents;
-            else if (lowercaseText.includes('sniper') || lowercaseText.includes('lead')) responseNode = definitions.def_lead_sniper || definitions.agents;
-
-            // Company Info Matches
-            else if (lowercaseText.includes('trust') || lowercaseText.includes('client') || lowercaseText.includes('partner')) responseNode = companyInfo.trusted_by;
-            else if (lowercaseText.includes('location') || lowercaseText.includes('where') || lowercaseText.includes('ubicacion') || lowercaseText.includes('donde') || lowercaseText.includes('contact') || lowercaseText.includes('email')) responseNode = responses.footer_info;
-            else if (lowercaseText.includes('method') || lowercaseText.includes('process') || lowercaseText.includes('fase')) responseNode = companyInfo.methodology;
-            else if (lowercaseText.includes('criteria') || lowercaseText.includes('who')) responseNode = companyInfo.criteria;
-
-            // Service Matching
-            else if (lowercaseText.includes('web') || lowercaseText.includes('design') || lowercaseText.includes('infra')) {
-                if (this.state.discussedValueProp) {
-                    responseNode = responses.web_types;
-                } else {
-                    responseNode = responses.web;
-                    this.state.discussedValueProp = true;
-                }
-            }
-            else if (lowercaseText.includes('market') || lowercaseText.includes('ads')) responseNode = responses.marketing;
-            else if (lowercaseText.includes('growth') || lowercaseText.includes('ai') || lowercaseText.includes('auto')) responseNode = responses.growth;
-
-            // Greetings and Conversational Fluidity (Handling ok, yes, etc.)
-            else if (/^(hello|hi|hola|hey|ok|yes|si|sí|bueno)$/i.test(lowercaseText.trim())) responseNode = responses.hello;
-        }
-
-        // ---------------------------------------------------------
-        // 3. FALLBACK & CONTEXT INJECTION (HITL API INTEGRATION)
-        // ---------------------------------------------------------
-        if (!responseNode) {
-            // Escalate unmapped queries to Vercel API
+        if (!isButtonValue) {
+            // Free text → send to Gemini backend
             this.sendToBackend(text);
             return;
         }
 
-        // Safety Fallback for missing nodes
-        if (!responseNode) responseNode = responses.fallback || responses.hello;
-
-        // ---------------------------------------------------------
-        // 6. Handle Special Actions (Form Triggers)
-        // open_contact: triggered AFTER Kai shows the 'opening form...' message
-        // ---------------------------------------------------------
-        if (text === 'open_contact') {
-            setTimeout(() => {
-                if (window.nivoCRM) {
-                    window.nivoCRM.open();
-                } else {
-                    const contactBtn = document.querySelector('a[href="#apply"]');
-                    if (contactBtn) contactBtn.click();
-                }
-            }, 1200); // Delay so Kai's message renders first
-        }
-        if (text === 'open_booking') {
-            setTimeout(() => {
-                if (window.nivoCRM) {
-                    window.nivoCRM.open();
-                } else {
-                    const contactBtn = document.querySelector('a[href="#apply"]');
-                    if (contactBtn) contactBtn.click();
-                }
-            }, 1200);
+        // Render the local node response
+        const responseNode = responses[text];
+        if (!responseNode) {
+            // Button key exists in our list but no translation node → fallback to backend
+            this.sendToBackend(text);
+            return;
         }
 
         // ---------------------------------------------------------
-        // 7. Render Response
+        // STEP 3: Render local response
         // ---------------------------------------------------------
         const baseLatency = 600;
-        const typingTime = Math.min((responseNode.text.length * 5), 2000); // Cap typing time
+        const typingTime = Math.min((responseNode.text.length * 5), 2000);
         this.showTyping();
 
         setTimeout(() => {
@@ -527,13 +299,9 @@ class AntigravityChat {
             this.addMessage(responseNode.text, 'agent');
 
             if (responseNode.type === 'exit' && responseNode.options && responseNode.options.length > 0) {
-                setTimeout(() => {
-                    this.addExitButton(responseNode.options[0]);
-                }, 400);
+                setTimeout(() => { this.addExitButton(responseNode.options[0]); }, 400);
             } else if (responseNode.options && responseNode.options.length > 0) {
-                setTimeout(() => {
-                    this.addOptions(responseNode.options);
-                }, 400);
+                setTimeout(() => { this.addOptions(responseNode.options); }, 400);
             }
         }, baseLatency + typingTime);
     }

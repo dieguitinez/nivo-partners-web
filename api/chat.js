@@ -55,27 +55,30 @@ module.exports = async function handler(req, res) {
     try {
         const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-        // Use the Chat API with proper role separation for reliability
-        const chat = ai.chats.create({
+        const langPrefix = lang === 'es'
+            ? 'INSTRUCCIÓN ACTIVA: Responde SIEMPRE en español.\n\n'
+            : 'ACTIVE INSTRUCTION: Respond in English.\n\n';
+
+        // Use multi-turn contents array — proven to work (confirmed by /api/ping)
+        const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
-            history: [
+            contents: [
                 {
                     role: 'user',
-                    parts: [{ text: KAI_SYSTEM_PROMPT }]
+                    parts: [{ text: KAI_SYSTEM_PROMPT + '\n\n' + langPrefix + 'Acknowledge your persona briefly.' }]
                 },
                 {
                     role: 'model',
-                    parts: [{ text: 'Understood. I am Kai, Lead Strategist at Nivo Partners. Ready to assist.' }]
+                    parts: [{ text: 'Understood. I am Kai, Lead Strategist at Nivo Partners. Ready.' }]
+                },
+                {
+                    role: 'user',
+                    parts: [{ text: userMessage }]
                 }
             ]
         });
 
-        const langPrefix = lang === 'es'
-            ? '[Responde en español] '
-            : '';
-
-        const result = await chat.sendMessage({ message: langPrefix + userMessage });
-        const responseText = result.text.trim();
+        const responseText = response.text.trim();
 
         const oosSignals = ['outside my operational scope', 'fuera de mi alcance', 'falls outside', 'cae fuera'];
         const isOutOfScope = oosSignals.some(s => responseText.toLowerCase().includes(s));
