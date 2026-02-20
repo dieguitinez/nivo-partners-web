@@ -150,7 +150,7 @@ class AntigravityChat {
             if (label) label.classList.remove('visible');
 
             // Force initial greeting IF chat is completely empty
-            const body = widget.querySelector('.ag-chat-body');
+            const body = chatWindow.querySelector('.ag-chat-messages');
             if (body && body.innerHTML.trim() === '') {
                 const currentLang = localStorage.getItem('nivo_lang') || 'en';
                 const t = translations[currentLang].chat;
@@ -403,7 +403,7 @@ class AntigravityChat {
 
         // E. Guardrail Activation (redirect low-quality leads to strict pricing)
         else if (intent.guardrail >= 5) {
-            responseNode = definitions.pricing || responses.fallback || responses.hello;
+            responseNode = definitions.pricing;
         }
 
         // F. Timeline Inquiries (Senior Roadmap Logic)
@@ -437,17 +437,10 @@ class AntigravityChat {
         else if (intent.learning >= 5) {
             // Search Definitions keys
             for (const key in definitions) {
-                if (lowercaseText.includes(key)) {
+                if (key.length > 3 && lowercaseText.includes(key)) {
                     responseNode = definitions[key];
                     break;
                 }
-            }
-            // Fallback for Learning if no definition found
-            if (!responseNode) {
-                // If on a specific page, explain that service
-                if (pageContext.isWeb) responseNode = responses.web;
-                else if (pageContext.isMarketing) responseNode = responses.marketing;
-                else responseNode = companyInfo.methodology;
             }
         }
 
@@ -482,7 +475,7 @@ class AntigravityChat {
             else if (lowercaseText.includes('growth') || lowercaseText.includes('ai') || lowercaseText.includes('auto')) responseNode = responses.growth;
 
             // Greetings and Conversational Fluidity (Handling ok, yes, etc.)
-            else if (/(hello|hi|hola|hey|ok|yes|si|sí|bueno)/i.test(lowercaseText)) responseNode = responses.hello;
+            else if (/^(hello|hi|hola|hey|ok|yes|si|sí|bueno)$/i.test(lowercaseText.trim())) responseNode = responses.hello;
         }
 
         // ---------------------------------------------------------
@@ -595,10 +588,15 @@ class AntigravityChat {
                 apiUrl = 'https://nivo-partners-web.vercel.app/api/chat';
             }
 
+            const currentLang = localStorage.getItem('nivo_lang') || 'en';
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userMessage: text, sessionId: this.state.sessionId })
+                body: JSON.stringify({
+                    userMessage: text,
+                    sessionId: this.state.sessionId,
+                    lang: currentLang
+                })
             });
 
             if (!response.ok) throw new Error('API Error');
@@ -608,16 +606,23 @@ class AntigravityChat {
             this.hideTyping();
             this.addMessage(data.reply, 'agent');
 
-            // Provide a direct path to the Architecture Wizard if Escalated
+            // Bilingual escalation button
             if (data.escalated) {
+                const escalateLabel = currentLang === 'es'
+                    ? 'Abrir Asistente de Arquitectura'
+                    : 'Open Architecture Wizard';
                 setTimeout(() => {
-                    this.addOptions([{ label: "Open Architecture Wizard", value: "open_booking" }]);
+                    this.addOptions([{ label: escalateLabel, value: "open_contact" }]);
                 }, 400);
             }
         } catch (error) {
             console.error(error);
             this.hideTyping();
-            this.addMessage("Connection to cognitive cores interrupted. Please try again later.", 'agent');
+            const currentLang = localStorage.getItem('nivo_lang') || 'en';
+            const errMsg = currentLang === 'es'
+                ? 'Conexión con el núcleo cognitivo interrumpida. Por favor intenta de nuevo.'
+                : 'Connection to cognitive cores interrupted. Please try again later.';
+            this.addMessage(errMsg, 'agent');
         }
     }
 }

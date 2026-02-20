@@ -1,97 +1,185 @@
 import { Resend } from 'resend';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
-// Initialize Telemetry Node (Resend)
+// ============================================================
+// INITIALIZE EXTERNAL SERVICES
+// ============================================================
 const resend = new Resend(process.env.RESEND_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+// ============================================================
+// LOAD KAI'S KNOWLEDGE BASE AT COLD START (Cached in memory)
+// This reads the .md file once when Vercel loads the function.
+// ============================================================
+let KAI_KNOWLEDGE_BASE = '';
+try {
+    const kbPath = join(process.cwd(), 'notebooklm', '08_Kai_Knowledge_Base.md');
+    KAI_KNOWLEDGE_BASE = readFileSync(kbPath, 'utf-8');
+    console.log('[KAI BOOT] Knowledge Base loaded successfully.');
+} catch (err) {
+    console.error('[KAI BOOT] Failed to load Knowledge Base:', err.message);
+    KAI_KNOWLEDGE_BASE = 'You are Kai, Lead Strategist at Nivo Partners, a digital infrastructure firm based in Tampa, Florida.';
+}
+
+// ============================================================
+// KAI SYSTEM PROMPT — THE SOVEREIGN ARCHITECT PERSONA
+// ============================================================
+const KAI_SYSTEM_PROMPT = `
+You are **Kai**, the Lead Knowledge Interface and Principal Strategist of Nivo Partners.
+
+## CORE PERSONA RULES
+- You are authoritative, consultative, and precise. Never robotic or generic.
+- You respond in the SAME LANGUAGE the user writes in (English → English, Spanish → Spanish).
+- Keep responses concise: 2-4 sentences max for most replies.
+- Always end with a clear next action or question to advance the conversation.
+- NEVER hallucinate services, prices, or timelines not in the Knowledge Base below.
+- NEVER provide specific pricing numbers. Route all pricing to the Strategy Audit.
+- NEVER guarantee financial ROI (FDUTPA compliance).
+
+## WHAT YOU KNOW ABOUT NIVO PARTNERS
+${KAI_KNOWLEDGE_BASE}
+
+## ESCALATION PROTOCOL
+If a question is completely outside Nivo Partners' scope (personal advice, weather, unrelated topics):
+- Respond with: "That falls outside my operational scope. However, I can analyze your digital infrastructure — which area should we explore?"
+- Set isOutOfScope to true in your response.
+
+## RESPONSE FORMAT
+Always answer naturally. Do not use headers or bullet lists unless explaining multiple items. Be direct.
+`;
+
+// ============================================================
+// MAIN HANDLER
+// ============================================================
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
     }
 
-    try {
-        const { userMessage, sessionId } = req.body;
+    // Add CORS headers to allow calls from local file:// and production
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-        if (!userMessage) {
+    try {
+        const { userMessage, sessionId, lang = 'en' } = req.body;
+
+        if (!userMessage || userMessage.trim().length === 0) {
             return res.status(400).json({ error: 'Missing user message.' });
         }
 
         // ------------------------------------------------------------------
-        // [SIMULATED LLM INVOCATION]
-        // This simulates a real LLM checking against 08_Kai_Knowledge_Base.md
+        // CHECK IF GEMINI API KEY IS CONFIGURED
         // ------------------------------------------------------------------
-        const llmResponse = await generateAIResponse(userMessage);
-
-        // ------------------------------------------------------------------
-        // PHASE 1: THE FALLBACK LOGIC (Graceful Degradation)
-        // Check if the LLM flagged the request as Out of Scope (OOS)
-        // or if confidence is too low.
-        // ------------------------------------------------------------------
-        const isOutOfScope = llmResponse.isOutOfBounds || llmResponse.confidenceScore < 0.70;
-
-        let finalClientResponse = llmResponse.text;
-
-        if (isOutOfScope) {
-            // Override the AI's response with the approved Sovereign Escapement Strategy
-            finalClientResponse = "That is a highly specific operational inquiry. To ensure absolute precision, I am escalating this parameter to our human executive architects. For immediate priority, please submit your baseline data through our Architecture Wizard, and they will address this directly during your Strategy Audit.";
-
-            // ------------------------------------------------------------------
-            // PHASE 2: THE SILENT TELEMETRY (Non-blocking execution)
-            // Fire the alert asynchronously so the client doesn't wait for the email
-            // ------------------------------------------------------------------
-            triggerSilentTelemetryAlert(userMessage, sessionId).catch(err => {
-                console.error("Telemetry Endpoint Failure:", err);
+        if (!process.env.GEMINI_API_KEY) {
+            console.warn('[KAI] Missing GEMINI_API_KEY — returning fallback response.');
+            return res.status(200).json({
+                reply: lang === 'es'
+                    ? 'Mi núcleo cognitivo está siendo configurado. Por favor, continúa por el Asistente de Arquitectura para hablar con nuestro equipo estratégico.'
+                    : 'My cognitive core is being configured. Please proceed through the Architecture Wizard to connect with our strategic team.',
+                escalated: false
             });
         }
 
-        // Return the final response to the frontend client immediately
+        // ------------------------------------------------------------------
+        // INVOKE GEMINI FLASH (Fast, Free Tier)
+        // ------------------------------------------------------------------
+        const { reply, isOutOfScope } = await callGemini(userMessage, lang);
+
+        // ------------------------------------------------------------------
+        // OOS TELEMETRY: Fire silent alert if query falls outside scope
+        // ------------------------------------------------------------------
+        if (isOutOfScope) {
+            triggerSilentTelemetryAlert(userMessage, sessionId).catch(err => {
+                console.error('[TELEMETRY] Alert failed silently:', err.message);
+            });
+        }
+
         return res.status(200).json({
-            reply: finalClientResponse,
+            reply,
             escalated: isOutOfScope
         });
 
     } catch (error) {
-        console.error('Chat Node Error:', error);
-        return res.status(500).json({ error: 'Neural link interrupted.' });
+        console.error('[KAI] Handler error:', error);
+        return res.status(500).json({
+            error: 'Neural link interrupted. Please try again.'
+        });
     }
 }
 
-/**
- * Executes the Silent Alert Protocol seamlessly in the background.
- */
-async function triggerSilentTelemetryAlert(unmappedInput, sessionId = 'UNKNOWN-SESSION') {
+// ============================================================
+// GEMINI FLASH INVOCATION
+// ============================================================
+async function callGemini(userMessage, lang = 'en') {
+    // Use gemini-1.5-flash — free tier, fast, 1M token context window
+    const model = genAI.getGenerativeModel({
+        model: 'gemini-1.5-flash',
+        systemInstruction: KAI_SYSTEM_PROMPT,
+        generationConfig: {
+            maxOutputTokens: 300, // Keep responses concise
+            temperature: 0.7,     // Balanced: creative but grounded
+        }
+    });
+
+    // Language hint for Gemini
+    const langHint = lang === 'es'
+        ? '[SYSTEM: User is writing in Spanish. Respond fully in Spanish.]\n\n'
+        : '';
+
+    const result = await model.generateContent(langHint + userMessage);
+    const responseText = result.response.text().trim();
+
+    // Detect if Gemini signaled an out-of-scope response
+    const oosSignals = [
+        'outside my operational scope',
+        'fuera de mi alcance operativo',
+        'falls outside',
+        'cae fuera'
+    ];
+    const isOutOfScope = oosSignals.some(signal =>
+        responseText.toLowerCase().includes(signal.toLowerCase())
+    );
+
+    return {
+        reply: responseText,
+        isOutOfScope
+    };
+}
+
+// ============================================================
+// SILENT TELEMETRY ALERT (OOS Event Logger)
+// ============================================================
+async function triggerSilentTelemetryAlert(unmappedInput, sessionId = 'UNKNOWN') {
     const timestamp = new Date().toISOString();
 
-    // Construct Telemetry Payload
-    const emailHtml = `
-        <div style="font-family: monospace; padding: 20px; background-color: #111827; color: #f3f4f6; border: 1px solid #dc2626;">
-            <h2 style="color: #ef4444;">[KAI TELEMETRY] Unmapped Query Alert</h2>
-            <p><strong>SYSTEM ALERT:</strong> Kai encountered a user query that is not currently mapped in the <code>08_Kai_Knowledge_Base.md</code> matrix.</p>
-            
-            <div style="background-color: #1f2937; padding: 15px; margin: 20px 0; border-left: 4px solid #f59e0b;">
-                <strong>Unmapped User Input:</strong><br/>
-                <br/>
-                "${unmappedInput.replace(/</g, "&lt;").replace(/>/g, "&gt;")}"
-            </div>
-            
-            <p><strong>Session ID:</strong> ${sessionId}</p>
-            <p><strong>Timestamp:</strong> ${timestamp}</p>
-            
-            <hr style="border-color: #374151; margin: 20px 0;" />
-            <p><strong>ACTION REQUIRED:</strong></p>
-            <p>Review the input above. If valid, formulate a strategic response and append it to <strong>Section 4</strong> of the <code>08_Kai_Knowledge_Base.md</code> file to upgrade Kai's cognitive matrix for future interactions.</p>
-        </div>
-    `;
-
-    // Dispatch the alert to the Operations Hub
     if (!process.env.RESEND_API_KEY) {
-        console.warn("Missing RESEND_API_KEY. Telemetry alert skipped for dev environment.");
+        console.warn('[TELEMETRY] No RESEND_API_KEY set. Alert skipped.');
         return;
     }
+
+    const emailHtml = `
+        <div style="font-family: monospace; padding: 20px; background-color: #111827; color: #f3f4f6; border: 1px solid #dc2626;">
+            <h2 style="color: #ef4444;">[KAI TELEMETRY] Out-of-Scope Query Alert</h2>
+            <p><strong>SYSTEM ALERT:</strong> Kai detected a user query outside the current Knowledge Base scope.</p>
+            <div style="background-color: #1f2937; padding: 15px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <strong>User Input:</strong><br/><br/>
+                "${unmappedInput.replace(/</g, "&lt;").replace(/>/g, "&gt;")}"
+            </div>
+            <p><strong>Session ID:</strong> ${sessionId}</p>
+            <p><strong>Timestamp:</strong> ${timestamp}</p>
+            <hr style="border-color: #374151; margin: 20px 0;" />
+            <p><strong>ACTION REQUIRED:</strong></p>
+            <p>If this is a valid Nivo Partners topic, add a response to <strong>Section 4</strong> of <code>08_Kai_Knowledge_Base.md</code> to expand Kai's cognitive matrix.</p>
+        </div>
+    `;
 
     const { error } = await resend.emails.send({
         from: 'Kai Telemetry <system@nivopartners.com>',
         to: 'contact@nivopartners.com',
-        subject: '[KAI TELEMETRY] Unmapped Query Alert - Nivo Partners',
+        subject: '[KAI OOS ALERT] New unmapped query — Nivo Partners',
         html: emailHtml
     });
 
@@ -100,21 +188,4 @@ async function triggerSilentTelemetryAlert(unmappedInput, sessionId = 'UNKNOWN-S
     }
 
     console.log(`[TELEMETRY LOGGED] OOS event captured for session: ${sessionId}`);
-}
-
-/**
- * Mock LLM Wrapper Structure for Demonstration
- */
-async function generateAIResponse(userInput) {
-    // In production, replace this with your actual LangChain / Gemini / OpenAI call
-
-    // For HITL fallback testing, detect some unmapped topics or gibberish
-    const unmappedTopics = ['tax advice', 'legal counsel', 'hardware repair', 'coding my app', 'what is your name again', 'joke', 'weather', 'who is the president'];
-    const isUnmapped = unmappedTopics.some(topic => userInput.toLowerCase().includes(topic)) || userInput.length < 3 || userInput.length > 200;
-
-    if (isUnmapped) {
-        return { text: "I don't know.", confidenceScore: 0.4, isOutOfBounds: true };
-    }
-
-    return { text: "We provide sovereign digital architectures for sophisticated B2B operations...", confidenceScore: 0.95, isOutOfBounds: false };
 }

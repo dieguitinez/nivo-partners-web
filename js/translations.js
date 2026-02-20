@@ -623,16 +623,16 @@ const translations = {
             mechanism: "El Mecanismo",
             services: {
                 main: "Servicios",
-                web: "Digital Architecture Deployment",
-                marketing: "High-Precision Yield Engineering",
-                growth: "Asynchronous Neural Protocols",
+                web: "Despliegue de Arquitectura Digital",
+                marketing: "Ingeniería de Rendimiento de Alta Precisión",
+                growth: "Protocolos Neurales Asíncronos",
                 idp: "Arquitectura de Datos Internos (IDP)"
             },
             why: "Por qué Nivo Partners",
             audit: "Solicitud de Auditoría"
         },
         hero: {
-            badge: "Computer Systems Design & Related Services",
+            badge: "Diseño de Sistemas de Computación y Servicios Relacionados",
             title: "Construimos Sistemas de Adquisición de Clientes para <span class='text-gradient'>Empresas Ambiciosas</span>",
             subtitle: "No es un rediseño. Es una máquina de adquisición de clientes. Nivo Partners construye, opera y transfiere infraestructura de ingresos autónoma.",
             cta: "Inicializar Protocolo Revenue Core",
@@ -1112,7 +1112,7 @@ const translations = {
             careers: "Talento e Ingeniería"
         },
         webPage: {
-            badge: "Digital Architecture Deployment",
+            badge: "Despliegue de Arquitectura Digital",
             title: "Empiece a Convertir Visitantes en <span class='text-gradient'>Revenue</span>",
             desc: "Aprovechamos la arquitectura moderna para construir activos que están diseñados para vender.",
             cta: "Obtener Cotización",

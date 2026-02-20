@@ -2,6 +2,9 @@ backups/
 legacy_v1/
 skills/
 .gemini/
+.env
+.env.local
+.env.*.local
 *.log
 node_modules/
 .DS_Store
