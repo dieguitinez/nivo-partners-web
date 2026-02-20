@@ -1176,7 +1176,26 @@ const translations = {
             badge: "Marketing de Resultados",
             title: "Marketing de <span class='text-gradient'>Precisión</span>",
             desc: "No perseguimos clics. Perseguimos intención de compra. Tráfico de alta calidad para ventas de alto valor.",
-            cta: "Obtener Cotización"
+            cta: "Obtener Cotización",
+            hero: {
+                title: "Marketing de <span class='text-gradient'>Precisión</span>",
+                subtitle: "No perseguimos clics. Perseguimos intención de compra. Tráfico de alta calidad para ventas de alto valor."
+            },
+            simulator: {
+                title: "Predice tu <span class='text-gradient'>ROI</span>",
+                subtitle: "Deja de adivinar. Descubre lo que tu presupuesto debería entregar realmente.",
+                cta: "Inicializar Protocolo de Ingresos"
+            },
+            amplification: {
+                title: "Protocolos de Amplificación de Tráfico",
+                subtitle: "Desbloquea la capacidad dormida de tu infraestructura digital. Desplegamos activos de video de alta precisión generados por IA para validar mercados y acelerar la velocidad de leads con mínima exposición de capital.",
+                b1_title: "Generación de Activos con IA",
+                b1_desc: "Aprovechamos síntesis de video de nueva generación para pruebas creativas rápidas.",
+                b2_title: "Validación de Micro-Gasto",
+                b2_desc: "Utilizamos presupuestos publicitarios mínimos para identificar segmentos de audiencia de alto rendimiento antes de escalar.",
+                b3_title: "Bucle de Retroalimentación Arquitectónica",
+                b3_desc: "Los datos de rendimiento de campaña se alimentan directamente de vuelta a tu sistema para optimizar las proyecciones de ROI."
+            }
         },
         growthPage: {
             badge: "Ecosistema de Automatización IA",
