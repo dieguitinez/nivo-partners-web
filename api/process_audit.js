@@ -94,15 +94,13 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Missing required parameters: name, email, company.' });
         }
 
-        // Basic Sanitization (preventing immediate HTML injection attempts)
         const sanitizedData = {
             name: String(name).trim().replace(/<[^>]*>?/gm, ''),
             email: String(email).trim().toLowerCase(),
             company: String(company).trim().replace(/<[^>]*>?/gm, ''),
             service: String(service || '').trim().replace(/<[^>]*>?/gm, ''),
-            requirements: String(requirements || '').trim().replace(/<[^>]*>?/gm, ''),
-            source: 'strategy_audit',
-            status: 'new'
+            requirements: String(requirements || '').trim().replace(/<[^>]*>?/gm, '')
+            // Note: 'source' and 'status' removed to match Supabase schema
         };
 
         // Phase 1b: Database Logging (Supabase)
