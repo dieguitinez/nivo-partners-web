@@ -127,7 +127,7 @@ export default async function handler(req, res) {
         if (resend) {
             const clientEmailHtml = getEmailTemplate(sanitizedData.name);
             const { error } = await resend.emails.send({
-                from: 'Nivo Partners System <system@send.nivopartners.com>',
+                from: 'Nivo Partners System <system@nivopartners.com>',
                 to: sanitizedData.email,
                 subject: `Action Required: Nivo Partners Strategy Audit Initiated - ${sanitizedData.company}`,
                 html: clientEmailHtml
@@ -148,7 +148,7 @@ export default async function handler(req, res) {
 
         if (resend) {
             const { error } = await resend.emails.send({
-                from: 'Operations Node <system@send.nivopartners.com>',
+                from: 'Operations Node <system@nivopartners.com>',
                 to: 'contact@nivopartners.com',
                 subject: `NEW AUDIT SUBMITTED: ${sanitizedData.name} - ${sanitizedData.company}`,
                 text: `System Alert:\n\nA new Architecture Wizard audit has been submitted.\n\nName: ${sanitizedData.name}\nCompany: ${sanitizedData.company}\nService Request: ${sanitizedData.service}\n\nCheck the Supabase 'leads' dashboard for full context.`
