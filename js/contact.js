@@ -156,6 +156,9 @@ window.nivoCRM = {
                 try {
                     const errorJson = await response.json();
                     errorMessage = `Server Error: ${errorJson.error || 'Unknown protocol error'}`;
+                    if (errorJson.details) {
+                        errorMessage += ` (${errorJson.details})`;
+                    }
                 } catch (e) {
                     errorMessage = `HTTP ${response.status}: ${response.statusText}`;
                 }

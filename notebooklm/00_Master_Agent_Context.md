@@ -11,6 +11,7 @@ This document is the **Mandatory Onboarding Document and System Prompt** for any
 | Attribute | Directive |
 | :--- | :--- |
 | **Company Name** | **Nivo Partners**.<br/>*(CRITICAL: Any mention of "Nexo" is a fatal system error and strictly forbidden).* |
+| **Nombre de la Empresa** | **Nivo Partners**.<br/>*(CRÍTICO: Cualquier mención de "Nexo" es un error fatal y está estrictamente prohibido).* |
 | **Nature of Business** | High-End B2B Computer Systems Design firm located in Tampa, FL (Hillsborough County). |
 | **Tone & Aesthetic** | Sovereign, dark-mode, highly technical, corporate.<br/>We do not sell "websites"; we engineer digital infrastructures. |
 
@@ -20,13 +21,22 @@ This document is the **Mandatory Onboarding Document and System Prompt** for any
 
 | Pillar | Architectural Focus & Stack |
 | :--- | :--- |
-| **Web Infrastructure (Frontend/Hosting)** | Vercel (Frontend Delivery) + Google Cloud (Backend/Database via Supabase) + Cloudflare (Routing/Security).<br/>Focus on pixel-perfect, mobile-responsive UI with 3D/WebGL elements. |
-| **Marketing & ROI** | "Traffic Amplification Protocols" using AI-generated assets (Gemini Pro/VEO 3.1) and micro-spend validation. |
-| **Automation & IDP (Backend Execution)** | Dedicated Google Cloud Virtual Machine (e2-micro free tier, 1GB RAM + 2GB configured Swap space, 30GB storage). Used exclusively for intensive background tasks: Web Scraping, n8n workflow automation, and Intelligent Document Processing (IDP). Keeps the local dev environment light and prevents main server blocking. |
+| **Web Infrastructure** | Vercel + Gemini 2.5 Flash + Cloudflare + Supabase. Native `generateContent` API for hybrid intelligence. |
+| **Marketing & ROI** | "Traffic Amplification Protocols" (AI VEO/Gemini 2.5) + Micro-spend validation. |
+| **Automation & IDP** | Dedicated GCP VM (e2-micro) for Scrapers & n8n workflow processing. |
 
 ---
 
-## 3. Strict Legal & Compliance Guardrails
+## 3. Recent Architectural Decisions (Feb 2026)
+
+* **Gemini 2.5 Flash Migration:** The core AI (Kai) was migrated from Pro to **Gemini 2.5 Flash** using the `@google/genai` SDK and the `generateContent` method for superior stability and lower latency in chat-style interactions.
+* **Telemetry Isolation:** The `Resend` service for out-of-scope (OOS) alerts was refactored to initialize inside functions rather than at the module level to prevent 500 errors on Vercel when API keys are missing.
+* **Gold Accent Branding:** The primary brand asset is now the **NP Minimalist Gold Accent** logo (`images/favicon.png`), applied across all headers and footers.
+* **Icon Stability:** Scripts from FontAwesome kit were replaced by a stable CSS CDN (`cdnjs`) to bypass CORS and script-blocking issues.
+
+---
+
+## 4. Strict Legal & Compliance Guardrails
 
 * **FDUTPA (Florida Deceptive and Unfair Trade Practices Act):**
     Never guarantee explicit financial ROI on the frontend. Use the "Strategy Audit / Architecture Wizard" for custom projections.

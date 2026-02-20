@@ -82,7 +82,15 @@ module.exports = async function handler(req, res) {
             fireTelemetry(userMessage, sessionId);
         }
 
-        return res.status(200).json({ reply: responseText, escalated: isOutOfScope });
+        // Intent detection: Audit / Wizard Suggestions
+        const auditSignals = ['auditoría', 'audit', 'wizard', 'formulario', 'asistente', 'solicitud', 'audit request'];
+        const triggerAudit = auditSignals.some(s => responseText.toLowerCase().includes(s));
+
+        return res.status(200).json({
+            reply: responseText,
+            escalated: isOutOfScope,
+            triggerAudit: triggerAudit
+        });
 
     } catch (error) {
         console.error('[KAI ERROR]', error.message);

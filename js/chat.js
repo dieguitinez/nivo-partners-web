@@ -9,7 +9,10 @@ class AntigravityChat {
 
         // Load persistent state and memory
         const savedState = localStorage.getItem('ag_chat_state');
-        this.state = savedState ? JSON.parse(savedState) : { discussedValueProp: false };
+        this.state = savedState ? JSON.parse(savedState) : {
+            discussedValueProp: false,
+            auditSuggested: false
+        };
 
         if (!this.state.sessionId) {
             this.state.sessionId = 'sess_' + Math.random().toString(36).substr(2, 9);
@@ -199,7 +202,11 @@ class AntigravityChat {
             if (!isForced && input) {
                 input.value = ''; // Clear input if typed
             }
+            this.setAuditSuggested(false); // Reset on new message
             this.simulateResponse(text);
+        } else if (!isForced && this.state.auditSuggested) {
+            // User clicked send on empty input while audit was suggested
+            this.simulateResponse('open_contact');
         }
     }
 
@@ -323,6 +330,27 @@ class AntigravityChat {
         btnDiv.appendChild(btn);
         container.appendChild(btnDiv);
         container.scrollTop = container.scrollHeight;
+
+        // Visual nudge: set state for Send button sync
+        if (option.value === 'open_contact') {
+            this.setAuditSuggested(true);
+        }
+    }
+
+    setAuditSuggested(val) {
+        this.state.auditSuggested = val;
+        const sendBtn = document.querySelector('.ag-send-btn');
+        if (!sendBtn) return;
+
+        if (val) {
+            sendBtn.classList.add('audit-mode');
+            const currentLang = localStorage.getItem('nivo_lang') || 'en';
+            sendBtn.textContent = currentLang === 'es' ? 'Abrir Auditoría' : 'Open Audit';
+        } else {
+            sendBtn.classList.remove('audit-mode');
+            const currentLang = localStorage.getItem('nivo_lang') || 'en';
+            sendBtn.textContent = translations[currentLang].chat.send;
+        }
     }
 
     showTyping() {
@@ -376,15 +404,17 @@ class AntigravityChat {
             this.hideTyping();
             this.addMessage(data.reply, 'agent');
 
-            // Bilingual escalation button
-            if (data.escalated) {
+            // Handle Proactive Escalation / Audit Trigger
+            if (data.triggerAudit || data.escalated) {
                 const currentLang2 = localStorage.getItem('nivo_lang') || 'en';
                 const escalateLabel = currentLang2 === 'es'
-                    ? 'Abrir Asistente de Arquitectura'
-                    : 'Open Architecture Wizard';
+                    ? 'Abrir Auditoría Estratégica'
+                    : 'Open Strategic Audit';
+
                 setTimeout(() => {
-                    this.addOptions([{ label: escalateLabel, value: "open_contact" }]);
-                }, 400);
+                    // Use addExitButton for higher prominence (full width, primary color)
+                    this.addExitButton({ label: escalateLabel, value: "open_contact" });
+                }, 600);
             }
         } catch (error) {
             console.error('[KAI] Backend connection failed:', error.message);

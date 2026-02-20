@@ -629,7 +629,8 @@ header .container {
     position: absolute;
     top: -20%;
     right: -10%;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     height: 800px;
     background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(5, 5, 7, 0) 70%);
     pointer-events: none;
@@ -876,8 +877,9 @@ header .container {
 }
 
 .section-header h2 {
-    font-size: clamp(1.8rem, 8vw, 3rem);
+    font-size: clamp(1.5rem, 7vw, 3rem);
     margin-bottom: 16px;
+    word-wrap: break-word;
 }
 
 .comparison-grid {
@@ -1110,7 +1112,8 @@ footer {
 }
 
 .footer-links a:hover {
-    color: var(--text-main);
+    color: var(--accent-blue);
+    text-shadow: 0 0 10px rgba(59, 130, 146, 0.3);
 }
 
 .footer-logo {
@@ -1195,13 +1198,22 @@ footer {
 /* AI CHAT WIDGET */
 #ag-chat-widget {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 25px;
+    /* Slightly lowered for better alignment */
+    right: 25px;
     z-index: var(--zi-kai);
     font-family: 'Inter', sans-serif;
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+@media (max-width: 768px) {
+    #ag-chat-widget {
+        bottom: 20px;
+        right: 20px;
+        transform: scale(0.9);
+    }
 }
 
 .chat-label {
@@ -1657,13 +1669,45 @@ footer {
     border-color: var(--accent-blue);
 }
 
-.ag-chat-input button {
+.ag-send-btn {
     background: var(--accent-blue);
-    border: none;
-    width: 44px;
-    border-radius: 8px;
     color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.ag-send-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.ag-send-btn.audit-mode {
+    background: var(--text-gradient-start);
+    /* Gold/Accent flow */
+    color: var(--bg-main);
+    animation: pulse-glow 2s infinite;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+    }
 }
 
 .typing-indicator {

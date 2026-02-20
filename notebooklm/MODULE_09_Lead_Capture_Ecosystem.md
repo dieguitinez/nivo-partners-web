@@ -46,6 +46,8 @@ To close the loop, we must notify the architects. We use **Resend**, a modern br
 
 * **The Workflow:**
   * Lead Submits Form -> Database Captures -> Edge Function Triggers -> **Resend Dispatches Email**.
+* **The AI-Assist Loop:**
+  * User Query -> Kai (Gemini 2.5 Flash) -> Context Analysis -> **Autonomous Escalation to Audit Modal**.
 * **The Advantage:** This is "Serverless". It scales gracefully from 1 lead a day to 10,000, with zero management of email servers.
 
 ---

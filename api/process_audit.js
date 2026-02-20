@@ -138,11 +138,21 @@ export default async function handler(req, res) {
         return res.status(200).json({
             success: true,
             message: 'Audit parameters securely ingested. Communication protocols triggered.',
-            audit_ref: auditId
+            audit_ref: auditId,
+            email_status: (clientEmailError || internalEmailError) ? 'partial_failure' : 'all_green'
         });
 
     } catch (error) {
         console.error('Operations Error:', error);
-        return res.status(500).json({ error: 'System architecture execution failed. Please alert administrators.' });
+
+        // Dynamic error message for debugging
+        const friendlyError = error.message && error.message.includes('leads')
+            ? 'Database error: Ensure the leads table exists and is accessible.'
+            : error.message;
+
+        return res.status(500).json({
+            error: 'System architecture execution failed.',
+            details: friendlyError || 'Unknown backend exception'
+        });
     }
 }
