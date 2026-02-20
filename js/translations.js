@@ -578,6 +578,13 @@ const translations = {
             desc: "Automate your text, data, and email workflows. We build systems that run your business on autopilot.",
             cta: "View Automation Products"
         },
+        simulator: {
+            revenueLabel: "Current Monthly Revenue",
+            budgetLabel: "Monthly Ad Budget",
+            leadsLabel: "Est. Leads / Month",
+            projectedLabel: "Projected Monthly Revenue",
+            projectedSub: "Current + (Ads x 4.0 ROAS)"
+        },
         common: {
             nav_home: "Home",
             nav_services: "Services",
@@ -1202,6 +1209,13 @@ const translations = {
             title: "Deje de Rentar Mano de Obra. Comience a Poseer <span class='text-gradient'>Eficiencia</span>.",
             desc: "Automatice sus flujos de trabajo de texto, datos y correo electrónico. Construimos sistemas que dirigen su negocio en piloto automático.",
             cta: "Ver Productos de Automatización"
+        },
+        simulator: {
+            revenueLabel: "Ingresos Mensuales Actuales",
+            budgetLabel: "Presupuesto Publicitario Mensual",
+            leadsLabel: "Leads Est. / Mes",
+            projectedLabel: "Ingresos Mensuales Proyectados",
+            projectedSub: "Actual + (Ads x 4.0 ROAS)"
         },
         common: {
             nav_home: "Inicio",
