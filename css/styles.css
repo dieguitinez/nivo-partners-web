@@ -171,6 +171,11 @@
     /* animation removed */
 }
 
+.form-group select option {
+    background-color: var(--bg-card);
+    color: white;
+}
+
 @keyframes modalSlideIn {
     from {
         opacity: 0;

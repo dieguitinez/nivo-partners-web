@@ -7,8 +7,12 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const resendApiKey = process.env.RESEND_API_KEY;
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
-const resend = new Resend(resendApiKey);
+const supabase = (supabaseUrl && supabaseServiceKey) ? createClient(supabaseUrl, supabaseServiceKey) : null;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
+
+// Log initialization status (internal logs only)
+if (!supabase) console.warn('[INIT] Supabase client failed: Missing URL or Key');
+if (!resend) console.warn('[INIT] Resend client failed: Missing API Key');
 
 const getEmailTemplate = (clientName) => `
 <!DOCTYPE html>
@@ -89,12 +93,14 @@ export default async function handler(req, res) {
             company: String(company).trim().replace(/<[^>]*>?/gm, ''),
             service: String(service || '').trim().replace(/<[^>]*>?/gm, ''),
             requirements: String(requirements || '').trim().replace(/<[^>]*>?/gm, ''),
-            source: 'Architecture Wizard',
-            status: 'in_queue'
+            source: 'strategy_audit',
+            status: 'new'
         };
 
         // Phase 1b: Database Logging (Supabase)
         // Inserting into 'leads' table
+        if (!supabase) throw new Error('Database connection parameters not configured.');
+
         const { data: dbData, error: dbError } = await supabase
             .from('leads')
             .insert([sanitizedData])
@@ -103,32 +109,39 @@ export default async function handler(req, res) {
 
         if (dbError) {
             console.error('Database Insertion Error:', dbError);
-            throw new Error('Failed to securely log infrastructure parameters.');
+            throw new Error(`System architecture execution failed: ${dbError.message}`);
         }
 
         const auditId = dbData ? dbData.id : null;
 
         // Phase 2 & 3: Trigger Client Email (Resend)
-        const clientEmailHtml = getEmailTemplate(sanitizedData.name);
-
-        const { error: clientEmailError } = await resend.emails.send({
-            from: 'Nivo Partners System <system@send.nivopartners.com>',
-            to: sanitizedData.email,
-            subject: `Action Required: Nivo Partners Strategy Audit Initiated - ${sanitizedData.company}`,
-            html: clientEmailHtml
-        });
+        let clientEmailError = null;
+        if (resend) {
+            const clientEmailHtml = getEmailTemplate(sanitizedData.name);
+            const { error } = await resend.emails.send({
+                from: 'Nivo Partners System <system@send.nivopartners.com>',
+                to: sanitizedData.email,
+                subject: `Action Required: Nivo Partners Strategy Audit Initiated - ${sanitizedData.company}`,
+                html: clientEmailHtml
+            });
+            clientEmailError = error;
+        }
 
         if (clientEmailError) {
             console.error('Client Email Transmission Error:', clientEmailError);
         }
 
         // Phase 4: Internal Notification (The Ping)
-        const { error: internalEmailError } = await resend.emails.send({
-            from: 'Operations Node <system@send.nivopartners.com>',
-            to: 'contact@nivopartners.com',
-            subject: `NEW AUDIT SUBMITTED: ${sanitizedData.name} - ${sanitizedData.company}`,
-            text: `System Alert:\n\nA new Architecture Wizard audit has been submitted.\n\nName: ${sanitizedData.name}\nCompany: ${sanitizedData.company}\nService Request: ${sanitizedData.service}\n\nCheck the Supabase 'leads' dashboard for full context.`
-        });
+        let internalEmailError = null;
+        if (resend) {
+            const { error } = await resend.emails.send({
+                from: 'Operations Node <system@send.nivopartners.com>',
+                to: 'contact@nivopartners.com',
+                subject: `NEW AUDIT SUBMITTED: ${sanitizedData.name} - ${sanitizedData.company}`,
+                text: `System Alert:\n\nA new Architecture Wizard audit has been submitted.\n\nName: ${sanitizedData.name}\nCompany: ${sanitizedData.company}\nService Request: ${sanitizedData.service}\n\nCheck the Supabase 'leads' dashboard for full context.`
+            });
+            internalEmailError = error;
+        }
 
         if (internalEmailError) {
             console.error('Internal Notification Transmission Error:', internalEmailError);

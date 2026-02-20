@@ -24,7 +24,8 @@ CONTACT: contact@nivopartners.com | Tampa, Florida | FIPA compliant`;
 // ============================================================
 // HANDLER
 // ============================================================
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
+    // CORS configuration for local and wide access
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -39,6 +40,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (!process.env.GEMINI_API_KEY) {
+        console.warn('[KAI] GEMINI_API_KEY is missing from environment');
         return res.status(200).json({
             reply: lang === 'es'
                 ? 'Configurando mi núcleo cognitivo. Para asistencia inmediata, contacta a contact@nivopartners.com'
@@ -48,23 +50,28 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        // Using Gemini 2.5 Flash as per Master Agent Context requirements
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         const langPrefix = lang === 'es'
             ? 'INSTRUCCIÓN ACTIVA: Responde SIEMPRE en español.\n\n'
             : 'ACTIVE INSTRUCTION: Respond in English.\n\n';
 
-        // Use multi-turn contents array — proven to work (confirmed by /api/ping)
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+        // High-precision chat sequence
+        const result = await model.generateContent({
             contents: [
                 {
                     role: 'user',
-                    parts: [{ text: KAI_SYSTEM_PROMPT + '\n\n' + langPrefix + 'Acknowledge your persona briefly.' }]
+                    parts: [{ text: KAI_SYSTEM_PROMPT + '\n\n' + langPrefix + 'Status Check: Acknowledge your persona and service pillars.' }]
                 },
                 {
                     role: 'model',
-                    parts: [{ text: 'Understood. I am Kai, Lead Strategist at Nivo Partners. Ready.' }]
+                    parts: [{
+                        text: lang === 'es'
+                            ? 'Entendido. Soy Kai, Estratega Principal de Nivo Partners. Operativo bajo los 3 pilares de infraestructura.'
+                            : 'Understood. I am Kai, Lead Strategist at Nivo Partners. Operational across the 3 infrastructure pillars.'
+                    }]
                 },
                 {
                     role: 'user',
@@ -73,17 +80,18 @@ module.exports = async function handler(req, res) {
             ]
         });
 
-        const responseText = response.text.trim();
+        const responseText = result.response.text().trim();
 
-        const oosSignals = ['outside my operational scope', 'fuera de mi alcance', 'falls outside', 'cae fuera'];
+        // OOS Detection
+        const oosSignals = ['outside my operational scope', 'fuera de mi alcance', 'falls outside', 'cae fuera', 'not programmed to', 'no puedo ayudar'];
         const isOutOfScope = oosSignals.some(s => responseText.toLowerCase().includes(s));
 
         if (isOutOfScope) {
-            fireTelemetry(userMessage, sessionId);
+            await fireTelemetry(userMessage, sessionId);
         }
 
         // Intent detection: Audit / Wizard Suggestions
-        const auditSignals = ['auditoría', 'audit', 'wizard', 'formulario', 'asistente', 'solicitud', 'audit request'];
+        const auditSignals = ['auditoría', 'audit', 'wizard', 'formulario', 'asistente', 'solicitud', 'audit request', 'wizard'];
         const triggerAudit = auditSignals.some(s => responseText.toLowerCase().includes(s));
 
         return res.status(200).json({
@@ -95,14 +103,25 @@ module.exports = async function handler(req, res) {
     } catch (error) {
         console.error('[KAI ERROR]', error.message);
 
-        // Graceful fallback — never show raw error to user
+        // Soft fallback if model name fails (retry with 1.5 if 2.5 is unavailable in certain deployments)
+        if (error.message.includes('model not found') || error.message.includes('404')) {
+            try {
+                const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+                const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+                const result = await model.generateContent(userMessage);
+                return res.status(200).json({ reply: result.response.text().trim(), escalated: false });
+            } catch (e2) {
+                console.error('[KAI EMERGENCY FALLBACK FAILED]', e2.message);
+            }
+        }
+
         const fallback = lang === 'es'
             ? 'Estoy procesando una alta carga de consultas en este momento. Para asistencia estratégica inmediata, escríbenos a contact@nivopartners.com'
             : 'I\'m currently handling high query volume. For immediate strategic assistance, email us at contact@nivopartners.com';
 
         return res.status(200).json({ reply: fallback, escalated: false });
     }
-};
+}
 
 // ============================================================
 // SILENT TELEMETRY

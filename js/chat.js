@@ -378,7 +378,9 @@ class AntigravityChat {
         try {
             // Determine API Base URL for local testing vs Vercel Production
             let apiUrl = '/api/chat';
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                apiUrl = '/api/chat'; // Use relative path for local dev
+            } else if (window.location.protocol === 'file:') {
                 apiUrl = 'https://nivo-partners-web.vercel.app/api/chat';
             }
 

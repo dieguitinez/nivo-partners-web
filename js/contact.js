@@ -181,20 +181,15 @@ window.nivoCRM = {
 
 
         } catch (error) {
-            console.error("Transmission Interrupted:", error);
+            console.error("Transmission Interrupted (Internal Log):", error);
+
+            // Per user request: Suppress the red error banner.
+            // We just reset the button so they can try again if it was a transient network issue.
             btn.innerText = "Retry Protocol Audit";
             btn.disabled = false;
 
-            // Show detailed error to help the user debug
-            const errorBanner = document.createElement('div');
-            errorBanner.className = 'form-error-banner';
-            errorBanner.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${error.message}`;
-
-            // Remove existing error banners
-            const existing = form.querySelector('.form-error-banner');
-            if (existing) existing.remove();
-
-            form.insertBefore(errorBanner, form.firstChild);
+            // Optional: Log to an internal monitoring endpoint if we had one
+            // For now, console.error is sufficient for debugging.
         }
     }
 };
