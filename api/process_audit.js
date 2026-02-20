@@ -167,14 +167,10 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error('Operations Error:', error);
 
-        // Dynamic error message for debugging
-        const friendlyError = error.message && error.message.includes('leads')
-            ? 'Database error: Ensure the leads table exists and is accessible.'
-            : error.message;
-
         return res.status(500).json({
             error: 'System architecture execution failed.',
-            details: friendlyError || 'Unknown backend exception'
+            details: error.message || 'Unknown backend exception',
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
         });
     }
 }

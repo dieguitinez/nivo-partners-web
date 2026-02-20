@@ -195,17 +195,12 @@ window.nivoCRM = {
         } catch (error) {
             console.error("TRANSMISSION ERROR (Contact Form):", error);
 
-            // Temporary diagnostic: Alert the user in non-production environments
-            // Or just log it clearly.
-            if (window.location.hostname.includes('localhost') || window.location.hostname.includes('vercel.app')) {
-                alert(`System Error: ${error.message}`);
-            }
+            // Per user request: Show explicit alert for diagnosis during this phase.
+            alert(`Nivo Partners System Error:\n\n${error.message}\n\nPlease check the console (F12) for full trace.`);
 
             // Restore button to allow retry
             btn.innerText = "Retry Protocol Audit";
             btn.disabled = false;
-
-            // Log full error for remote debugging if needed
         }
     }
 };
