@@ -54,18 +54,18 @@ Always answer naturally. Do not use headers or bullet lists unless explaining mu
 // MAIN HANDLER
 // ============================================================
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
-    }
-
-    // Add CORS headers to allow calls from local file:// and production
+    // Add CORS headers FIRST — before any method checks
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Handle Preflight Request
+    // Handle Preflight Request (OPTIONS must be answered before checking for POST)
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
+    }
+
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
     }
 
     try {

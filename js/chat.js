@@ -583,8 +583,6 @@ class AntigravityChat {
             // Determine API Base URL for local testing vs Vercel Production
             let apiUrl = '/api/chat';
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
-                // If running locally without a Next.js server, point to the live Vercel API
-                // Assuming standard vercel domain pattern or production domain
                 apiUrl = 'https://nivo-partners-web.vercel.app/api/chat';
             }
 
@@ -599,7 +597,11 @@ class AntigravityChat {
                 })
             });
 
-            if (!response.ok) throw new Error('API Error');
+            if (!response.ok) {
+                const errorBody = await response.text();
+                console.error(`[KAI] API Error ${response.status}:`, errorBody);
+                throw new Error(`HTTP ${response.status}: ${errorBody}`);
+            }
 
             const data = await response.json();
 
@@ -608,7 +610,8 @@ class AntigravityChat {
 
             // Bilingual escalation button
             if (data.escalated) {
-                const escalateLabel = currentLang === 'es'
+                const currentLang2 = localStorage.getItem('nivo_lang') || 'en';
+                const escalateLabel = currentLang2 === 'es'
                     ? 'Abrir Asistente de Arquitectura'
                     : 'Open Architecture Wizard';
                 setTimeout(() => {
@@ -616,13 +619,18 @@ class AntigravityChat {
                 }, 400);
             }
         } catch (error) {
-            console.error(error);
+            console.error('[KAI] Backend connection failed:', error.message);
             this.hideTyping();
             const currentLang = localStorage.getItem('nivo_lang') || 'en';
+            // Show a soft fallback rather than a hard error
             const errMsg = currentLang === 'es'
-                ? 'Conexión con el núcleo cognitivo interrumpida. Por favor intenta de nuevo.'
-                : 'Connection to cognitive cores interrupted. Please try again later.';
+                ? 'Estoy procesando tu consulta. Para asistencia inmediata, puedes solicitar una Auditoría Estratégica con nuestro equipo.'
+                : 'I\'m processing your query. For immediate assistance, you can request a Strategic Audit with our team.';
             this.addMessage(errMsg, 'agent');
+            setTimeout(() => {
+                const label = currentLang === 'es' ? 'Solicitar Auditoría' : 'Request Audit';
+                this.addOptions([{ label, value: 'open_contact' }]);
+            }, 400);
         }
     }
 }
