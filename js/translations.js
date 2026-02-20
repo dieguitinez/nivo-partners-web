@@ -561,6 +561,11 @@ const translations = {
             title: "Marketing of <span class='text-gradient'>Precision</span>",
             desc: "We don't chase clicks. We chase purchase intent. High-quality traffic for high-ticket sales.",
             cta: "Get a Quote",
+            simulator: {
+                title: "Calculate Projected <span class='text-gradient'>Performance</span>",
+                subtitle: "Data-driven performance model based on specified budget parameters.",
+                cta: "Initialize Revenue Protocol"
+            },
             amplification: {
                 title: "Traffic Amplification Protocols",
                 subtitle: "Unlock the dormant capacity of your digital infrastructure. We deploy high-precision, AI-generated video assets to validate markets and accelerate lead velocity with minimal capital exposure.",
@@ -1182,26 +1187,22 @@ const translations = {
         marketingPage: {
             badge: "Marketing de Resultados",
             title: "Marketing de <span class='text-gradient'>Precisión</span>",
-            desc: "No perseguimos clics. Perseguimos intención de compra. Tráfico de alta calidad para ventas de alto valor.",
-            cta: "Obtener Cotización",
-            hero: {
-                title: "Marketing de <span class='text-gradient'>Precisión</span>",
-                subtitle: "No perseguimos clics. Perseguimos intención de compra. Tráfico de alta calidad para ventas de alto valor."
-            },
+            desc: "No buscamos clics. Buscamos intención de compra. Tráfico de alta calidad para ventas de alto valor.",
+            cta: "Solicitar Presupuesto",
             simulator: {
-                title: "Predice tu <span class='text-gradient'>ROI</span>",
-                subtitle: "Deja de adivinar. Descubre lo que tu presupuesto debería entregar realmente.",
+                title: "Calcular <span class='text-gradient'>Rendimiento</span> Proyectado",
+                subtitle: "Modelo de rendimiento basado en proyecciones técnicas de inversión.",
                 cta: "Inicializar Protocolo de Ingresos"
             },
             amplification: {
                 title: "Protocolos de Amplificación de Tráfico",
-                subtitle: "Desbloquea la capacidad dormida de tu infraestructura digital. Desplegamos activos de video de alta precisión generados por IA para validar mercados y acelerar la velocidad de leads con mínima exposición de capital.",
-                b1_title: "Generación de Activos con IA",
-                b1_desc: "Aprovechamos síntesis de video de nueva generación para pruebas creativas rápidas.",
-                b2_title: "Validación de Micro-Gasto",
-                b2_desc: "Utilizamos presupuestos publicitarios mínimos para identificar segmentos de audiencia de alto rendimiento antes de escalar.",
+                subtitle: "Desbloquee la capacidad latente de su infraestructura digital. Desplegamos activos de video generados por IA de alta precisión para validar mercados y acelerar la velocidad de leads con mínima exposición de capital.",
+                b1_title: "Generación de Activos por IA",
+                b1_desc: "Uso de síntesis de video de próxima generación para pruebas creativas rápidas.",
+                b2_title: "Validación de Micro-Inversión",
+                b2_desc: "Uso de presupuestos publicitarios mínimos para identificar segmentos de audiencia de alto rendimiento antes de escalar.",
                 b3_title: "Bucle de Retroalimentación Arquitectónica",
-                b3_desc: "Los datos de rendimiento de campaña se alimentan directamente de vuelta a tu sistema para optimizar las proyecciones de ROI."
+                b3_desc: "Integración de datos de rendimiento de campaña en su sistema para optimizar las proyecciones de ROI."
             }
         },
         growthPage: {
