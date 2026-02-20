@@ -116,12 +116,12 @@ module.exports = async function handler(req, res) {
 };
 
 // ============================================================
-// GEMINI FLASH INVOCATION
+// GEMINI 2.0 FLASH INVOCATION
 // ============================================================
 async function callGemini(userMessage, lang = 'en') {
-    // Use gemini-1.5-flash — free tier, fast, 1M token context window
+    // Use gemini-2.0-flash — free tier, fast, latest model
     const model = genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash',
+        model: 'gemini-2.0-flash',
         systemInstruction: KAI_SYSTEM_PROMPT,
         generationConfig: {
             maxOutputTokens: 300,
