@@ -134,9 +134,15 @@ Este sistema tiene **tres audiencias**:
 | [OPS_03_Service_Acceptance.md](../06_CORPORATE_GOVERNANCE/OPS_03_Service_Acceptance.md) | EN | Service Delivery Acceptance (Anti-Scope Creep). |
 | [CEO_Checklist.md](../06_CORPORATE_GOVERNANCE/CEO_Administrative_Fortress_Checklist.md) | EN | Master Checklist for CEO Compliance & Ops. |
 
+### 09. IDENTIDAD Y ESTÉTICA DE MARCA 🎨
+
+| Documento | Idioma | Descripción |
+| :--- | :---: | :--- |
+| [BRAND_01_Visual_Sovereignty.md](../09_IDENTITY_ESTHETICS/BRAND_01_Visual_Sovereignty.md) | ES | Manual de Soberanía Visual, Logos y Colores. |
+
 ---
 
-### SECCIÓN 9 — [MÓDULOS TÉCNICOS (CORE)](../)
+### SECCIÓN 10 — [MÓDULOS TÉCNICOS (CORE)](../)
 
 | Módulo | Descripción |
 |---|---|
