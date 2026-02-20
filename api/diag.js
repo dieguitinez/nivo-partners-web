@@ -1,7 +1,7 @@
-const { createClient } = require('@supabase/supabase-js');
-const { Resend } = require('resend');
+import { createClient } from '@supabase/supabase-js';
+import { Resend } from 'resend';
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     const diag = {

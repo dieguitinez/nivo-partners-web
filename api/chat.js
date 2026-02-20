@@ -1,5 +1,5 @@
-const { GoogleGenAI } = require('@google/genai');
-const { Resend } = require('resend');
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { Resend } from 'resend';
 
 // ============================================================
 // KAI COMPACT SYSTEM PROMPT (hardcoded for reliability)
