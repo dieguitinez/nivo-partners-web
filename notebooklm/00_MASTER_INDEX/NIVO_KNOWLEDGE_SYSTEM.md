@@ -98,20 +98,30 @@ Este sistema tiene **tres audiencias**:
 
 ---
 
-### SECCIÓN 6 — [CORPORATE GOVERNANCE](../06_CORPORATE_GOVERNANCE/)
+### 06. GOBERNANZA CORPORATIVA 🛡️
 
-*Gobernanza Institucional, Estatutos y Visión Estratégica (Bilingüe)*
+| Documento | Idioma | Descripción |
+| :--- | :---: | :--- |
+| [GOV_01_Constitutional_Manifesto_ES.md](../ES/GOV_01_Constitutional_Manifesto_ES.md) | ES | Misión, Visión, Valores y Juramento Soberano. |
+| [GOV_01_Constitutional_Manifesto_EN.md](../EN/GOV_01_Constitutional_Manifesto_EN.md) | EN | Constitutional Manifesto (English Version). |
+| [GOV_02_Operational_Statutes_ES.md](../ES/GOV_02_Operational_Statutes_ES.md) | ES | Jerarquía, IP y Leyes de Asociación. |
+| [GOV_02_Operational_Statutes_EN.md](../EN/GOV_02_Operational_Statutes_EN.md) | EN | Operational Statutes (English Version). |
+| [GOV_03_Ethical_AI_Charter_ES.md](../ES/GOV_03_Ethical_AI_Charter_ES.md) | ES | Soberanía de Datos y Ética en IA. |
+| [GOV_03_Ethical_AI_Charter_EN.md](../EN/GOV_03_Ethical_AI_Charter_EN.md) | EN | Ethical AI Charter (English Version). |
+| [GOV_04_Strategic_Growth_Roadmap_2026_ES.md](../ES/GOV_04_Strategic_Growth_Roadmap_2026_ES.md) | ES | Hitos de Crecimiento y Expansión. |
+| [GOV_04_Strategic_Growth_Roadmap_2026_EN.md](../EN/GOV_04_Strategic_Growth_Roadmap_2026_EN.md) | EN | Strategic Growth Roadmap (English Version). |
 
-| Documento | Propósito | Versión EN | Versión ES |
-|---|---|---|---|
-| [GOV_01_Constitutional_Manifesto.md](../06_CORPORATE_GOVERNANCE/GOV_01_Constitutional_Manifesto.md) | Manifiesto: Misión, Visión y Juramento Soberano | [Link](../EN/GOV_01_Constitutional_Manifesto_EN.md) | [Link](../ES/GOV_01_Constitutional_Manifesto_ES.md) |
-| [GOV_02_Operational_Statutes.md](../06_CORPORATE_GOVERNANCE/GOV_02_Operational_Statutes.md) | Estatutos: Jerarquía, IP y Socios | [Link](../EN/GOV_02_Operational_Statutes_EN.md) | [Link](../ES/GOV_02_Operational_Statutes_ES.md) |
-| [GOV_03_Ethical_AI_Charter.md](../06_CORPORATE_GOVERNANCE/GOV_03_Ethical_AI_Charter.md) | Ética: Soberanía de datos y transparencia | [Link](../EN/GOV_03_Ethical_AI_Charter_EN.md) | [Link](../ES/GOV_03_Ethical_AI_Charter_ES.md) |
-| [GOV_04_Strategic_Growth_Roadmap_2026.md](../06_CORPORATE_GOVERNANCE/GOV_04_Strategic_Growth_Roadmap_2026.md) | Roadmap 2026: Hitos de expansión | [Link](../EN/GOV_04_Strategic_Growth_Roadmap_2026_EN.md) | [Link](../ES/GOV_04_Strategic_Growth_Roadmap_2026_ES.md) |
+### 07. INFRAESTRUCTURA CONTRACTUAL ⚖️
+
+| Documento | Idioma | Descripción |
+| :--- | :---: | :--- |
+| [MSA_Core_Framework.md](../07_LEGAL_CONTRACTS/MSA_Core_Framework.md) | ES | Acuerdo Maestro de Servicios (Framework Legal). |
+| [SOW_Templates_Modular.md](../07_LEGAL_CONTRACTS/SOW_Templates_Modular.md) | ES | Templates para Anexos (Web, Marketing, Datos). |
+| [USE_CASE_Spa_Example.md](../07_LEGAL_CONTRACTS/USE_CASE_Spa_Example.md) | ES | Ejemplo Práctico: Caso "Spa" (Full Pack vs Modular). |
 
 ---
 
-### SECCIÓN 7 — [MÓDULOS TÉCNICOS (CORE)](../)
+### SECCIÓN 8 — [MÓDULOS TÉCNICOS (CORE)](../)
 
 | Módulo | Descripción |
 |---|---|
