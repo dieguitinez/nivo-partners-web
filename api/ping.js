@@ -22,7 +22,7 @@ module.exports = async function handler(req, res) {
     if (process.env.GEMINI_API_KEY) {
         try {
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-            const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+            const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
             const result = await model.generateContent('Say "OK" in one word.');
             report.gemini_test = result.response.text().trim();
         } catch (err) {
