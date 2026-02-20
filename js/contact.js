@@ -165,31 +165,47 @@ window.nivoCRM = {
                 throw new Error(errorMessage);
             }
 
-            // Success Transition
+            // Success Transition: Form -> Success View
             form.classList.add('hidden');
-            document.getElementById('lead-success').classList.remove('hidden');
+            const successEl = document.getElementById('lead-success');
+            if (successEl) {
+                successEl.classList.remove('hidden');
+            } else {
+                console.error("Critical UI Error: #lead-success element not found in DOM.");
+            }
+
             console.log("Neural Link Established: Audit ingested, emails dispatched by backend.");
 
 
             // Update success message with dynamic translation
-            const lang = localStorage.getItem('nivo_lang') || 'en';
-            // Fallback to English if translation key missing (safety check)
-            const t = (translations[lang] && translations[lang].modal) ? translations[lang].modal : translations['en'].modal;
+            try {
+                const lang = localStorage.getItem('nivo_lang') || 'en';
+                const langData = translations[lang] || translations['en'];
+                const t = langData.modal || {};
 
-            const successMsg = document.querySelector('#lead-success p');
-            if (successMsg) successMsg.innerHTML = t.successDesc;
+                const successMsg = document.querySelector('#lead-success p');
+                if (successMsg && t.successDesc) {
+                    successMsg.innerHTML = t.successDesc;
+                }
+            } catch (translationError) {
+                console.warn("Minor: Transition translation failed, using static fallback.", translationError);
+            }
 
 
         } catch (error) {
-            console.error("Transmission Interrupted (Internal Log):", error);
+            console.error("TRANSMISSION ERROR (Contact Form):", error);
 
-            // Per user request: Suppress the red error banner.
-            // We just reset the button so they can try again if it was a transient network issue.
+            // Temporary diagnostic: Alert the user in non-production environments
+            // Or just log it clearly.
+            if (window.location.hostname.includes('localhost') || window.location.hostname.includes('vercel.app')) {
+                alert(`System Error: ${error.message}`);
+            }
+
+            // Restore button to allow retry
             btn.innerText = "Retry Protocol Audit";
             btn.disabled = false;
 
-            // Optional: Log to an internal monitoring endpoint if we had one
-            // For now, console.error is sufficient for debugging.
+            // Log full error for remote debugging if needed
         }
     }
 };

@@ -11,8 +11,12 @@ const supabase = (supabaseUrl && supabaseServiceKey) ? createClient(supabaseUrl,
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 // Log initialization status (internal logs only)
-if (!supabase) console.warn('[INIT] Supabase client failed: Missing URL or Key');
-if (!resend) console.warn('[INIT] Resend client failed: Missing API Key');
+if (!supabaseUrl || !supabaseServiceKey) {
+    console.error('[INIT] Supabase client failed: Missing URL or Key');
+}
+if (!resendApiKey) {
+    console.error('[INIT] Resend client failed: Missing API Key');
+}
 
 const getEmailTemplate = (clientName) => `
 <!DOCTYPE html>
@@ -109,7 +113,7 @@ export default async function handler(req, res) {
 
         if (dbError) {
             console.error('Database Insertion Error:', dbError);
-            throw new Error(`System architecture execution failed: ${dbError.message}`);
+            throw new Error(`Critical: Database sync failed (Supabase Error). Details: ${dbError.message}`);
         }
 
         const auditId = dbData ? dbData.id : null;
@@ -133,6 +137,11 @@ export default async function handler(req, res) {
 
         // Phase 4: Internal Notification (The Ping)
         let internalEmailError = null;
+        if (!resend) {
+            console.error('Resend client not initialized. Cannot send emails.');
+            throw new Error('Critical: Email service not configured (Missing RESEND_API_KEY in Vercel).');
+        }
+
         if (resend) {
             const { error } = await resend.emails.send({
                 from: 'Operations Node <system@send.nivopartners.com>',
