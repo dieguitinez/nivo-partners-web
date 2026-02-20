@@ -587,10 +587,17 @@ header .container {
         display: block;
     }
 
+    .nav-item.has-dropdown {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
     .has-dropdown .dropdown-toggle {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
     }
 
     .has-dropdown:hover .dropdown-menu {
