@@ -424,9 +424,9 @@ header .container {
 }
 
 .logo-img-footer {
-    height: 28px;
+    height: 44px;
     width: auto;
-    filter: drop-shadow(0 0 6px rgba(0, 102, 255, 0.25));
+    filter: drop-shadow(0 0 8px rgba(0, 102, 255, 0.3));
 }
 
 .logo-link {

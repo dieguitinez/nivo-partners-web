@@ -112,7 +112,7 @@ async function callGemini(userMessage, lang = 'en') {
         : '';
 
     const response = await ai.models.generateContent({
-        model: 'gemini-1.5-flash',
+        model: 'gemini-2.5-flash',
         contents: langHint + userMessage,
         config: {
             systemInstruction: KAI_SYSTEM_PROMPT,
