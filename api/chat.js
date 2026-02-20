@@ -1,5 +1,5 @@
+const { GoogleGenAI } = require('@google/genai');
 const { Resend } = require('resend');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 
@@ -7,7 +7,7 @@ const { join } = require('path');
 // INITIALIZE EXTERNAL SERVICES
 // ============================================================
 const resend = new Resend(process.env.RESEND_API_KEY);
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // ============================================================
 // LOAD KAI'S KNOWLEDGE BASE AT COLD START (Cached in memory)
@@ -43,7 +43,7 @@ ${KAI_KNOWLEDGE_BASE}
 ## ESCALATION PROTOCOL
 If a question is completely outside Nivo Partners' scope (personal advice, weather, unrelated topics):
 - Respond with: "That falls outside my operational scope. However, I can analyze your digital infrastructure — which area should we explore?"
-- Set isOutOfScope to true in your response.
+- Note: the frontend will detect this phrase and show the escalation button.
 
 ## RESPONSE FORMAT
 Always answer naturally. Do not use headers or bullet lists unless explaining multiple items. Be direct.
@@ -58,7 +58,7 @@ module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Handle Preflight Request (OPTIONS must be answered before checking for POST)
+    // Handle Preflight Request
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
@@ -74,70 +74,55 @@ module.exports = async function handler(req, res) {
             return res.status(400).json({ error: 'Missing user message.' });
         }
 
-        // ------------------------------------------------------------------
-        // CHECK IF GEMINI API KEY IS CONFIGURED
-        // ------------------------------------------------------------------
         if (!process.env.GEMINI_API_KEY) {
             console.warn('[KAI] Missing GEMINI_API_KEY — returning fallback response.');
             return res.status(200).json({
                 reply: lang === 'es'
-                    ? 'Mi núcleo cognitivo está siendo configurado. Por favor, continúa por el Asistente de Arquitectura para hablar con nuestro equipo estratégico.'
-                    : 'My cognitive core is being configured. Please proceed through the Architecture Wizard to connect with our strategic team.',
+                    ? 'Mi núcleo cognitivo está siendo configurado. Por favor, continúa por el Asistente de Arquitectura.'
+                    : 'My cognitive core is being configured. Please proceed through the Architecture Wizard.',
                 escalated: false
             });
         }
 
-        // ------------------------------------------------------------------
-        // INVOKE GEMINI FLASH (Fast, Free Tier)
-        // ------------------------------------------------------------------
         const { reply, isOutOfScope } = await callGemini(userMessage, lang);
 
-        // ------------------------------------------------------------------
-        // OOS TELEMETRY: Fire silent alert if query falls outside scope
-        // ------------------------------------------------------------------
         if (isOutOfScope) {
             triggerSilentTelemetryAlert(userMessage, sessionId).catch(err => {
                 console.error('[TELEMETRY] Alert failed silently:', err.message);
             });
         }
 
-        return res.status(200).json({
-            reply,
-            escalated: isOutOfScope
-        });
+        return res.status(200).json({ reply, escalated: isOutOfScope });
 
     } catch (error) {
-        console.error('[KAI] Handler error:', error);
+        console.error('[KAI] Handler error:', error.message);
         return res.status(500).json({
-            error: 'Neural link interrupted. Please try again.',
+            error: 'Neural link interrupted.',
             details: error.message
         });
     }
 };
 
 // ============================================================
-// GEMINI 2.0 FLASH INVOCATION
+// GEMINI 2.0 FLASH INVOCATION (New @google/genai SDK)
 // ============================================================
 async function callGemini(userMessage, lang = 'en') {
-    // Use gemini-1.5-flash-latest — free tier (1500 req/day), v1beta compatible
-    const model = genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash-latest',
-        systemInstruction: KAI_SYSTEM_PROMPT,
-        generationConfig: {
+    const langHint = lang === 'es'
+        ? '[SYSTEM: User is writing in Spanish. Respond fully in Spanish.]\n\n'
+        : '';
+
+    const response = await ai.models.generateContent({
+        model: 'gemini-2.0-flash',
+        contents: langHint + userMessage,
+        config: {
+            systemInstruction: KAI_SYSTEM_PROMPT,
             maxOutputTokens: 300,
             temperature: 0.7,
         }
     });
 
-    // Language hint for Gemini
-    const langHint = lang === 'es'
-        ? '[SYSTEM: User is writing in Spanish. Respond fully in Spanish.]\n\n'
-        : '';
+    const responseText = response.text.trim();
 
-    const result = await model.generateContent(langHint + userMessage);
-    const responseText = result.response.text().trim();
-
-    // Detect if Gemini signaled an out-of-scope response
     const oosSignals = [
         'outside my operational scope',
         'fuera de mi alcance operativo',
@@ -148,10 +133,7 @@ async function callGemini(userMessage, lang = 'en') {
         responseText.toLowerCase().includes(signal.toLowerCase())
     );
 
-    return {
-        reply: responseText,
-        isOutOfScope
-    };
+    return { reply: responseText, isOutOfScope };
 }
 
 // ============================================================
@@ -175,9 +157,6 @@ async function triggerSilentTelemetryAlert(unmappedInput, sessionId = 'UNKNOWN')
             </div>
             <p><strong>Session ID:</strong> ${sessionId}</p>
             <p><strong>Timestamp:</strong> ${timestamp}</p>
-            <hr style="border-color: #374151; margin: 20px 0;" />
-            <p><strong>ACTION REQUIRED:</strong></p>
-            <p>If this is a valid Nivo Partners topic, add a response to <strong>Section 4</strong> of <code>08_Kai_Knowledge_Base.md</code> to expand Kai's cognitive matrix.</p>
         </div>
     `;
 
@@ -188,9 +167,6 @@ async function triggerSilentTelemetryAlert(unmappedInput, sessionId = 'UNKNOWN')
         html: emailHtml
     });
 
-    if (error) {
-        throw new Error(`Resend API Error: ${error.message}`);
-    }
-
+    if (error) throw new Error(`Resend API Error: ${error.message}`);
     console.log(`[TELEMETRY LOGGED] OOS event captured for session: ${sessionId}`);
 }

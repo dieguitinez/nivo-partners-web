@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 
 module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -9,6 +9,7 @@ module.exports = async function handler(req, res) {
 
     const report = {
         timestamp: new Date().toISOString(),
+        sdk: '@google/genai (new)',
         env: {
             GEMINI_API_KEY: process.env.GEMINI_API_KEY
                 ? `SET (starts with: ${process.env.GEMINI_API_KEY.substring(0, 8)}...)`
@@ -21,10 +22,12 @@ module.exports = async function handler(req, res) {
 
     if (process.env.GEMINI_API_KEY) {
         try {
-            const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-            const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
-            const result = await model.generateContent('Say "OK" in one word.');
-            report.gemini_test = result.response.text().trim();
+            const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+            const response = await ai.models.generateContent({
+                model: 'gemini-2.0-flash',
+                contents: 'Say "OK" in one word.',
+            });
+            report.gemini_test = response.text.trim();
         } catch (err) {
             report.error = err.message;
         }
