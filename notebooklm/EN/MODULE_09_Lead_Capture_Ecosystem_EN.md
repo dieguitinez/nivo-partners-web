@@ -1,4 +1,4 @@
-# 🗄️ MODULE 09: Sovereign Lead Capture & Neural Notifications
+# 🗄️ MODULE 09: Sovereign Lead Capture & Neural Notifications (EN)
 
 **Objective:** Master the construction of an asynchronous, serverless lead capture ecosystem that ensures data sovereignty and real-time processing.
 
@@ -21,8 +21,8 @@ At the heart of our lead engine is **Supabase**. It provides more than just a da
 Our database is structured to capture institutional data securely.
 
 * **Primary Key (uuid):** Each lead is a unique, unforgeable entity.
-* **Row Level Security (RLS):** This is critical, students. RLS ensures that while anyone can *submit* a lead via the API, no one can *read* your database without the Secret Service Key.
-* **Field Mapping:** Note how we synchronize the `infrastructure-context` from our Wizard directly into the database schema.
+* **Row Level Security (RLS):** This ensures that while anyone can *submit* a lead via the API, no one can *read* your database without the Secret Service Role Key.
+* **Field Mapping:** Notice how we synchronize the `infrastructure-context` (name, email, company, service, requirements) from our Wizard directly into the database schema.
 
 ---
 
@@ -36,8 +36,8 @@ Our backend logic follows a strict **Success-First** architecture:
 
 1. **Data Ingestion:** The server receives the lead and performs a sanitized SQL insertion into the Supabase `leads` table.
 2. **Schema Cache Resilience:** The code is engineered to only push supported columns, preventing schema-mismatch errors from interrupting the user experience.
-3. **Internal Escalation (Resend):** After the record is secured in PostgreSQL, the server triggers a transactional notification to `contact@nivopartners.com` using our verified root domain.
-4. **Non-Blocking UI:** To ensure maximum conversion, the user receives an instant "Protocol Initialized" confirmation once the database accepts the lead, even if the email delivery encounters network latency.
+3. **Internal Escalation (Resend):** After the record is secured in PostgreSQL, the server triggers a transactional notification using our verified root domain (`nivopartners.com`).
+4. **Non-Blocking UI:** The user receives an instant "Protocol Initialized" confirmation once the database accepts the lead, ensuring high conversion even if email delivery encounters minor latency.
 
 ---
 
@@ -45,7 +45,7 @@ Our backend logic follows a strict **Success-First** architecture:
 
 To close the strategic loop, we use **Resend**, our modern bridge for institutional transactional email.
 
-* **The Verified Node:** We utilize the verified root domain `nivopartners.com` for high deliverability, bypassing common "Spam" traps associated with unverified subdomains.
+* **The Verified Node:** We utilize the root domain for high deliverability, bypassing common "Spam" traps associate with unverified subdomains.
 * **The Intelligence Loop:**
   * Lead Submits -> Vercel Backend -> **Supabase (Archive)** -> **Resend (Alert)**.
   * The internal alert includes full context: Submitter Email, Company, Architecture Segment, and specific Requirements.
@@ -57,10 +57,10 @@ To close the strategic loop, we use **Resend**, our modern bridge for institutio
 
 1. Open the Browser Console (`F12`) on the Audit Request modal.
 2. Submit a test lead.
-3. Watch the `fetch()` call to the `/rest/v1/leads` endpoint.
-4. **Observation:** Notice the `Authorization: Bearer [ANON_KEY]` header. Why do we use the *Anon* key here instead of the *Service Role* key? (Hint: See Section 1A on RLS).
+3. Watch the `fetch()` call to the `/api/process_audit` endpoint.
+4. **Observation:** Notice the JSON payload. It is clean, sanitized, and follows the Sovereign Schema rules established in our statutes.
 
 ---
 
 > [!IMPORTANT]
-> **Key Takeaway:** By combining Supabase, Edge Functions, and Resend, you are building an **Infrastructure**, not just a website. You are ensuring that every lead is an asset that is archived, processed, and responded to automatically.
+> **Key Takeaway:** By combining Vercel, Supabase, and Resend into a single tunnel, you are building a **Core Infrastructure**, not just a website. You are ensuring that every lead is an asset that is archived, processed, and responded to automatically with technical rigor.

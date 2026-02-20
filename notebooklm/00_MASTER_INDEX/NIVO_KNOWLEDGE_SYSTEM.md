@@ -100,18 +100,24 @@ Este sistema tiene **tres audiencias**:
 
 ### SECCIÓN 6 — [CORPORATE GOVERNANCE](../06_CORPORATE_GOVERNANCE/)
 
-*Gobernanza Institucional, Estatutos y Visión Estratégica*
+*Gobernanza Institucional, Estatutos y Visión Estratégica (Bilingüe)*
 
-| Documento | Propósito |
-|---|---|
-| [GOV_01_Constitutional_Manifesto.md](../06_CORPORATE_GOVERNANCE/GOV_01_Constitutional_Manifesto.md) | Manifiesto: Misión, Visión y Juramento Soberano |
-| [GOV_02_Operational_Statutes.md](../06_CORPORATE_GOVERNANCE/GOV_02_Operational_Statutes.md) | Estatutos: Jerarquía de decisión, selección de socios y leyes de IP |
-| [GOV_03_Ethical_AI_Charter.md](../06_CORPORATE_GOVERNANCE/GOV_03_Ethical_AI_Charter.md) | Carta de Ética: Soberanía de datos y transparencia algorítmica |
-| [GOV_04_Strategic_Growth_Roadmap_2026.md](../06_CORPORATE_GOVERNANCE/GOV_04_Strategic_Growth_Roadmap_2026.md) | Roadmap 2026: Hitos de expansión y objetivos de mercado |
+| Documento | Propósito | Versión EN | Versión ES |
+|---|---|---|---|
+| [GOV_01_Constitutional_Manifesto.md](../06_CORPORATE_GOVERNANCE/GOV_01_Constitutional_Manifesto.md) | Manifiesto: Misión, Visión y Juramento Soberano | [Link](../EN/GOV_01_Constitutional_Manifesto_EN.md) | [Link](../ES/GOV_01_Constitutional_Manifesto_ES.md) |
+| [GOV_02_Operational_Statutes.md](../06_CORPORATE_GOVERNANCE/GOV_02_Operational_Statutes.md) | Estatutos: Jerarquía, IP y Socios | [Link](../EN/GOV_02_Operational_Statutes_EN.md) | [Link](../ES/GOV_02_Operational_Statutes_ES.md) |
+| [GOV_03_Ethical_AI_Charter.md](../06_CORPORATE_GOVERNANCE/GOV_03_Ethical_AI_Charter.md) | Ética: Soberanía de datos y transparencia | [Link](../EN/GOV_03_Ethical_AI_Charter_EN.md) | [Link](../ES/GOV_03_Ethical_AI_Charter_ES.md) |
+| [GOV_04_Strategic_Growth_Roadmap_2026.md](../06_CORPORATE_GOVERNANCE/GOV_04_Strategic_Growth_Roadmap_2026.md) | Roadmap 2026: Hitos de expansión | [Link](../EN/GOV_04_Strategic_Growth_Roadmap_2026_EN.md) | [Link](../ES/GOV_04_Strategic_Growth_Roadmap_2026_ES.md) |
 
 ---
 
-### SECCIÓN 7 — [ENGLISH VERSION](../EN/)
+### SECCIÓN 7 — [MÓDULOS TÉCNICOS (CORE)](../)
+
+| Módulo | Descripción |
+|---|---|
+| [MODULE_09_Lead_Capture_Ecosystem.md](../MODULE_09_Lead_Capture_Ecosystem.md) | Ecosistema de Captación: Vercel + Supabase + Resend |
+| [EN/MODULE_09_Lead_Capture_EN.md](../EN/MODULE_09_Lead_Capture_Ecosystem_EN.md) | Lead Capture Ecosystem (English Version) |
+| [SOP_chatbot_form_troubleshooting.md](../../SOP_chatbot_form_troubleshooting.md) | SOP: Resolución de Errores Formulario/Bot (Sesión Feb 20) |
 
 *Versión completa del sistema en inglés — para clientes, socios y contratistas en EE.UU.*
 
