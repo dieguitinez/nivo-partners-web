@@ -98,7 +98,20 @@ Este sistema tiene **tres audiencias**:
 
 ---
 
-### SECCIÓN 6 — [ENGLISH VERSION](../EN/)
+### SECCIÓN 6 — [CORPORATE GOVERNANCE](../06_CORPORATE_GOVERNANCE/)
+
+*Gobernanza Institucional, Estatutos y Visión Estratégica*
+
+| Documento | Propósito |
+|---|---|
+| [GOV_01_Constitutional_Manifesto.md](../06_CORPORATE_GOVERNANCE/GOV_01_Constitutional_Manifesto.md) | Manifiesto: Misión, Visión y Juramento Soberano |
+| [GOV_02_Operational_Statutes.md](../06_CORPORATE_GOVERNANCE/GOV_02_Operational_Statutes.md) | Estatutos: Jerarquía de decisión, selección de socios y leyes de IP |
+| [GOV_03_Ethical_AI_Charter.md](../06_CORPORATE_GOVERNANCE/GOV_03_Ethical_AI_Charter.md) | Carta de Ética: Soberanía de datos y transparencia algorítmica |
+| [GOV_04_Strategic_Growth_Roadmap_2026.md](../06_CORPORATE_GOVERNANCE/GOV_04_Strategic_Growth_Roadmap_2026.md) | Roadmap 2026: Hitos de expansión y objetivos de mercado |
+
+---
+
+### SECCIÓN 7 — [ENGLISH VERSION](../EN/)
 
 *Versión completa del sistema en inglés — para clientes, socios y contratistas en EE.UU.*
 
