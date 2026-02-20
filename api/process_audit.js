@@ -158,6 +158,7 @@ export default async function handler(req, res) {
 
         if (internalEmailError) {
             console.error('Internal Notification Transmission Error:', internalEmailError);
+            throw new Error(`Critical: Internal Email Delivery Failed (Resend). Details: ${internalEmailError.message || JSON.stringify(internalEmailError)}`);
         }
 
         // Successful Payload Response
