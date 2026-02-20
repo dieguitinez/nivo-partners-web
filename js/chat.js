@@ -11,6 +11,10 @@ class AntigravityChat {
         const savedState = localStorage.getItem('ag_chat_state');
         this.state = savedState ? JSON.parse(savedState) : { discussedValueProp: false };
 
+        if (!this.state.sessionId) {
+            this.state.sessionId = 'sess_' + Math.random().toString(36).substr(2, 9);
+        }
+
         const savedMemory = localStorage.getItem('ag_chat_memory');
         this.memory = savedMemory ? JSON.parse(savedMemory) : {};
 
@@ -482,17 +486,12 @@ class AntigravityChat {
         }
 
         // ---------------------------------------------------------
-        // 3. FALLBACK & CONTEXT INJECTION
+        // 3. FALLBACK & CONTEXT INJECTION (HITL API INTEGRATION)
         // ---------------------------------------------------------
         if (!responseNode) {
-            responseNode = responses.fallback || responses.hello;
-            // Inject context if possible
-            if (this.memory && this.memory.name) {
-                // Determine greeting based on language
-                const prefix = currentLang === 'es' ? `Hola ${this.memory.name}. ` : `Hello ${this.memory.name}. `;
-                // Create a temporary copy to avoid mutating the original
-                responseNode = { ...responseNode, text: prefix + responseNode.text, options: responseNode.options };
-            }
+            // Escalate unmapped queries to Vercel API
+            this.sendToBackend(text);
+            return;
         }
 
         // Safety Fallback for missing nodes
@@ -583,6 +582,35 @@ class AntigravityChat {
     hideTyping() {
         const typingEl = this.widget.querySelector('.typing-indicator-msg');
         if (typingEl) typingEl.remove();
+    }
+
+    async sendToBackend(text) {
+        this.showTyping();
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userMessage: text, sessionId: this.state.sessionId })
+            });
+
+            if (!response.ok) throw new Error('API Error');
+
+            const data = await response.json();
+
+            this.hideTyping();
+            this.addMessage(data.reply, 'agent');
+
+            // Provide a direct path to the Architecture Wizard if Escalated
+            if (data.escalated) {
+                setTimeout(() => {
+                    this.addOptions([{ label: "Open Architecture Wizard", value: "open_booking" }]);
+                }, 400);
+            }
+        } catch (error) {
+            console.error(error);
+            this.hideTyping();
+            this.addMessage("Connection to cognitive cores interrupted. Please try again later.", 'agent');
+        }
     }
 }
 
