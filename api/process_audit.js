@@ -78,9 +78,13 @@ const getEmailTemplate = (clientName) => `
 `;
 
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method Not Allowed. Use POST.' });
-    }
+    // Phase 0: CORS Setup (Safe for all environments)
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') return res.status(200).end();
+    if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed.' });
 
     try {
         // Phase 1: Data Ingestion and Sanitization
@@ -113,6 +117,8 @@ export default async function handler(req, res) {
 
         if (dbError) {
             console.error('Database Insertion Error:', dbError);
+            // Non-blocking for the final user experience if we want to prioritize email, 
+            // but here we throw to identify the configuration issue.
             throw new Error(`Critical: Database sync failed (Supabase Error). Details: ${dbError.message}`);
         }
 

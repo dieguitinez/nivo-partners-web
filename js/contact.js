@@ -142,14 +142,21 @@ window.nivoCRM = {
         data.created_at = new Date().toISOString();
 
         try {
+            // Create a controller for timeout handling
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+
             // Neural Pipeline Endpoint: Vercel Serverless Tunnel
             const response = await fetch('/api/process_audit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                signal: controller.signal
             });
+
+            clearTimeout(timeoutId);
 
             if (!response.ok) {
                 let errorMessage = 'Transmission Failed';
