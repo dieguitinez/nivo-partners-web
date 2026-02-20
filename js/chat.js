@@ -233,10 +233,14 @@ class AntigravityChat {
             btn.className = 'ag-option-btn';
             btn.textContent = opt.label;
             btn.onclick = (e) => {
-                e.stopPropagation(); // Prevent the document click listener from closing the chat
-                this.addMessage(opt.label, 'user'); // Show what they clicked (Text)
-                this.simulateResponse(opt.value);   // Process the ID (e.g. 'web_portfolio')
-                optionsDiv.remove(); // Remove buttons after selection
+                e.stopPropagation();
+                // Send the label to the AI for human-readable context
+                this.sendMessage(opt.label);
+                // Also process the value if it's a structural action
+                if (opt.value === 'open_contact' || opt.value === 'open_booking') {
+                    this.simulateResponse(opt.value);
+                }
+                optionsDiv.remove();
             };
             optionsDiv.appendChild(btn);
         });
@@ -247,70 +251,18 @@ class AntigravityChat {
 
 
     simulateResponse(text) {
-        let currentLang = this.currentLang || localStorage.getItem('nivo_lang') || 'en';
-        if (!translations[currentLang]) currentLang = 'en';
-
-        const t = translations[currentLang].chat;
-        const responses = t.responses;
-
-        // ---------------------------------------------------------
-        // STEP 1: Handle structural button actions first (open_contact, open_booking)
-        // ---------------------------------------------------------
+        // Handle structural actions locally without generating a text response
         if (text === 'open_contact' || text === 'open_booking') {
             setTimeout(() => {
                 const contactBtn = document.querySelector('a[href="#apply"]');
                 if (contactBtn) contactBtn.click();
                 else if (window.nivoCRM) window.nivoCRM.open();
-            }, 1200);
-            // Still show the node text if it exists
-        }
-
-        // ---------------------------------------------------------
-        // STEP 2: Only handle EXACT button value matches locally.
-        // All other text → backend (Gemini 2.5 Flash).
-        // ---------------------------------------------------------
-        const BUTTON_KEYS = [
-            'web', 'marketing', 'growth', 'audit', 'hello',
-            'web_types', 'web_portfolio', 'web_saas', 'web_industrial', 'web_authority',
-            'web_quote', 'marketing_call', 'growth_audit',
-            'arch_spa', 'arch_saas', 'arch_industrial', 'arch_authority',
-            'conversion_audit', 'footer_info', 'process_info',
-            'srv_web', 'srv_marketing', 'srv_automation'
-        ];
-
-        const isButtonValue = BUTTON_KEYS.includes(text) || (responses[text] !== undefined);
-
-        if (!isButtonValue) {
-            // Free text → send to Gemini backend
-            this.sendToBackend(text);
+            }, 800);
             return;
         }
 
-        // Render the local node response
-        const responseNode = responses[text];
-        if (!responseNode) {
-            // Button key exists in our list but no translation node → fallback to backend
-            this.sendToBackend(text);
-            return;
-        }
-
-        // ---------------------------------------------------------
-        // STEP 3: Render local response
-        // ---------------------------------------------------------
-        const baseLatency = 600;
-        const typingTime = Math.min((responseNode.text.length * 5), 2000);
-        this.showTyping();
-
-        setTimeout(() => {
-            this.hideTyping();
-            this.addMessage(responseNode.text, 'agent');
-
-            if (responseNode.type === 'exit' && responseNode.options && responseNode.options.length > 0) {
-                setTimeout(() => { this.addExitButton(responseNode.options[0]); }, 400);
-            } else if (responseNode.options && responseNode.options.length > 0) {
-                setTimeout(() => { this.addOptions(responseNode.options); }, 400);
-            }
-        }, baseLatency + typingTime);
+        // All other inputs (free text or button clicks) go directly to Gemini
+        this.sendToBackend(text);
     }
 
     addExitButton(option) {
