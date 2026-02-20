@@ -587,7 +587,15 @@ class AntigravityChat {
     async sendToBackend(text) {
         this.showTyping();
         try {
-            const response = await fetch('/api/chat', {
+            // Determine API Base URL for local testing vs Vercel Production
+            let apiUrl = '/api/chat';
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+                // If running locally without a Next.js server, point to the live Vercel API
+                // Assuming standard vercel domain pattern or production domain
+                apiUrl = 'https://nivo-partners-web.vercel.app/api/chat';
+            }
+
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userMessage: text, sessionId: this.state.sessionId })
