@@ -104,21 +104,19 @@ module.exports = async function handler(req, res) {
 };
 
 // ============================================================
-// GEMINI 1.5 FLASH INVOCATION (New @google/genai SDK - API v1)
+// GEMINI 2.5 FLASH INVOCATION (New @google/genai SDK)
 // ============================================================
 async function callGemini(userMessage, lang = 'en') {
     const langHint = lang === 'es'
-        ? '[SYSTEM: User is writing in Spanish. Respond fully in Spanish.]\n\n'
-        : '';
+        ? 'INSTRUCCIÓN: El usuario escribe en español. Responde SIEMPRE en español.\n\n'
+        : 'INSTRUCTION: Respond in English.\n\n';
+
+    // Inject system prompt directly into contents for maximum SDK compatibility
+    const fullPrompt = `${KAI_SYSTEM_PROMPT}\n\n${langHint}USER MESSAGE: ${userMessage}`;
 
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
-        contents: langHint + userMessage,
-        config: {
-            systemInstruction: KAI_SYSTEM_PROMPT,
-            maxOutputTokens: 300,
-            temperature: 0.7,
-        }
+        contents: fullPrompt
     });
 
     const responseText = response.text.trim();
