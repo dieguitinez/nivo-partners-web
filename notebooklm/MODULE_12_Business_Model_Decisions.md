@@ -149,3 +149,32 @@
 - Gemini Deep Research (inteligencia competitiva)
 - Flow + Whisk (contenido visual/video para clientes IA-tier)
 - Google Drive 2TB (repositorio centralizado de activos)
+
+---
+
+## 📅 Log Feb 21, 2026 — Sesión de Integración y Estandarización
+
+### DEC-011: Estandarización de Kai en Páginas de Servicio
+
+**Decisión:** El chatbot Kai ahora es un componente obligatorio y hardcodeado en todas las páginas de servicio (`/services/*.html`).
+
+- **Implementación:** Se añadió el markup de `#ag-chat-widget` y se ajustaron rutas de assets a `../images/agent-avatar.png`.
+- **Razón:** Consistencia en la experiencia de usuario y disponibilidad de Kai para resolver dudas técnicas específicas de cada división.
+
+### DEC-012: Creación del Protocolo de Gestión de Código (Git)
+
+**Decisión:** Se formaliza el uso de Git como herramienta de soberanía y despliegue automático.
+
+- **Implementación:** Creación de [`SOP_09_Git_Protocol.md`](./03_INTERNAL_SOPs/SOP_09_Git_Protocol.md).
+- **Razón:** Garantizar que futuros agentes tengan instrucciones claras sobre cómo subir cambios sin romper el pipeline de Vercel y manteniendo el historial limpio.
+
+---
+
+## 🐛 Bug Log (Continuación)
+
+### BUG-003: Error de carga de avatar en subpáginas
+
+**Detectado:** Feb 21, 2026
+**Causa:** La ruta `images/agent-avatar.png` era relativa a la raíz, fallando en `/services/`.
+**Solución:** Cambio a ruta relativa `../images/agent-avatar.png`.
+**Status:** ✅ Resuelto

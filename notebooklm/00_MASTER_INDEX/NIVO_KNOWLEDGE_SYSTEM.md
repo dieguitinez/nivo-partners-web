@@ -71,6 +71,7 @@ Este sistema tiene **tres audiencias**:
 | [SOP_06_Crisis_And_Escalation.md](../03_INTERNAL_SOPs/SOP_06_Crisis_And_Escalation.md) | ✅ | Qué hacer cuando algo sale mal |
 | [SOP_07_Trinity_Alpha_Blueprint.md](../03_INTERNAL_SOPs/SOP_07_Trinity_Alpha_Blueprint.md) | ✅ | Blueprint de ejecución paso a paso del Proyecto Trinity-Alpha |
 | [SOP_08_Omni_Execution_Guide.md](../03_INTERNAL_SOPs/SOP_08_Omni_Execution_Guide.md) | ✅ | Guía Maestra Detallada para los 6 modelos Elite (Paso a Paso) |
+| [SOP_09_Git_Protocol.md](../03_INTERNAL_SOPs/SOP_09_Git_Protocol.md) | ✅ | Protocolo de Gestión de Código Soberano (Git & GitHub) |
 
 ---
 
