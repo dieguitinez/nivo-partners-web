@@ -69,6 +69,8 @@ Este sistema tiene **tres audiencias**:
 | [SOP_04_Quality_Standards.md](../03_INTERNAL_SOPs/SOP_04_Quality_Standards.md) | ✅ | Estándares de calidad — qué es "aceptable" en Nivo |
 | [SOP_05_Tools_And_Stack.md](../03_INTERNAL_SOPs/SOP_05_Tools_And_Stack.md) | ✅ | Todas las herramientas y stack tecnológico |
 | [SOP_06_Crisis_And_Escalation.md](../03_INTERNAL_SOPs/SOP_06_Crisis_And_Escalation.md) | ✅ | Qué hacer cuando algo sale mal |
+| [SOP_07_Trinity_Alpha_Blueprint.md](../03_INTERNAL_SOPs/SOP_07_Trinity_Alpha_Blueprint.md) | ✅ | Blueprint de ejecución paso a paso del Proyecto Trinity-Alpha |
+| [SOP_08_Omni_Execution_Guide.md](../03_INTERNAL_SOPs/SOP_08_Omni_Execution_Guide.md) | ✅ | Guía Maestra Detallada para los 6 modelos Elite (Paso a Paso) |
 
 ---
 
@@ -160,6 +162,19 @@ Este sistema tiene **tres audiencias**:
 | [ONBOARD_02_Discovery_Questionnaire_EN.md](../EN/02_CLIENT_ONBOARDING/ONBOARD_02_Discovery_Questionnaire_EN.md) | Discovery questionnaire for first sales call |
 | [ORG_01_Division_Architecture_EN.md](../EN/03_INTERNAL_SOPs/ORG_01_Division_Architecture_EN.md) | 3 Division Architecture (stack, clients, revenue) |
 | [SOP_05_Tools_And_Stack_EN.md](../EN/03_INTERNAL_SOPs/SOP_05_Tools_And_Stack_EN.md) | All tools and technology stack |
+
+---
+
+### SECCIÓN 11 — [BUSINESS STRATEGY & EXPANSION](../10_BUSINESS_STRATEGY/)
+
+*Estrategias para el crecimiento y diversificación de ingresos*
+
+| Documento | Propósito |
+|---|---|
+| [EBS_01_Expansion_Strategy.md](../10_BUSINESS_STRATEGY/EBS_01_Expansion_Strategy.md) | Estrategia de expansión: 11 modelos de negocio automatizados (n8n + AI) |
+| [EBS_02_Hierarchical_Strategy.md](../10_BUSINESS_STRATEGY/EBS_02_Hierarchical_Strategy.md) | Jerarquía de ejecución: modelos de costo cero, alta facilidad y alto ROI |
+| [EBS_03_Quick_Start_Action_Plan.md](../10_BUSINESS_STRATEGY/EBS_03_Quick_Start_Action_Plan.md) | Plan de acción de 7 días: pasos prácticos para lanzar el primer modelo |
+| [MVR_01_Market_Validation_2026.md](../10_BUSINESS_STRATEGY/MVR_01_Market_Validation_2026.md) | Validación de mercado 2026: reporte de tendencias y mejores modelos |
 
 ---
 
