@@ -494,10 +494,13 @@ header .container {
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
-    width: 24px;
+    width: 22px;
+    /* Slightly shorter for better box fit */
     height: 2px;
     background-color: var(--text-main);
     position: absolute;
+    left: 1px;
+    /* Center within the box */
     transition: all 0.3s ease;
     border-radius: 4px;
 }
@@ -509,12 +512,16 @@ header .container {
 
 .hamburger-inner::before {
     content: '';
-    top: -8px;
+    top: -7px;
+    /* Adjusted gap */
+    left: 0;
 }
 
 .hamburger-inner::after {
     content: '';
-    top: 8px;
+    top: 7px;
+    /* Adjusted gap */
+    left: 0;
 }
 
 /* Hamburger Animation */
