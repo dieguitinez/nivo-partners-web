@@ -65,6 +65,9 @@ const translations = {
                 bullets: ["Sovereign Intelligence Systems", "24/7 Operation", "Custom Resource Allocation"],
                 examplesTitle: "What We Deploy:",
                 examples: ["Active User Instrumentation (Analytics & UX)", "Proprietary Prospect Intelligence Engine", "The Review Guardian"],
+                f1: "Proprietary Prospect Intelligence Engine",
+                f2: "The Review Guardian (Reputation AI)",
+                f3: "24/7 Autonomous Operations",
                 cta: "Request Intelligence Audit"
             },
             bottomText: "Not sure which ecosystem fits your stage?",
@@ -510,6 +513,11 @@ const translations = {
                 service3_title: "Typography & Color Systems",
                 service3_desc: "Definition of palettes that project authority."
             },
+            brandingAssets: {
+                asset1: "Logo Design",
+                asset2: "Brand Guidelines",
+                asset3: "Visual Systems"
+            },
             wizard: {
                 title: "Architectural Infrastructure <span class='text-gradient'>Wizard</span>",
                 subtitle: "Configure your system bypassing static templates. Engineering a unique blueprint for your market position.",
@@ -678,6 +686,9 @@ const translations = {
                 bullets: ["Sistemas de Inteligencia Soberana", "Operación 24/7", "Asignación de Recursos Personalizada"],
                 examplesTitle: "Lo Que Desplegamos:",
                 examples: ["Inteligencia & Visibilidad (Analytics/UX)", "Motor de Inteligencia de Prospectos", "El Review Guardian"],
+                f1: "Motor Propietario de Inteligencia de Prospectos",
+                f2: "The Review Guardian (IA de Reputación)",
+                f3: "Operaciones Autónomas 24/7",
                 cta: "Solicitar Auditoría de Inteligencia"
             },
             bottomText: "¿No sabes qué ecosistema encaja con tu etapa?",
@@ -1137,6 +1148,11 @@ const translations = {
                 service2_desc: "Modernización para estética 4K y compatibilidad con Dark Mode.",
                 service3_title: "Sistemas de Tipografía y Color",
                 service3_desc: "Definición de paletas que proyectan autoridad."
+            },
+            brandingAssets: {
+                asset1: "Diseño de Logotipo",
+                asset2: "Guías de Marca",
+                asset3: "Sistemas Visuales"
             },
             wizard: {
                 title: "Asistente de <span class='text-gradient'>Arquitectura</span> Interactiva",
