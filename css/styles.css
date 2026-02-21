@@ -555,7 +555,8 @@ header .container {
         left: 0;
         width: 100%;
         height: calc(100vh - var(--header-height));
-        background: #050507; /* Force solid background to prevent bleed */
+        background: #050507;
+        /* Force solid background to prevent bleed */
         -webkit-backdrop-filter: blur(25px);
         backdrop-filter: blur(25px);
         flex-direction: column;
@@ -579,7 +580,8 @@ header .container {
 
     .nav-links a,
     .nav-links .nav-link {
-        font-size: 1.1rem; /* Slightly smaller for better proportion */
+        font-size: 1.1rem;
+        /* Slightly smaller for better proportion */
         padding: 16px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         display: flex;
@@ -596,31 +598,39 @@ header .container {
         top: 0;
         left: 0;
         transform: none;
-        background: rgba(255, 255, 255, 0.03); /* Subtle tint */
+        background: rgba(255, 255, 255, 0.03);
+        /* Subtle tint */
         box-shadow: none;
         border: none;
-        padding: 0 0 0 24px; /* More indentation */
+        padding: 0 0 0 24px;
+        /* More indentation */
         max-height: 0;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         width: 100%;
+        max-width: 100vw;
+        /* Prevent horizontal overflow/shift */
         opacity: 0;
         visibility: visible;
         pointer-events: none;
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         margin-top: 0;
-        border-left: 1px solid rgba(255, 255, 255, 0.1); /* Left guide line */
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+        /* Ensure padding doesn't affect width */
     }
 
     .dropdown-item {
-        font-size: 0.95rem !important; /* Refined size */
+        font-size: 0.95rem !important;
         padding: 14px 0 !important;
-        border-bottom: none !important; /* Clearer sub-menu */
+        border-bottom: none !important;
         color: var(--text-muted) !important;
         display: block !important;
         width: 100%;
-        line-height: 1.4 !important; /* Critical for multi-line labels */
+        line-height: 1.4 !important;
+        text-align: left !important;
+        /* Force left alignment */
     }
 
     .dropdown-item.active {
@@ -655,6 +665,9 @@ header .container {
         justify-content: center;
         width: 100%;
         font-size: 1.1rem;
+        display: flex;
+        /* Ensure flex for centering switch itself */
+        text-align: center;
     }
 
     /* Mobile Header Layout */
