@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.stopPropagation();
                     const parent = toggle.parentElement;
                     parent.classList.toggle('active');
+
+                    // FORCE REFLOW: Fixes centering/alignment glitches on some mobile browsers
+                    // by forcing the browser to recalculate the layout of the sub-menu.
+                    if (parent.classList.contains('active')) {
+                        const menu = parent.querySelector('.dropdown-menu');
+                        if (menu) {
+                            menu.style.display = 'none';
+                            menu.offsetHeight; // trigger reflow
+                            menu.style.display = 'flex';
+                        }
+                    }
                 }
                 // On desktop, the <a> with href="#" still allows hover or simple click fallback
             });
