@@ -555,12 +555,11 @@ header .container {
         left: 0;
         width: 100%;
         height: calc(100vh - var(--header-height));
-        background: var(--bg-dark);
-        /* Solid background */
-        -webkit-backdrop-filter: blur(20px);
-        backdrop-filter: blur(20px);
+        background: #050507; /* Force solid background to prevent bleed */
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
         flex-direction: column;
-        padding: 40px 24px;
+        padding: 30px 24px 60px 24px;
         gap: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         transform: translateX(100%);
@@ -580,14 +579,15 @@ header .container {
 
     .nav-links a,
     .nav-links .nav-link {
-        font-size: 1.2rem;
-        padding: 20px 0;
+        font-size: 1.1rem; /* Slightly smaller for better proportion */
+        padding: 16px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
         color: white;
+        line-height: 1.3;
     }
 
     /* Fixed Overlap: Dropdown Menu in Mobile */
@@ -596,10 +596,10 @@ header .container {
         top: 0;
         left: 0;
         transform: none;
-        background: rgba(255, 255, 255, 0.02);
+        background: rgba(255, 255, 255, 0.03); /* Subtle tint */
         box-shadow: none;
         border: none;
-        padding: 0 0 0 16px;
+        padding: 0 0 0 24px; /* More indentation */
         max-height: 0;
         overflow: hidden;
         display: flex;
@@ -610,15 +610,17 @@ header .container {
         pointer-events: none;
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         margin-top: 0;
+        border-left: 1px solid rgba(255, 255, 255, 0.1); /* Left guide line */
     }
 
     .dropdown-item {
-        font-size: 1rem !important;
-        padding: 12px 0 !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+        font-size: 0.95rem !important; /* Refined size */
+        padding: 14px 0 !important;
+        border-bottom: none !important; /* Clearer sub-menu */
         color: var(--text-muted) !important;
         display: block !important;
         width: 100%;
+        line-height: 1.4 !important; /* Critical for multi-line labels */
     }
 
     .dropdown-item.active {
