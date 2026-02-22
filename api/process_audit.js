@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
-import { setSecurityHeaders, sanitize, getValidatedOrigin } from './utils/security.js';
+import { setSecurityHeaders, sanitize, getValidatedOrigin, isRateLimited, captureException } from './utils/security.js';
 
 // Initialize Supabase and Resend strictly from Server ENV Variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -168,6 +168,7 @@ export default async function handler(req, res) {
         });
 
     } catch (error) {
+        captureException(error, req.body);
         console.error('Operations Error:', error);
 
         return res.status(500).json({

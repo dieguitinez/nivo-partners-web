@@ -1,7 +1,31 @@
+import * as Sentry from "@sentry/node";
+
 /**
  * NIVO PARTNERS | API SECURITY UTILITY
  * Standardized sanitization and origin validation for serverless functions.
  */
+
+// Initialize Sentry only if DSN is provided
+if (process.env.SENTRY_DSN) {
+    Sentry.init({
+        dsn: process.env.SENTRY_DSN,
+        environment: process.env.NODE_ENV || 'development',
+        tracesSampleRate: 0.1, // Adjust for high traffic
+    });
+    console.log('[KAI] Sentry Observability Layer: ACTIVE');
+} else {
+    console.warn('[KAI] Sentry Observability Layer: DORMANT (Missing SENTRY_DSN)');
+}
+
+/**
+ * Global Error Wrapper for Sentry.
+ */
+export function captureException(error, context = {}) {
+    console.error('[KAI] Error Captured:', error.message || error);
+    if (process.env.SENTRY_DSN) {
+        Sentry.captureException(error, { extra: context });
+    }
+}
 
 const ALLOWED_ORIGINS = [
     'https://nivopartners.com',

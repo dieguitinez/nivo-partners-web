@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
-import { setSecurityHeaders, getValidatedOrigin, isRateLimited } from './utils/security.js';
+import { setSecurityHeaders, getValidatedOrigin, isRateLimited, captureException } from './utils/security.js';
 
 export default async function handler(req, res) {
     setSecurityHeaders(req, res);
@@ -46,6 +46,7 @@ export default async function handler(req, res) {
             diag.supabase.status = '❌ CONFIG_MISSING';
         }
     } catch (e) {
+        captureException(e);
         diag.supabase.status = '❌ CRASH';
         diag.supabase.error = e.message;
     }
@@ -67,6 +68,7 @@ export default async function handler(req, res) {
             diag.resend.status = '❌ CONFIG_MISSING';
         }
     } catch (e) {
+        captureException(e);
         diag.resend.status = '❌ CRASH';
         diag.resend.error = e.message;
     }

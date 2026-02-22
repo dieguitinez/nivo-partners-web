@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { setSecurityHeaders, getValidatedOrigin } from './utils/security.js';
+import { setSecurityHeaders, sanitize, getValidatedOrigin, isRateLimited, captureException } from './utils/security.js';
 
 export default async function handler(req, res) {
     // Phase 0: Security Headers
@@ -49,6 +49,7 @@ export default async function handler(req, res) {
             });
             report.models_tested[model] = `✅ OK: ${response.text.trim()}`;
         } catch (err) {
+            captureException(err); // Added captureException
             const code = err.message.includes('404') ? '404' :
                 err.message.includes('429') ? '429' :
                     err.message.includes('400') ? '400' : 'ERR';
@@ -65,8 +66,9 @@ export default async function handler(req, res) {
             if (names.length >= 20) break;
         }
         report.listModels = names;
-    } catch (err) {
-        report.listModels_error = err.message.substring(0, 200);
+    } catch (e) {
+        captureException(e); // Added captureException
+        report.listModels_error = e.message.substring(0, 200);
     }
 
     return res.status(200).json(report);

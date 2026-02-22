@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Resend } from 'resend';
-import { setSecurityHeaders, sanitize, getValidatedOrigin, isRateLimited } from './utils/security.js';
+import { setSecurityHeaders, sanitize, getValidatedOrigin, isRateLimited, captureException } from './utils/security.js';
 
 // ============================================================
 // KAI COMPACT SYSTEM PROMPT (hardcoded for reliability)
@@ -112,7 +112,8 @@ export default async function handler(req, res) {
         });
 
     } catch (error) {
-        console.error('[KAI ERROR]', error.message);
+        captureException(error, { sessionId, lang });
+        console.error('[KAI] Execution error:', error);
 
         // Soft fallback if model name fails (retry with 1.5 if 2.5 is unavailable in certain deployments)
         if (error.message.includes('model not found') || error.message.includes('404')) {
