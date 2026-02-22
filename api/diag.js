@@ -1,8 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import { setSecurityHeaders, getValidatedOrigin, isRateLimited } from './utils/security.js';
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    setSecurityHeaders(req, res);
+
+    // Rate Limiting
+    if (isRateLimited(req)) return res.status(429).json({ error: 'Rate limit exceeded.' });
+
+    if (!getValidatedOrigin(req)) return res.status(403).json({ error: 'Access Denied.' });
 
     const diag = {
         timestamp: new Date().toISOString(),

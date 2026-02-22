@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import { setSecurityHeaders, sanitize, getValidatedOrigin } from './utils/security.js';
 
 // Initialize Supabase and Resend strictly from Server ENV Variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -78,33 +79,34 @@ const getEmailTemplate = (clientName) => `
 `;
 
 export default async function handler(req, res) {
-    // Phase 0: CORS Setup (Safe for all environments)
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    // Phase 0: Security Headers
+    setSecurityHeaders(req, res);
+
+    // Rate Limiting
+    if (isRateLimited(req)) {
+        return res.status(429).json({ error: 'Too many requests.' });
+    }
 
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed.' });
 
     try {
         // Phase 1: Data Ingestion and Sanitization
-        const { name, email, company, service, requirements } = req.body;
+        let { name, email, company, service, requirements } = req.body;
 
         if (!name || !email || !company) {
             return res.status(400).json({ error: 'Missing required parameters: name, email, company.' });
         }
 
         const sanitizedData = {
-            name: String(name).trim().replace(/<[^>]*>?/gm, ''),
+            name: sanitize(name),
             email: String(email).trim().toLowerCase(),
-            company: String(company).trim().replace(/<[^>]*>?/gm, ''),
-            service: String(service || '').trim().replace(/<[^>]*>?/gm, ''),
-            requirements: String(requirements || '').trim().replace(/<[^>]*>?/gm, '')
-            // Note: 'source' and 'status' removed to match Supabase schema
+            company: sanitize(company),
+            service: sanitize(service),
+            requirements: sanitize(requirements)
         };
 
         // Phase 1b: Database Logging (Supabase)
-        // Inserting into 'leads' table
         if (!supabase) throw new Error('Database connection parameters not configured.');
 
         const { data: dbData, error: dbError } = await supabase
@@ -115,8 +117,6 @@ export default async function handler(req, res) {
 
         if (dbError) {
             console.error('Database Insertion Error:', dbError);
-            // Non-blocking for the final user experience if we want to prioritize email, 
-            // but here we throw to identify the configuration issue.
             throw new Error(`Critical: Database sync failed (Supabase Error). Details: ${dbError.message}`);
         }
 
@@ -146,7 +146,6 @@ export default async function handler(req, res) {
             throw new Error('Critical: Email service not configured (Missing RESEND_API_KEY in Vercel).');
         }
 
-        let internalEmailData = null;
         if (resend) {
             const { data, error } = await resend.emails.send({
                 from: 'Operations Node <system@nivopartners.com>',
@@ -155,16 +154,12 @@ export default async function handler(req, res) {
                 text: `System Alert:\n\nA new Architecture Wizard audit has been submitted.\n\nName: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nCompany: ${sanitizedData.company}\nService Request: ${sanitizedData.service}\nRequirements: ${sanitizedData.requirements}\n\nCheck the Supabase 'leads' dashboard for full context.`
             });
             internalEmailError = error;
-            internalEmailData = data;
         }
 
         if (internalEmailError) {
             console.error('Internal Notification Transmission Error:', internalEmailError);
-            // Non-blocking in production: we prioritize the user seeing the success UI
-            // and the data being safe in Supabase.
         }
 
-        // Successful Payload Response
         return res.status(200).json({
             success: true,
             message: 'Audit parameters securely ingested. Communication protocols triggered.',

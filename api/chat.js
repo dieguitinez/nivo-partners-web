@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Resend } from 'resend';
+import { setSecurityHeaders, sanitize, getValidatedOrigin, isRateLimited } from './utils/security.js';
 
 // ============================================================
 // KAI COMPACT SYSTEM PROMPT (hardcoded for reliability)
@@ -29,19 +30,25 @@ LANGUAGE: Respond in the EXACT same language as the user (Spanish/English).`;
 // HANDLER
 // ============================================================
 export default async function handler(req, res) {
-    // CORS configuration for local and wide access
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    // Phase 0: Security Headers
+    setSecurityHeaders(req, res);
+    if (!getValidatedOrigin(req)) {
+        // We still allow the request to proceed for now to avoid breaking deployments, 
+        // but strictly enforced browsers will block it due to missing CORS header.
+        // For higher security, we could return 403 here.
+    }
 
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed.' });
 
-    const { userMessage, sessionId, lang = 'en' } = req.body || {};
+    let { userMessage, sessionId, lang = 'en' } = req.body || {};
 
     if (!userMessage || !userMessage.trim()) {
         return res.status(400).json({ error: 'Missing user message.' });
     }
+
+    // Phase 1: Sanitization
+    userMessage = sanitize(userMessage);
 
     if (!process.env.GEMINI_API_KEY) {
         console.warn('[KAI] GEMINI_API_KEY is missing from environment');
