@@ -8,16 +8,18 @@ export default async function handler(req, res) {
     // Rate Limiting
     if (isRateLimited(req)) return res.status(429).json({ error: 'Rate limit exceeded.' });
 
-    // 🧪 Sentry Verification Trigger (Allow direct browser access for this test)
+    /* 
+    // 🧪 Sentry Verification Trigger (Commented out after successful verification)
     if (req.query.test_error === 'true') {
         const testError = new Error('🧪 NIVO PARTNERS: Sentry Verification Test');
         captureException(testError, { type: 'Manual_Verification' });
-        return res.status(500).json({
-            success: false,
+        return res.status(500).json({ 
+            success: false, 
             message: 'Test error triggered and sent to Sentry.',
-            note: 'If you see this, check your Sentry dashboard!'
+            note: 'If you see this, check your Sentry dashboard!' 
         });
     }
+    */
 
     if (!getValidatedOrigin(req)) return res.status(403).json({ error: 'Access Denied.' });
 
