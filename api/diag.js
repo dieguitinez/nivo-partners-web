@@ -10,6 +10,17 @@ export default async function handler(req, res) {
 
     if (!getValidatedOrigin(req)) return res.status(403).json({ error: 'Access Denied.' });
 
+    // 🧪 Sentry Verification Trigger
+    if (req.query.test_error === 'true') {
+        const testError = new Error('🧪 NIVO PARTNERS: Sentry Verification Test');
+        captureException(testError, { type: 'Manual_Verification' });
+        return res.status(500).json({
+            success: false,
+            message: 'Test error triggered and sent to Sentry.',
+            note: 'If you see this, check your Sentry dashboard!'
+        });
+    }
+
     const diag = {
         timestamp: new Date().toISOString(),
         env: {
