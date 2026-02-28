@@ -209,6 +209,7 @@ const translations = {
             projectedSub: "+25% Efficiency Goal",
             leadsLabel: "Estimated New Leads / Month",
             cta: "Get My Growth Roadmap →",
+            disclaimer: "Figures shown are illustrative only. Real results require a preliminary Strategic Audit and Execution Plan formulated specifically for your entity. This projection does not constitute a financial guarantee.",
             education: {
                 minimal: {
                     title: "The Aesthetic of Trust",
@@ -420,6 +421,7 @@ const translations = {
                 footer_terms: "Terms of Service",
                 footer_disclaimer: "Earnings Disclaimer",
                 footer_ethics: "Ethics & Anti-Spam",
+                footer_ai: "AI Transparency",
                 seal_label: "<strong>Certified Infrastructure:</strong> Florida FIPA & FDUTPA Compliant",
                 seal_tooltip: "Nivo Partners guarantees data sovereignty and transparency in every autonomous process."
             },
@@ -463,10 +465,22 @@ const translations = {
                     <p>Any statement regarding future income is an opinion and not a binding promise. Growth involves risk.</p>
                 `
             },
+            ai: {
+                title: "AI Transparency Policy & Safe Harbor",
+                lastUpdated: "Last Updated: February 2026",
+                h2_disclaimer: "Disclaimer Regarding Artificial Intelligence (AI) Generated Content",
+                p_intro: "This service/platform utilizes Artificial Intelligence to enhance user experience, provide information, and assist with revenue operations. While we strive for accuracy and reliability, it is a characteristic of AI technology that it may occasionally generate incorrect, incomplete, or out-of-context information (commonly known as \"hallucinations\").",
+                p_ack: "By using this AI-powered feature or any Nivo Partners service involving AI, you acknowledge and agree that:",
+                li1: "Information provided by the AI is for general informational purposes only and should not be construed as professional, financial, legal, or medical advice.",
+                li2: "Nivo Partners does not guarantee the absolute accuracy, completeness, or usefulness of any AI-generated content.",
+                li3: "You assume all risks associated with the use of, or reliance upon, any AI-generated output. Nivo Partners shall not be held liable for any direct, indirect, incidental, or consequential damages arising from the use of, or inability to use, the AI features or the information they provide.",
+                h2_transparency: "System Use and Transparency",
+                p_transparency: "Our autonomous systems are designed for high-precision business-to-business engagement. However, all AI interactions should be reviewed for critical business decisions. If you have any questions or require verified information, please contact a human representative."
+            },
             ethics: {
                 title: "Ethics & Anti-Spam (CAN-SPAM/FIPA)",
                 content: `
-                    <h1>Ethics & Anti-Spam (CAN-SPAM/FIPA)</h1>
+            < h1 > Ethics & Anti - Spam(CAN - SPAM / FIPA)</h1>
                     <h3>1. Technical Compliance (The Pre-flight Check)</h3>
                     <p>Our outbound systems utilize a <strong>"Pre-flight Compliance Check"</strong>. Before any email is sent via Resend API, our Edge Functions query the leads database to verify the user's unsubscribed status. This prevents accidental outreach to opted-out entities.</p>
                     <h3>2. Regulatory Adherence</h3>
@@ -1058,6 +1072,7 @@ const translations = {
                 footer_terms: "Términos de Servicio",
                 footer_disclaimer: "Renuncia de Ganancias",
                 footer_ethics: "Ética y Anti-Spam",
+                footer_ai: "Transparencia de IA",
                 seal_label: "<strong>Arquitectura Certificada:</strong> Cumplimiento Florida FIPA & FDUTPA",
                 seal_tooltip: "Nivo Partners garantiza la soberanía de sus datos y la transparencia en cada proceso autónomo."
             },
@@ -1072,7 +1087,7 @@ const translations = {
                     <p>Recopilamos datos profesionales B2B de fuentes públicas. Garantizamos que <strong>NO se utilizan datos confidenciales</strong> de clientes para entrenar modelos de IA públicos.</p>
                     <h3>3. Sus Derechos (Protocolo de Eliminación 10 días)</h3>
                     <p>Los residentes de Florida y otras jurisdicciones tienen el derecho de solicitar la eliminación de sus datos. Envíe un correo a contact@nivopartners.com con el asunto "DATA REMOVAL". Ejecutamos todas las solicitudes en un plazo de <strong>10 días</strong>.</p>
-                `
+`
             },
             terms: {
                 title: "Términos y Protocolos de Servicio",
@@ -1088,7 +1103,7 @@ const translations = {
                     <p><em>"Confíe pero Verifique."</em> El Cliente es responsable de la validación final de los datos antes de la ejecución.</p>
                     <h3>4. Jurisdicción</h3>
                     <p>Regido por las leyes del <strong>Condado de Hillsborough, Florida</strong>. Se requiere arbitraje para disputas menores a $25,000.</p>
-                `
+`
             },
             disclaimer: {
                 title: "Renuncia de Ganancias y Rendimiento",
@@ -1097,7 +1112,21 @@ const translations = {
                     <h3>1. Sin Garantías (Cumplimiento FDUTPA)</h3>
                     <p>En cumplimiento con las guías de la FTC y la Ley de Prácticas de Comercio Desleales y Engañosas de Florida (FDUTPA), Nivo Partners declara explícitamente que:</p>
                     <p>Las historias de éxito y ejemplos de "ROI" mostrados en este sitio son resultados excepcionales de clientes específicos. No son una garantía de que usted logrará los mismos resultados.</p>
+                    <h3>2. Declaraciones Prospectivas</h3>
+                    <p>Cualquier declaración sobre ingresos futuros es una opinión y no una promesa vinculante. El crecimiento implica riesgo.</p>
                 `
+            },
+            ai: {
+                title: "Política de Transparencia de IA y Puerto Seguro",
+                lastUpdated: "Última actualización: Febrero 2026",
+                h2_disclaimer: "Descargo de responsabilidad sobre contenido generado por Inteligencia Artificial (IA)",
+                p_intro: "Este servicio/plataforma utiliza Inteligencia Artificial para mejorar la experiencia del usuario, proporcionar información y asistir en las operaciones de ingresos. Si bien nos esforzamos por la precisión y confiabilidad, es una característica de la tecnología de IA que ocasionalmente puede generar información incorrecta, incompleta o fuera de contexto (comúnmente conocida como \"alucinaciones\").",
+                p_ack: "Al utilizar esta función impulsada por IA o cualquier servicio de Nivo Partners que involucre IA, usted reconoce y acepta que:",
+                li1: "La información proporcionada por la IA es solo para fines informativos generales y no debe interpretarse como asesoramiento profesional, financiero, legal o médico.",
+                li2: "Nivo Partners no garantiza la precisión absoluta, integridad o utilidad de ningún contenido generado por IA.",
+                li3: "Usted asume todos los riesgos asociados con el uso o la confianza en cualquier resultado generado por IA. Nivo Partners no será responsable de ningún daño directo, indirecto, incidental o consecuente que surja del uso o la imposibilidad de usar las funciones de IA o la información que proporcionan.",
+                h2_transparency: "Uso del sistema y transparencia",
+                p_transparency: "Nuestros sistemas autónomos están diseñados para el compromiso B2B de alta precisión. Sin embargo, todas las interacciones de IA deben ser revisadas para decisiones comerciales críticas. Si tiene alguna pregunta o requiere información verificada, comuníquese con un representante humano."
             },
             ethics: {
                 title: "Ética y Anti-Spam",
@@ -1110,7 +1139,7 @@ const translations = {
                     <h3>3. Protocolo de Transparencia</h3>
                     <p><strong>Identidad:</strong> Todos los correos están firmados criptográficamente (DKIM) para probar su origen.</p>
                     <p><strong>Mecanismo:</strong> Se inyectan cabeceras de baja de un solo clic en cada mensaje.</p>
-                `
+`
             },
             ceoLetter: {
                 date: "Febrero 2026",
@@ -1232,7 +1261,8 @@ const translations = {
             budgetLabel: "Presupuesto Publicitario Mensual",
             leadsLabel: "Leads Est. / Mes",
             projectedLabel: "Ingresos Mensuales Proyectados",
-            projectedSub: "Actual + (Ads x 4.0 ROAS)"
+            projectedSub: "Actual + (Ads x 4.0 ROAS)",
+            disclaimer: "Las cifras mostradas son solo ilustrativas. Los resultados reales requieren una Auditoría Estratégica preliminar y un Plan de Ejecución formulado específicamente para su entidad. Esta proyección no constituye una garantía financiera."
         },
         common: {
             nav_home: "Inicio",
