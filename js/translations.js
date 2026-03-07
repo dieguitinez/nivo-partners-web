@@ -612,6 +612,12 @@ const translations = {
             projectedLabel: "Projected Monthly Revenue",
             projectedSub: "Current + (Ads x 4.0 ROAS)"
         },
+        cookieBanner: {
+            title: "Privacy & Cookies",
+            message: "We use essential cookies for site functionality and analytics cookies to optimize your experience. You can choose to accept all or decline non-essential cookies.",
+            acceptAll: "Accept All",
+            decline: "Decline Non-Essential"
+        },
         common: {
             nav_home: "Home",
             nav_services: "Services",
@@ -1263,6 +1269,12 @@ const translations = {
             projectedLabel: "Ingresos Mensuales Proyectados",
             projectedSub: "Actual + (Ads x 4.0 ROAS)",
             disclaimer: "Las cifras mostradas son solo ilustrativas. Los resultados reales requieren una Auditoría Estratégica preliminar y un Plan de Ejecución formulado específicamente para su entidad. Esta proyección no constituye una garantía financiera."
+        },
+        cookieBanner: {
+            title: "Privacidad y Cookies",
+            message: "Usamos cookies esenciales para el funcionamiento del sitio y cookies de analítica para optimizar su experiencia. Puede aceptar todas o rechazar las no esenciales.",
+            acceptAll: "Aceptar Todas",
+            decline: "Rechazar No Esenciales"
         },
         common: {
             nav_home: "Inicio",
