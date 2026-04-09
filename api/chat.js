@@ -60,72 +60,92 @@ export default async function handler(req, res) {
         });
     }
 
-    try {
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        // Using Gemini 2.5 Flash as per Master Agent Context requirements
-        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    
+    // CAScada de alta disponibilidad para Google AI Studio (Actualizado 2026)
+    const cascadeModels = [
+        "gemini-3.1-pro-preview", // Vanguardia - Complejidad alta y Agentic logic
+        "gemini-3-flash-preview", // Velocidad Frontier
+        "gemini-2.5-pro",         // Razonamiento estable puro
+        "gemini-2.5-flash"        // Backbone estable de altísima velocidad
+    ];
 
-        const langPrefix = lang === 'es'
-            ? 'INSTRUCCIÓN ACTIVA: Responde SIEMPRE en español.\n\n'
-            : 'ACTIVE INSTRUCTION: Respond in English.\n\n';
+    const langPrefix = lang === 'es'
+        ? 'INSTRUCCIÓN ACTIVA: Responde SIEMPRE en español.\n\n'
+        : 'ACTIVE INSTRUCTION: Respond in English.\n\n';
 
-        // High-precision chat sequence
-        const result = await model.generateContent({
-            contents: [
-                {
-                    role: 'user',
-                    parts: [{ text: KAI_SYSTEM_PROMPT + '\n\n' + langPrefix + 'Status Check: Acknowledge your persona and service pillars.' }]
-                },
-                {
-                    role: 'model',
-                    parts: [{
-                        text: lang === 'es'
-                            ? 'Entendido. Soy Kai, Estratega Principal de Nivo Partners. Operativo bajo los 3 pilares de infraestructura.'
-                            : 'Understood. I am Kai, Lead Strategist at Nivo Partners. Operational across the 3 infrastructure pillars.'
-                    }]
-                },
-                {
-                    role: 'user',
-                    parts: [{ text: userMessage }]
-                }
-            ]
-        });
-
-        const responseText = result.response.text().trim();
-
-        // OOS Detection
-        const oosSignals = ['outside my operational scope', 'fuera de mi alcance', 'falls outside', 'cae fuera', 'not programmed to', 'no puedo ayudar'];
-        const isOutOfScope = oosSignals.some(s => responseText.toLowerCase().includes(s));
-
-        if (isOutOfScope) {
-            await fireTelemetry(userMessage, sessionId);
+    const chatSequenceContents = [
+        {
+            role: 'user',
+            parts: [{ text: KAI_SYSTEM_PROMPT + '\n\n' + langPrefix + 'Status Check: Acknowledge your persona and service pillars.' }]
+        },
+        {
+            role: 'model',
+            parts: [{
+                text: lang === 'es'
+                    ? 'Entendido. Soy Kai, Estratega Principal de Nivo Partners. Operativo bajo los 3 pilares de infraestructura.'
+                    : 'Understood. I am Kai, Lead Strategist at Nivo Partners. Operational across the 3 infrastructure pillars.'
+            }]
+        },
+        {
+            role: 'user',
+            parts: [{ text: userMessage }]
         }
+    ];
 
-        // Intent detection: Audit / Wizard Suggestions
-        const auditSignals = ['auditoría', 'audit', 'wizard', 'formulario', 'asistente', 'solicitud', 'audit request', 'wizard'];
-        const triggerAudit = auditSignals.some(s => responseText.toLowerCase().includes(s));
+    let responseText = null;
+    let lastError = null;
+    let successfulModelName = null;
 
-        return res.status(200).json({
-            reply: responseText,
-            escalated: isOutOfScope,
-            triggerAudit: triggerAudit
-        });
+    for (const modelName of cascadeModels) {
+        try {
+            const model = genAI.getGenerativeModel({ model: modelName });
+            
+            // High-precision chat sequence
+            const result = await model.generateContent({
+                contents: chatSequenceContents
+            });
 
-    } catch (error) {
-        captureException(error, { sessionId, lang });
-        console.error('[KAI] Execution error:', error);
+            responseText = result.response.text().trim();
+            successfulModelName = modelName;
+            console.log(`[KAI] Response generated successfully using: ${successfulModelName}`);
+            
+            break; // Rompe el loop si tenemos una respuesta exitosa
+        } catch (error) {
+            console.warn(`[KAI CASCADE] Fallo en el nodo ${modelName}. Rotando al siguiente respaldo... Detalles: ${error.message}`);
+            lastError = error;
+            // Solo continuamos intentando en el loop
+        }
+    }
 
-        // Soft fallback if model name fails (retry with 1.5 if 2.5 is unavailable in certain deployments)
-        if (error.message.includes('model not found') || error.message.includes('404')) {
-            try {
-                const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-                const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-                const result = await model.generateContent(userMessage);
-                return res.status(200).json({ reply: result.response.text().trim(), escalated: false });
-            } catch (e2) {
-                console.error('[KAI EMERGENCY FALLBACK FAILED]', e2.message);
+    if (responseText) {
+        // Fallback or cascade succeeded
+        try {
+            // OOS Detection
+            const oosSignals = ['outside my operational scope', 'fuera de mi alcance', 'falls outside', 'cae fuera', 'not programmed to', 'no puedo ayudar'];
+            const isOutOfScope = oosSignals.some(s => responseText.toLowerCase().includes(s));
+
+            if (isOutOfScope) {
+                await fireTelemetry(userMessage, sessionId);
             }
+
+            // Intent detection: Audit / Wizard Suggestions
+            const auditSignals = ['auditoría', 'audit', 'wizard', 'formulario', 'asistente', 'solicitud', 'audit request', 'wizard'];
+            const triggerAudit = auditSignals.some(s => responseText.toLowerCase().includes(s));
+
+            return res.status(200).json({
+                reply: responseText,
+                escalated: isOutOfScope,
+                triggerAudit: triggerAudit
+            });
+        } catch (postError) {
+             console.error('[KAI] OOS/Intent detection failure after successful model execution:', postError);
+             return res.status(200).json({ reply: responseText, escalated: false, triggerAudit: false });
         }
+    } else {
+        // Full Cascade Collapse (All 4 models failed)
+        captureException(lastError, { sessionId, lang });
+        console.error('[KAI TOTAL COLLAPSE] Todos los nodos fallaron. Último error:', lastError);
 
         const fallback = lang === 'es'
             ? 'Estoy procesando una alta carga de consultas en este momento. Para asistencia estratégica inmediata, escríbenos a contact@nivopartners.com'
