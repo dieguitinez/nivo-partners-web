@@ -254,6 +254,11 @@ class AntigravityChat {
         // Handle structural actions locally without generating a text response
         if (text === 'open_contact' || text === 'open_booking') {
             setTimeout(() => {
+                // Ensure chat closes so it does not overlap the audit modal, especially on mobile
+                if (this.isOpen) {
+                    this.toggle();
+                }
+                
                 const contactBtn = document.querySelector('a[href="#apply"]');
                 if (contactBtn) contactBtn.click();
                 else if (window.nivoCRM) window.nivoCRM.open();
