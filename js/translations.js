@@ -230,7 +230,7 @@ const translations = {
             agentName: "Kai | Nivo Knowledge Interface",
             placeholder: "Query Infrastructure, Ownership, or the Nivo Bible...",
             send: "Send",
-            disclaimer: "Kai is an AI Lead Strategist. While highly precise, all strategic projections, infrastructure plans, and data must be verified through an official Nivo Partners Strategy Audit. No financial ROI is guaranteed.",
+            disclaimer: "Kai is an AI and may generate inaccurate information ('hallucinations'). All projections must be verified through an official Audit. No ROI is guaranteed.",
             greeting: "I am Kai, the Senior Digital Architect at Nivo Partners (a High-End Computer Systems Design firm). My protocols are designed for Commercial Sovereignty. Every asset we deploy is documented, owned by you, and mobile-native. How shall we proceed?",
             options: {
                 infrastructure: "Analyze My Infrastructure",
@@ -870,7 +870,7 @@ const translations = {
             agentName: "Kai | Interfaz de Conocimiento Nivo",
             placeholder: "Sobre Infraestructura, Propiedad o la Biblia Nivo...",
             send: "Enviar",
-            disclaimer: "Kai es un Estratega Principal de IA. Aunque altamente preciso, todas las proyecciones estratégicas, planes de infraestructura y datos deben verificarse mediante una Auditoría Estratégica oficial de Nivo Partners. No se garantiza ningún ROI financiero.",
+            disclaimer: "Kai es una IA y puede generar información inexacta ('alucinaciones'). Toda proyección debe verificarse mediante una Auditoría oficial de Nivo Partners. No se garantiza ROI.",
             greeting: "Soy Kai, la Interfaz Principal de Conocimiento de Nivo Partners. Estoy programado para ayudarte a transitar de **Rentar Presencia** a **Ser Dueño de tu Infraestructura**. ¿Cómo procedemos con tu soberanía comercial?",
             options: {
                 infrastructure: "Analizar mi Infraestructura",
