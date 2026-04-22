@@ -10,3 +10,8 @@ node_modules/
 .DS_Store
 .vercel
 notebooklm/
+.env*.local
+
+# Archivos de contexto interno — solo locales, nunca al repo público
+cruce de datos/
+scraper/
