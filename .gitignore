@@ -15,3 +15,6 @@ notebooklm/
 # Archivos de contexto interno — solo locales, nunca al repo público
 cruce de datos/
 scraper/
+.ssh/
+*.pem
+*.key
