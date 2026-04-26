@@ -2246,6 +2246,20 @@ body.legal-page footer .copyright {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Typing Text Bubble (replaces 3-dot animation) */
+.typing-indicator-msg {
+    opacity: 0.85;
+}
+
+.typing-text-bubble {
+    font-size: 0.82rem !important;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin: 0 !important;
+    transition: opacity 0.3s ease;
+    letter-spacing: 0.01em;
+}
+
 @media (hover: hover) {
     .path-card:hover {
         transform: translateY(-10px) scale(1.02);

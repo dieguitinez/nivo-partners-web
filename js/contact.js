@@ -5,10 +5,8 @@
 
 window.nivoCRM = {
     isOpen: false,
-    config: {
-        url: 'https://wagqcziphaxffghdwojb.supabase.co',
-        key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhZ3FjemlwaGF4ZmZnaGR3b2piIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzODA3MTEsImV4cCI6MjA4Njk1NjcxMX0.RzdAAB-4i4VsG15Ot0dhi8Y0ruR2uOcRJsIv7atBcMI'
-    },
+    // NOTE: Supabase credentials are handled server-side only.
+    // All form submissions go through /api/process_audit (backend).
 
     init() {
         this.injectModal();
@@ -202,8 +200,54 @@ window.nivoCRM = {
         } catch (error) {
             console.error("TRANSMISSION ERROR (Contact Form):", error);
 
-            // Per user request: Show explicit alert for diagnosis during this phase.
-            alert(`Nivo Partners System Error:\n\n${error.message}\n\nPlease check the console (F12) for full trace.`);
+            // Determine user-friendly message based on error type
+            let userMessage = 'We encountered a temporary issue processing your request.';
+            if (error.name === 'AbortError') {
+                userMessage = 'The request timed out. Please check your connection and try again.';
+            } else if (error.message && error.message.includes('Environment Variables')) {
+                userMessage = 'Our system is undergoing maintenance. Your data was not lost — please try again in a few minutes.';
+            } else if (error.message && error.message.includes('fetch')) {
+                userMessage = 'Network connection issue detected. Please verify your internet connection and retry.';
+            } else if (error.message && error.message.includes('500')) {
+                userMessage = 'Our backend is temporarily unavailable. Our team has been notified. Please try again shortly.';
+            }
+
+            // Show in-form error banner instead of raw alert
+            const existingBanner = form.querySelector('.form-error-banner');
+            if (existingBanner) existingBanner.remove();
+
+            const errorBanner = document.createElement('div');
+            errorBanner.className = 'form-error-banner';
+
+            // Build error banner safely without innerHTML to prevent XSS
+            const bannerWrapper = document.createElement('div');
+            bannerWrapper.style.cssText = 'background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 16px; margin-bottom: 16px; color: #fca5a5; font-size: 13px; line-height: 1.5;';
+
+            const headerRow = document.createElement('div');
+            headerRow.style.cssText = 'display: flex; align-items: center; gap: 8px; margin-bottom: 8px;';
+            const icon = document.createElement('span');
+            icon.style.cssText = 'color: #ef4444; font-size: 16px;';
+            icon.textContent = '⚠';
+            const title = document.createElement('strong');
+            title.style.color = '#f87171';
+            title.textContent = 'Transmission Failed';
+            headerRow.appendChild(icon);
+            headerRow.appendChild(title);
+
+            const msgPara = document.createElement('p');
+            msgPara.style.cssText = 'margin: 0 0 8px 0;';
+            msgPara.textContent = userMessage;
+
+            const refPara = document.createElement('p');
+            refPara.style.cssText = 'margin: 0; font-size: 11px; color: #9ca3af;';
+            const safeRef = error.message ? error.message.substring(0, 100) : 'Unknown';
+            refPara.textContent = `Error ref: ${safeRef}`;
+
+            bannerWrapper.appendChild(headerRow);
+            bannerWrapper.appendChild(msgPara);
+            bannerWrapper.appendChild(refPara);
+            errorBanner.appendChild(bannerWrapper);
+            form.insertBefore(errorBanner, form.firstChild);
 
             // Restore button to allow retry
             btn.innerText = "Retry Protocol Audit";

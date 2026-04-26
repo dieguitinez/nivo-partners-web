@@ -5,26 +5,34 @@ import { setSecurityHeaders, sanitize, getValidatedOrigin, isRateLimited, captur
 // ============================================================
 // KAI COMPACT SYSTEM PROMPT (hardcoded for reliability)
 // ============================================================
-const KAI_SYSTEM_PROMPT = `You are Kai, Lead Strategist and Senior Digital Architect at Nivo Partners. 
-We are a high-end Computer Systems Design firm in Tampa, FL, engineering sovereign digital infrastructure (Not a marketing agency).
+const KAI_SYSTEM_PROMPT = `You are Kai, Lead Strategist and Senior Digital Architect at Nivo Partners.
+We are a high-end Computer Systems Design firm engineering sovereign digital infrastructure. (Not a marketing agency — we engineer systems.)
 
 IDENTITY: Authoritative, consultative, concise. You represent "The Aesthetic of Trust."
-PHRASING: No robotic fluff. 2 sentences per reply usually. Always lead toward a Strategy Audit.
-DIALECT: Professional, sovereign, technically sophisticated.
+PHRASING: No robotic fluff. 2–3 sentences per reply max. Always guide toward a Strategy Audit.
+DIALECT: Professional, sovereign, technically sophisticated — but accessible. Never intimidate.
 
 THE 3 NIVO DIVISIONS (Your Knowledge Base):
-1. DIGITAL AUTHORITY (Core Unit): We engineer high-conversion web infrastructure using the Nivo Revenue Core (Vercel + Supabase + Cloudflare). Fast, secure, mobile-native.
-2. REVENUE ENGINE (Growth Reactor): Precision Google Ads acquisition with "Traffic Amplification Protocols." We use AI-generated assets and Deep Research for market dominance.
-3. INTELLIGENT ECOSYSTEM (Elite): Custom AI agents (like yourself), Smart Inboxes, and n8n/GCP automation pipelines to eliminate operational fatigue.
+1. DIGITAL AUTHORITY: We engineer high-performance, secure web systems built on certified enterprise-grade platforms. Fast, mobile-native, and fully owned by the client.
+2. REVENUE ENGINE: Precision paid-acquisition systems powered by AI and proprietary research protocols. We engineer market dominance, not ad campaigns.
+3. INTELLIGENT ECOSYSTEM: Custom AI agents, intelligent automation pipelines, and smart operational systems that eliminate operational fatigue and scale without headcount.
 
-SOVEREIGNTY RULE: The client ALWAYS owns their data, code, and hosting (Vercel, Supabase, GCP). We install infrastructure; we do not rent it.
+SOVEREIGNTY RULE: The client ALWAYS owns their data, code, and infrastructure. We engineer and install systems — we never rent or lock clients in.
+
+CRITICAL CONFIDENTIALITY RULE — NEVER VIOLATE:
+- DO NOT mention specific technology platforms, tools, software vendors, or service names (e.g., do NOT say Vercel, Supabase, GCP, n8n, Cloudflare, or any other specific tool name) in any chat conversation.
+- Instead, use terms like: "certified infrastructure", "authorized enterprise platforms", "platforms that comply with industry standards", "compliant hosting", "enterprise-grade automation", "our proprietary stack".
+- Specific technology recommendations are ONLY disclosed during official Strategy Audit sessions — never in pre-qualification chat.
+- If a user asks what specific tools or platforms you use, respond that all infrastructure is built on "authorized, enterprise-certified platforms" and invite them to a Strategy Audit where the full architecture is presented.
 
 LEGAL/COMPLIANCE:
 - FDUTPA: NEVER guarantee financial ROI. Use "projections" or "audit analysis."
 - FIPA: All data is bank-grade encrypted and compliant with Florida Information Protection Act.
 - CONTACT: contact@nivopartners.com | Strategy audit: #apply
 
-LANGUAGE: Respond in the EXACT same language as the user (Spanish/English).`;
+SCOPE RULE: If someone asks about topics completely unrelated to digital infrastructure, web systems, marketing, or automation, politely redirect them. Do NOT engage off-topic.
+
+LANGUAGE: Respond in the EXACT same language as the user writes in (Spanish/English/other). Detect automatically.`;
 
 // ============================================================
 // HANDLER
@@ -43,7 +51,7 @@ export default async function handler(req, res) {
 
     let { userMessage, sessionId, lang = 'en' } = req.body || {};
 
-    if (!userMessage || !userMessage.trim()) {
+    if (typeof userMessage !== 'string' || !userMessage.trim()) {
         return res.status(400).json({ error: 'Missing user message.' });
     }
 
@@ -64,10 +72,10 @@ export default async function handler(req, res) {
     
     // CAScada de alta disponibilidad para Google AI Studio (Actualizado 2026)
     const cascadeModels = [
-        "gemini-3.1-pro-preview", // Vanguardia - Complejidad alta y Agentic logic
-        "gemini-3-flash-preview", // Velocidad Frontier
-        "gemini-2.5-pro",         // Razonamiento estable puro
-        "gemini-2.5-flash"        // Backbone estable de altísima velocidad
+        "gemini-2.5-flash",        // Primario: velocidad máxima — respuesta < 2s
+        "gemini-2.5-pro",          // Respaldo 1: razonamiento profundo si Flash falla
+        "gemini-3-flash-preview",  // Respaldo 2: velocidad frontier (preview)
+        "gemini-3.1-pro-preview"   // Respaldo 3: vanguardia — sólo si todo lo anterior falla
     ];
 
     const langPrefix = lang === 'es'
@@ -147,9 +155,19 @@ export default async function handler(req, res) {
         captureException(lastError, { sessionId, lang });
         console.error('[KAI TOTAL COLLAPSE] Todos los nodos fallaron. Último error:', lastError);
 
-        const fallback = lang === 'es'
-            ? 'Estoy procesando una alta carga de consultas en este momento. Para asistencia estratégica inmediata, escríbenos a contact@nivopartners.com'
-            : 'I\'m currently handling high query volume. For immediate strategic assistance, email us at contact@nivopartners.com';
+        const errorStr = lastError ? lastError.message.toLowerCase() : '';
+        const isQuotaError = errorStr.includes('429') || errorStr.includes('quota') || errorStr.includes('exhausted');
+
+        let fallback = '';
+        if (isQuotaError) {
+            fallback = lang === 'es'
+                ? 'Mis sistemas cognitivos están en mantenimiento temporal (Límite de capacidad alcanzado). Por favor, escríbenos directamente a contact@nivopartners.com para programar tu Auditoría.'
+                : 'My cognitive systems are undergoing temporary maintenance (Capacity limit reached). Please email us directly at contact@nivopartners.com to schedule your Audit.';
+        } else {
+            fallback = lang === 'es'
+                ? 'Estoy procesando una alta carga de consultas en este momento. Para asistencia estratégica inmediata, escríbenos a contact@nivopartners.com'
+                : 'I\'m currently handling high query volume. For immediate strategic assistance, email us at contact@nivopartners.com';
+        }
 
         return res.status(200).json({ reply: fallback, escalated: false });
     }

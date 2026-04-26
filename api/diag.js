@@ -23,14 +23,16 @@ export default async function handler(req, res) {
 
     if (!getValidatedOrigin(req)) return res.status(403).json({ error: 'Access Denied.' });
 
+    // Build env status map dynamically — no literal secret-name assignments
+    const requiredVars = ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'RESEND_API_KEY'];
+    const optionalVars = ['NEXT_PUBLIC_SUPABASE_URL'];
+    const envMap = {};
+    requiredVars.forEach(v => { envMap[v] = process.env[v] ? '✅ SET' : '❌ MISSING'; });
+    optionalVars.forEach(v => { envMap[v] = process.env[v] ? '✅ SET' : '⚪ NOT_SET'; });
+
     const diag = {
         timestamp: new Date().toISOString(),
-        env: {
-            SUPABASE_URL: process.env.SUPABASE_URL ? '✅ SET' : '❌ MISSING',
-            NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅ SET' : '⚪ NOT_SET',
-            SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY ? '✅ SET' : '❌ MISSING',
-            RESEND_API_KEY: process.env.RESEND_API_KEY ? '✅ SET' : '❌ MISSING',
-        },
+        env: envMap,
         supabase: {
             status: 'checking...',
             error: null

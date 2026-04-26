@@ -215,9 +215,21 @@ class AntigravityChat {
         const msgDiv = document.createElement('div');
         msgDiv.className = `ag-message ${sender}`;
 
-        // Allow simple HTML parsing for bolding **text**
-        let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        msgDiv.innerHTML = `<p>${formattedText}</p>`;
+        // XSS Defense: build message DOM entirely via safe APIs — NO innerHTML used on user/remote data.
+        // Supports **bold** markdown by splitting on delimiter and alternating between text and <strong>.
+        const p = document.createElement('p');
+        const parts = text.split(/\*\*(.*?)\*\*/g);
+        // split with a capture group alternates: plain, bold, plain, bold...
+        parts.forEach((part, i) => {
+            if (i % 2 === 1) {
+                const strong = document.createElement('strong');
+                strong.textContent = part; // bold segment — safe via textContent
+                p.appendChild(strong);
+            } else {
+                p.appendChild(document.createTextNode(part)); // plain text — always safe
+            }
+        });
+        msgDiv.appendChild(p);
 
         container.appendChild(msgDiv);
         container.scrollTop = container.scrollHeight;
@@ -312,20 +324,41 @@ class AntigravityChat {
 
     showTyping() {
         const messagesContainer = this.widget.querySelector('.ag-chat-messages');
+        const currentLang = localStorage.getItem('nivo_lang') || 'en';
+
+        // Rotating typing phrases to feel more human
+        const phrases = currentLang === 'es'
+            ? ['Kai está escribiendo…', 'Preparando respuesta…', 'Analizando tu consulta…', 'Kai está redactando…']
+            : ['Kai is writing…', 'Preparing a response…', 'Analyzing your query…', 'Kai is composing…'];
+
         const typingEl = document.createElement('div');
         typingEl.className = 'ag-message agent typing-indicator-msg';
-        typingEl.innerHTML = `
-            <div class="typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        `;
+
+        const p = document.createElement('p');
+        p.className = 'typing-text-bubble';
+        p.textContent = phrases[0];
+        typingEl.appendChild(p);
+
         messagesContainer.appendChild(typingEl);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Rotate phrases every 2.5s to feel alive
+        let phraseIndex = 1;
+        this._typingInterval = setInterval(() => {
+            const el = this.widget.querySelector('.typing-text-bubble');
+            if (!el) { clearInterval(this._typingInterval); return; }
+            el.style.opacity = '0';
+            setTimeout(() => {
+                if (!el.parentNode) return; // may have been removed
+                el.textContent = phrases[phraseIndex % phrases.length];
+                el.style.opacity = '1';
+                phraseIndex++;
+            }, 300);
+        }, 2500);
     }
 
     hideTyping() {
+        clearInterval(this._typingInterval);
         const typingEl = this.widget.querySelector('.typing-indicator-msg');
         if (typingEl) typingEl.remove();
     }
